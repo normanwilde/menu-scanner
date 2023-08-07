@@ -35,8 +35,6 @@ const textRecognizer = async (image: string) => {
       })
     })
 
-    console.log(items2.flat())
-
     const items = blocks.map((block) => {
       const item = block.paragraphs.reduce(
         (previousParagraph, currentParagraph) => {

@@ -4,10 +4,14 @@ import { IMenuPage, IMenuItem } from '../typings/data'
 
 export interface IMenuPageContextState {
   pages: IMenuPage[]
+  loading: boolean
+  error: string
 }
 
 const initialState = {
   pages: [],
+  loading: false,
+  error: '',
 }
 
 export const MenuPageContext = createContext<{
@@ -28,7 +32,7 @@ interface IProps {
 }
 
 export const MenuContextProvider = ({ children }: IProps) => {
-  const [state, dispatch] = useReducer(reducer, { pages: [] })
+  const [state, dispatch] = useReducer(reducer, initialState)
   const value = { state, dispatch }
 
   return (
@@ -41,7 +45,7 @@ export const MenuContextProvider = ({ children }: IProps) => {
 export const useMenu = () => useContext(MenuPageContext)
 
 type Action =
-  | { type: 'ADD_PAGE'; payload: { photoUrl: string; base64: string } }
+  | { type: 'ADD_PAGE'; payload: IMenuPage }
   | {
       type: 'ADD_TEXTS'
       payload: { photoUrl: string; menuItems: IMenuItem[] }
@@ -54,6 +58,14 @@ type Action =
         translatedTexts: IMenuItem[]
       }
     }
+  | {
+      type: 'SET_LOADING'
+      payload: boolean
+    }
+  | {
+      type: 'SET_ERROR'
+      payload: string
+    }
 
 const reducer = (
   state: IMenuPageContextState,
@@ -61,15 +73,9 @@ const reducer = (
 ): IMenuPageContextState => {
   switch (action.type) {
     case 'ADD_PAGE':
-      const pageToAdd: IMenuPage = {
-        photoUrl: action.payload.photoUrl,
-        base64: action.payload.base64,
-        menuItems: [],
-      }
-      const pagesWithNewPage = [...state.pages, pageToAdd]
       return {
         ...state,
-        pages: pagesWithNewPage,
+        pages: [...state.pages, action.payload],
       }
     case 'ADD_TEXTS':
       const pagesWithUpdatedPage = state.pages.map((menuPage) => {
@@ -97,6 +103,16 @@ const reducer = (
       return {
         ...state,
         pages: pagesWithSplitItem,
+      }
+    case 'SET_LOADING':
+      return {
+        ...state,
+        loading: action.payload,
+      }
+    case 'SET_ERROR':
+      return {
+        ...state,
+        error: action.payload,
       }
   }
 }

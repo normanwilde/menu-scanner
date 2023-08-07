@@ -12,6 +12,7 @@ import { Entypo } from '@expo/vector-icons'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
 import { useMenu } from '../../contexts/menu'
+import useVision from '../../hooks/useVision'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Camera'>
 
@@ -19,6 +20,7 @@ export default function CameraModal({ navigation }: Props) {
   const [permission, requestPermission] = Camera.useCameraPermissions()
   const cameraRef = useRef<Camera>(null)
   const { dispatch } = useMenu()
+  const { visualize } = useVision()
 
   if (!permission) {
     // Camera permissions are still loading
@@ -43,20 +45,18 @@ export default function CameraModal({ navigation }: Props) {
       base64: true,
     })
     if (data && data.base64) {
-      dispatch({
-        type: 'ADD_PAGE',
-        payload: { photoUrl: data.uri, base64: data.base64 },
-      })
+      visualize(data.uri, data.base64)
+      goToMenuGallery()
     }
   }
 
-  const navigateToMenuGallery = () => {
+  const goToMenuGallery = () => {
     navigation.navigate('MenuGallery')
   }
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={navigateToMenuGallery}>
+      <Pressable onPress={goToMenuGallery}>
         <Entypo name="circle-with-cross" size={24} color="black" />
       </Pressable>
       <Camera style={styles.camera} ref={cameraRef}>

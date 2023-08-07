@@ -5,11 +5,10 @@ export interface IMenuText {
 
 export interface IMenuItem {
   texts: IMenuText
-  imageUrls?: string
+  imageUrl?: string
 }
 
 export interface IMenuPage {
   photoUrl: string
-  base64: string
   menuItems: IMenuItem[]
 }

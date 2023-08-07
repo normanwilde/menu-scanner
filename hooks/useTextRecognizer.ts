@@ -46,8 +46,6 @@ const useTextRecognizer = () => {
         })
       })
 
-      console.log(items2.flat())
-
       const items = blocks.map((block) => {
         const item = block.paragraphs.reduce(
           (previousParagraph, currentParagraph) => {
