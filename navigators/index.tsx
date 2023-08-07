@@ -26,6 +26,7 @@ export default function Navigation() {
         component={MenuGalleryScreen}
         options={{
           headerRight: HeaderIcon,
+          headerTitle: 'Dyner',
         }}
       />
     </Stack.Navigator>
