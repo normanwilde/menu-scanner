@@ -10,8 +10,6 @@ type Props = NativeStackScreenProps<RootStackParamList, 'MenuGallery'>
 export default function MenuGallery({ navigation }: Props) {
   const { state } = useMenu()
 
-  console.log(JSON.stringify(state.pages))
-
   const goToMenu = (page: IMenuPage) => {
     navigation.navigate('MenuPage', { page: page })
   }

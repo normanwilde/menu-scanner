@@ -17,6 +17,7 @@ export default function MenuPage({ navigation, route }: Props) {
         renderItem={({ item }) => renderItem(item)}
         ItemSeparatorComponent={ItemSeparatorComponent}
         style={styles.flatList}
+        keyExtractor={(_item, index) => String(index)} // TODO: find better key
       />
     </View>
   )
