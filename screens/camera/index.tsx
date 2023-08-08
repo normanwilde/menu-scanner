@@ -5,12 +5,16 @@ import {
   Button,
   TouchableOpacity,
   Pressable,
+  SafeAreaView,
 } from 'react-native'
 import { Camera } from 'expo-camera'
 import { useRef } from 'react'
 import { Entypo } from '@expo/vector-icons'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { RootStackParamList } from '../../typings/navigators'
+import {
+  BottomTabParamList,
+  RootStackParamList,
+} from '../../typings/navigators'
 import { useMenu } from '../../contexts/menu'
 import useVision from '../../hooks/useVision'
 
@@ -51,12 +55,16 @@ export default function CameraModal({ navigation }: Props) {
   }
 
   const goToMenuGallery = () => {
-    navigation.navigate('MenuGallery')
+    navigation.navigate('MenuStack', { screen: 'MenuGallery' })
+  }
+
+  const goBack = () => {
+    navigation.goBack()
   }
 
   return (
-    <View style={styles.container}>
-      <Pressable onPress={goToMenuGallery}>
+    <SafeAreaView style={styles.container}>
+      <Pressable onPress={goBack}>
         <Entypo name="circle-with-cross" size={24} color="black" />
       </Pressable>
       <Camera style={styles.camera} ref={cameraRef}>
@@ -66,7 +74,7 @@ export default function CameraModal({ navigation }: Props) {
           </TouchableOpacity>
         </View>
       </Camera>
-    </View>
+    </SafeAreaView>
   )
 }
 

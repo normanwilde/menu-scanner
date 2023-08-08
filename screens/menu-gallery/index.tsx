@@ -2,10 +2,13 @@ import { Pressable, Text, View } from 'react-native'
 import { Image } from 'expo-image'
 import { useMenu } from '../../contexts/menu'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { RootStackParamList } from '../../typings/navigators'
+import {
+  MenuStackParamList,
+  RootStackParamList,
+} from '../../typings/navigators'
 import { IMenuPage } from '../../typings/data'
 
-type Props = NativeStackScreenProps<RootStackParamList, 'MenuGallery'>
+type Props = NativeStackScreenProps<MenuStackParamList, 'MenuGallery'>
 
 export default function MenuGallery({ navigation }: Props) {
   const { state } = useMenu()

@@ -29,6 +29,9 @@ export default function LanguageSelector({ navigation }: Props) {
 
   const selectLanguage = (language: LanguageCode) => {
     dispatch({ type: 'SET_LANGUAGE', payload: language })
+    setTimeout(() => {
+      navigation.goBack()
+    }, 500)
   }
 
   return (

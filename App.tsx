@@ -28,6 +28,7 @@ export default function App() {
   // }
   return (
     <MenuContextProvider>
+      <StatusBar />
       <NavigationContainer>
         <Navigation />
       </NavigationContainer>
