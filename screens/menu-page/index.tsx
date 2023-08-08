@@ -11,7 +11,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'MenuPage'>
 export default function MenuPage({ navigation, route }: Props) {
   const { page } = route.params
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={page.menuItems}
         renderItem={({ item }) => renderItem(item)}
@@ -32,8 +32,12 @@ const ItemSeparatorComponent = () => {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginVertical: 20,
+  },
   flatList: {
-    paddingVertical: 20,
+    flex: 1,
   },
   itemSeparator: {
     height: 20,

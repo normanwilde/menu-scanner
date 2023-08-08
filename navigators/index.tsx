@@ -8,6 +8,8 @@ import { RootStackParamList } from '../typings/navigators'
 import CameraScreen from '../screens/camera'
 import MenuGalleryScreen from '../screens/menu-gallery'
 import MenuPageScreen from '../screens/menu-page'
+import ImageGalleryScreen from '../screens/image-gallery'
+import LanguageSelectorScreen from '../screens/language-selector'
 
 /* Components */
 import { HeaderIcon } from '../components'
@@ -37,6 +39,19 @@ export default function Navigation() {
           headerRight: HeaderIcon,
           headerTitle: 'Dyner',
         }}
+      />
+      <Stack.Screen
+        name="ImageGallery"
+        component={ImageGalleryScreen}
+        options={{
+          headerRight: HeaderIcon,
+          headerTitle: 'Dyner',
+        }}
+      />
+      <Stack.Screen
+        name="LanguageSelector"
+        component={LanguageSelectorScreen}
+        options={{ presentation: 'modal' }}
       />
     </Stack.Navigator>
   )

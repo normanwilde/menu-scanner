@@ -2,26 +2,37 @@ import { Pressable, Text, View, StyleSheet } from 'react-native'
 import { Image } from 'expo-image'
 import { IMenuItem } from '../../typings/data'
 import { Ionicons } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { RootStackParamList } from '../../typings/navigators'
 
 type Props = {
   menuItem: IMenuItem
 }
 
 export default function DishCard({ menuItem }: Props) {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList, 'MenuPage'>>()
+
+  const goToImageGallery = () => {
+    navigation.navigate('ImageGallery', { dish: menuItem })
+  }
   return (
-    <View style={styles.container}>
-      {menuItem.images[0] ? (
-        <Image source={{ uri: menuItem.images[0] }} style={styles.image} />
-      ) : (
-        <View style={styles.iconWrapper}>
-          <Ionicons name="fast-food" size={100} color="black" />
+    <Pressable onPress={goToImageGallery}>
+      <View style={styles.container}>
+        {menuItem.images[0] ? (
+          <Image source={{ uri: menuItem.images[0] }} style={styles.image} />
+        ) : (
+          <View style={styles.iconWrapper}>
+            <Ionicons name="fast-food" size={100} color="black" />
+          </View>
+        )}
+        <View style={styles.textContainer}>
+          <Text>{menuItem.texts.originalText}</Text>
+          <Text>{menuItem.texts.translatedText}</Text>
         </View>
-      )}
-      <View style={styles.textContainer}>
-        <Text>{menuItem.texts.originalText}</Text>
-        <Text>{menuItem.texts.translatedText}</Text>
       </View>
-    </View>
+    </Pressable>
   )
 }
 

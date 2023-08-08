@@ -1,17 +1,19 @@
 import { createContext, useContext, useReducer } from 'react'
 
-import { IMenuPage, IMenuItem } from '../typings/data'
+import { IMenuPage, IMenuItem, LanguageCode } from '../typings/data'
 
 export interface IMenuPageContextState {
   pages: IMenuPage[]
   loading: boolean
   error: string
+  targetLanguage: LanguageCode
 }
 
-const initialState = {
+const initialState: IMenuPageContextState = {
   pages: [],
   loading: false,
   error: '',
+  targetLanguage: 'en',
 }
 
 export const MenuPageContext = createContext<{
@@ -66,6 +68,10 @@ type Action =
       type: 'SET_ERROR'
       payload: string
     }
+  | {
+      type: 'SET_LANGUAGE'
+      payload: LanguageCode
+    }
 
 const reducer = (
   state: IMenuPageContextState,
@@ -113,6 +119,11 @@ const reducer = (
       return {
         ...state,
         error: action.payload,
+      }
+    case 'SET_LANGUAGE':
+      return {
+        ...state,
+        targetLanguage: action.payload,
       }
   }
 }

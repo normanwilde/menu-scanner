@@ -1,4 +1,5 @@
 import { LANGUAGES } from '../constants/data'
+import { LanguageCode } from './data'
 
 export interface IImageItemDTO {
   kind: string
@@ -93,7 +94,7 @@ export type ITextDetectionResponseDTO = {
 
 export interface ITextTranslationItemDTO {
   translatedText: string
-  detectedSourceLanguage: keyof typeof LANGUAGES
+  detectedSourceLanguage: LanguageCode
 }
 
 export interface ITextTranslationDTO {

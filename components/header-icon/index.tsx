@@ -1,6 +1,6 @@
 import { Entypo } from '@expo/vector-icons'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { Pressable } from 'react-native'
+import { Pressable, View, StyleSheet } from 'react-native'
 import { RootStackParamList } from '../../typings/navigators'
 import { useNavigation } from '@react-navigation/native'
 
@@ -10,13 +10,29 @@ export function HeaderIcon() {
     useNavigation<NativeStackNavigationProp<RootStackParamList>>()
 
   /* Handlers */
-  const navigateToCamera = () => {
+  const goToCamera = () => {
     navigation.navigate('Camera')
   }
 
+  const goToLanguageSelector = () => {
+    navigation.navigate('LanguageSelector')
+  }
+
   return (
-    <Pressable onPress={navigateToCamera}>
-      <Entypo name="camera" size={24} color="black" />
-    </Pressable>
+    <View style={styles.container}>
+      <Pressable onPress={goToCamera}>
+        <Entypo name="camera" size={24} color="black" />
+      </Pressable>
+      <Pressable onPress={goToLanguageSelector}>
+        <Entypo name="language" size={24} color="black" />
+      </Pressable>
+    </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    gap: 25,
+    flexDirection: 'row',
+  },
+})

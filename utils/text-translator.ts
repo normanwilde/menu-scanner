@@ -1,12 +1,12 @@
 import axios from 'axios'
 import { ITextTranslationDTO } from '../typings/DTO'
-import { LANGUAGES } from '../constants/data'
+import { LanguageCode } from '../typings/data'
 
 const API_URL = `https://translation.googleapis.com/language/translate/v2?key=${process.env.EXPO_PUBLIC_GOOGLE_API_KEY}`
 
 const textTranslator = async (
   menuItemNames: string[],
-  targetLanguage: keyof typeof LANGUAGES
+  targetLanguage: LanguageCode
 ) => {
   const body = {
     q: menuItemNames,

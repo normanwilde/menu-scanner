@@ -1,4 +1,4 @@
-import { IMenuPage } from './data'
+import { IMenuItem, IMenuPage } from './data'
 
 export type RootStackParamList = {
   Camera: undefined
@@ -6,4 +6,8 @@ export type RootStackParamList = {
   MenuPage: {
     page: IMenuPage
   }
+  ImageGallery: {
+    dish: IMenuItem
+  }
+  LanguageSelector: undefined
 }

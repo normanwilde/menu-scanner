@@ -8,7 +8,7 @@ import textTranslator from '../utils/text-translator'
 const useVision = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const { dispatch } = useMenu()
+  const { state, dispatch } = useMenu()
 
   const visualize = async (photoUrl: string, base64: string) => {
     dispatch({ type: 'SET_LOADING', payload: true })
@@ -43,7 +43,7 @@ const useVision = () => {
       }
 
       /* TRANSLATE TEXTS */
-      const targetLanguage = 'fr'
+      const targetLanguage = state.targetLanguage
       const translations = await textTranslator(menuItemNames, targetLanguage)
       if (!translations) {
         throw new Error()
