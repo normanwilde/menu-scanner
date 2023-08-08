@@ -13,10 +13,13 @@ const textTranslator = async (
     target: targetLanguage,
   }
 
-  const response = await axios.post<ITextTranslationDTO>(API_URL, body)
-  const result = response.data.data.translations
-
-  return result
+  try {
+    const response = await axios.post<ITextTranslationDTO>(API_URL, body)
+    const result = response.data.data.translations
+    return result
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 export default textTranslator
