@@ -16,10 +16,15 @@ const useVision = () => {
 
     try {
       /* DETECT TEXTS */
-      const menuItemNames = await textRecognizer(base64)
-      if (!menuItemNames) {
+      const recognizedTexts = await textRecognizer(base64)
+      if (!recognizedTexts) {
         throw new Error()
       }
+
+      /* SANITIZE TEXTS */
+      const menuItemNames = recognizedTexts.filter((itemName) => {
+        return !/\d/.test(itemName)
+      })
 
       /* FIND RELATED IMAGES */
       let menuItems: IMenuItem[] = []
