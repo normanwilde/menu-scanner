@@ -26,7 +26,16 @@ export default function ImageGallery({ route }: Props) {
 }
 
 const renderItem = (imageUrl: string) => {
-  return <Image source={{ uri: imageUrl }} style={styles.image} />
+  return (
+    <Image
+      source={{ uri: imageUrl }}
+      style={styles.image}
+      onError={(e) => console.log(e)}
+      placeholder={{
+        uri: 'https://demofree.sirv.com/nope-not-here.jpg',
+      }}
+    />
+  )
 }
 
 const styles = StyleSheet.create({
