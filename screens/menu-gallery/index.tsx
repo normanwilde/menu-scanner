@@ -5,6 +5,8 @@ import { useMenu } from '../../contexts/menu'
 export default function MenuGallery() {
   const { state } = useMenu()
 
+  console.log(JSON.stringify(state.pages))
+
   if (state.loading) {
     return <Text>Loading</Text>
   }

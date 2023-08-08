@@ -3,6 +3,7 @@ import textRecognizer from '../utils/text-recognizer'
 import imageFinder from '../utils/image-finder'
 import { IMenuItem } from '../typings/data'
 import { useMenu } from '../contexts/menu'
+import textTranslator from '../utils/text-translator'
 
 const useVision = () => {
   const [loading, setLoading] = useState(false)
@@ -14,8 +15,10 @@ const useVision = () => {
     dispatch({ type: 'SET_ERROR', payload: '' })
 
     try {
+      /* DETECT TEXTS */
       const menuItemNames = await textRecognizer(base64)
 
+      /* FIND RELATED IMAGES */
       if (menuItemNames) {
         let menuItems: IMenuItem[] = []
         for (let itemName of menuItemNames) {
@@ -29,9 +32,30 @@ const useVision = () => {
           }
           menuItems.push(menuItem)
         }
+
+        /* TRANSLATE TEXTS */
+        const targetLanguage = 'fr'
+        const translations = await textTranslator(menuItemNames, targetLanguage)
+
+        console.log(translations)
+
+        const menuItemsWithTranslations: IMenuItem[] = menuItems.map(
+          (menuItem, index) => {
+            return {
+              ...menuItem,
+              texts: {
+                ...menuItem.texts,
+                translatedText: translations[index].translatedText,
+                sourceLanguage: translations[index].detectedSourceLanguage,
+                targetLanguage,
+              },
+            }
+          }
+        )
+
         dispatch({
           type: 'ADD_PAGE',
-          payload: { photoUrl, menuItems },
+          payload: { photoUrl, menuItems: menuItemsWithTranslations },
         })
       }
     } catch (e) {

@@ -1,3 +1,5 @@
+import { LANGUAGES } from '../constants/data'
+
 export interface IImageItemDTO {
   kind: string
   title: string
@@ -87,4 +89,15 @@ export type ITextDetectionResponseDTO = {
       text: string
     }
   }>
+}
+
+export interface ITextTranslationItemDTO {
+  translatedText: string
+  detectedSourceLanguage: keyof typeof LANGUAGES
+}
+
+export interface ITextTranslationDTO {
+  data: {
+    translations: ITextTranslationItemDTO[]
+  }
 }
