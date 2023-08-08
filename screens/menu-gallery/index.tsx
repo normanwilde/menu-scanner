@@ -1,11 +1,20 @@
-import { Text, View } from 'react-native'
+import { Pressable, Text, View } from 'react-native'
 import { Image } from 'expo-image'
 import { useMenu } from '../../contexts/menu'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { RootStackParamList } from '../../typings/navigators'
+import { IMenuPage } from '../../typings/data'
 
-export default function MenuGallery() {
+type Props = NativeStackScreenProps<RootStackParamList, 'MenuGallery'>
+
+export default function MenuGallery({ navigation }: Props) {
   const { state } = useMenu()
 
   console.log(JSON.stringify(state.pages))
+
+  const goToMenu = (page: IMenuPage) => {
+    navigation.navigate('MenuPage', { page: page })
+  }
 
   if (state.loading) {
     return <Text>Loading</Text>
@@ -21,13 +30,15 @@ export default function MenuGallery() {
 
   return (
     <View>
-      {state.pages.map((page) => {
+      {state.pages.map((page, index) => {
         return (
-          <Image
-            key={page.photoUrl}
-            source={{ uri: page.photoUrl }}
-            style={{ width: 100, height: 100 }}
-          />
+          <Pressable onPress={() => goToMenu(page)}>
+            <Image
+              key={page.photoUrl}
+              source={{ uri: page.photoUrl }}
+              style={{ width: 200, height: 300 }}
+            />
+          </Pressable>
         )
       })}
     </View>

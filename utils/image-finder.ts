@@ -12,8 +12,8 @@ const imageFinder = async (searchTerm: string) => {
         searchType: 'image',
       },
     })
-    const imageLink = imageResult.data.items[0].link
-    return imageLink
+    const imageLinks = imageResult.data.items.map((item) => item.link)
+    return imageLinks
   } catch (e) {
     console.error(e)
   }

@@ -9,7 +9,7 @@ export interface IMenuText {
 
 export interface IMenuItem {
   texts: IMenuText
-  imageUrl?: string
+  images: string[]
 }
 
 export interface IMenuPage {

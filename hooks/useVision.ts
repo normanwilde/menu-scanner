@@ -24,15 +24,15 @@ const useVision = () => {
       /* FIND RELATED IMAGES */
       let menuItems: IMenuItem[] = []
       for (let itemName of menuItemNames) {
-        const imageUrl = await imageFinder(itemName)
-        if (!imageUrl) {
+        const images = await imageFinder(itemName)
+        if (!images) {
           throw new Error()
         }
         const menuItem: IMenuItem = {
           texts: {
             originalText: itemName,
           },
-          imageUrl,
+          images,
         }
         menuItems.push(menuItem)
       }
