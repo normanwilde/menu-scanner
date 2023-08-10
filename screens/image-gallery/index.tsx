@@ -1,10 +1,7 @@
 import { FlatList, View, Dimensions, StyleSheet, Text } from 'react-native'
 import { Image } from 'expo-image'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import {
-  MenuStackParamList,
-  RootStackParamList,
-} from '../../typings/navigators'
+import { MenuStackParamList } from '../../typings/navigators'
 
 const { width } = Dimensions.get('screen')
 
@@ -17,8 +14,8 @@ export default function ImageGallery({ route }: Props) {
       <FlatList
         horizontal
         data={dish.images}
-        renderItem={({ item }) => renderItem(item)}
-        keyExtractor={(item) => item}
+        renderItem={({ item }) => renderItem(item.image)}
+        keyExtractor={(item) => item.image}
         pagingEnabled
         showsHorizontalScrollIndicator={false}
       />

@@ -115,12 +115,18 @@ export interface IMenuText {
   targetLanguage?: LanguageCode
 }
 
+export interface IMenuImage {
+  thumbnail: string
+  image: string
+}
+
 export interface IMenuItem {
   texts: IMenuText
-  images: string[]
+  images: IMenuImage[]
 }
 
 export interface IMenuPage {
   photoUrl: string
   menuItems: IMenuItem[]
+  timestamp: number
 }

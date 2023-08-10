@@ -81,7 +81,7 @@ const reducer = (
     case 'ADD_PAGE':
       return {
         ...state,
-        pages: [...state.pages, action.payload],
+        pages: [action.payload, ...state.pages],
       }
     case 'ADD_TEXTS':
       const pagesWithUpdatedPage = state.pages.map((menuPage) => {

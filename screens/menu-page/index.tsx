@@ -13,6 +13,7 @@ type Props = NativeStackScreenProps<MenuStackParamList, 'MenuPage'>
 
 export default function MenuPage({ navigation, route }: Props) {
   const { page } = route.params
+  console.log(page.menuItems)
   return (
     <View style={styles.container}>
       <FlatList

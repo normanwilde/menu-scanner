@@ -24,7 +24,10 @@ export default function DishCard({ menuItem }: Props) {
     <Pressable onPress={goToImageGallery}>
       <View style={styles.container}>
         {menuItem.images[0] ? (
-          <Image source={{ uri: menuItem.images[0] }} style={styles.image} />
+          <Image
+            source={{ uri: menuItem.images[0].thumbnail }}
+            style={styles.image}
+          />
         ) : (
           <View style={styles.iconWrapper}>
             <Ionicons name="fast-food" size={100} color="black" />

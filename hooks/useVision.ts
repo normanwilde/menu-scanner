@@ -63,7 +63,11 @@ const useVision = () => {
       )
       dispatch({
         type: 'ADD_PAGE',
-        payload: { photoUrl, menuItems: menuItemsWithTranslations },
+        payload: {
+          photoUrl,
+          menuItems: menuItemsWithTranslations,
+          timestamp: Number(new Date()),
+        },
       })
     } catch (e) {
       dispatch({ type: 'SET_ERROR', payload: 'Error processing image' })
