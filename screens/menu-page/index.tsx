@@ -8,6 +8,7 @@ import {
 } from '../../typings/navigators'
 import DishCard from './dish-card'
 import { IMenuItem } from '../../typings/data'
+import { SPACING } from '../../constants/styles'
 
 type Props = NativeStackScreenProps<MenuStackParamList, 'MenuPage'>
 
@@ -38,7 +39,6 @@ const ItemSeparatorComponent = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginVertical: 20,
   },
   flatList: {
     flex: 1,

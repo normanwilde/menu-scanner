@@ -5,6 +5,7 @@ import { useMenu } from '../contexts/menu'
 import textTranslator from '../utils/text-translator'
 import Toast from 'react-native-toast-message'
 import dishValidator from '../utils/dish-validator'
+import textSanitizer from '../utils/text-sanitizer'
 
 const useVision = () => {
   const { state, dispatch } = useMenu()
@@ -18,18 +19,22 @@ const useVision = () => {
       if (!recognizedTexts) {
         throw new Error()
       }
+      console.log({ recognizedTexts })
+      /* SANITIZE TEXTS*/
+      const sanitizedTexts = textSanitizer(recognizedTexts)
+
+      console.log({ sanitizedTexts })
 
       /* VALIDATE TEXT ITEMS */
-      const booleanArray = await dishValidator(recognizedTexts)
+      const booleanArray = await dishValidator(sanitizedTexts)
+      console.log({ booleanArray })
+      if (!booleanArray) {
+        throw new Error()
+      }
 
-      const menuItemNames = recognizedTexts.filter((_item, index) => {
+      const menuItemNames = sanitizedTexts.filter((_item, index) => {
         return booleanArray[index]
       })
-
-      /* SANITIZE TEXTS */
-      // const menuItemNames = validatedTexts.filter((itemName) => {
-      //   return !/\d/.test(itemName)
-      // })
 
       /* FIND RELATED IMAGES */
       let menuItems: IMenuItem[] = []

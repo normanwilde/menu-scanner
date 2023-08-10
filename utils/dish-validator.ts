@@ -13,7 +13,7 @@ const dishValidator = async (stringArray: string[]) => {
     const result = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
       messages: [{ role: 'user', content: prompt }],
-      temperature: 0.5,
+      temperature: 0,
       max_tokens: 2000, // 4000 much cuased error
     })
 
@@ -23,6 +23,7 @@ const dishValidator = async (stringArray: string[]) => {
     if (inputString) {
       const match = regex.exec(inputString)
       if (match) {
+        console.log({ match })
         return JSON.parse(match[0])
       }
     }
