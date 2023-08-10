@@ -5,14 +5,12 @@ import { IMenuPage, IMenuItem, LanguageCode } from '../typings/data'
 export interface IMenuPageContextState {
   pages: IMenuPage[]
   loading: boolean
-  error: string
   targetLanguage: LanguageCode
 }
 
 const initialState: IMenuPageContextState = {
   pages: [],
   loading: false,
-  error: '',
   targetLanguage: 'en',
 }
 
@@ -65,10 +63,6 @@ type Action =
       payload: boolean
     }
   | {
-      type: 'SET_ERROR'
-      payload: string
-    }
-  | {
       type: 'SET_LANGUAGE'
       payload: LanguageCode
     }
@@ -114,11 +108,6 @@ const reducer = (
       return {
         ...state,
         loading: action.payload,
-      }
-    case 'SET_ERROR':
-      return {
-        ...state,
-        error: action.payload,
       }
     case 'SET_LANGUAGE':
       return {

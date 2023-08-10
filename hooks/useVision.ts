@@ -1,18 +1,16 @@
-import { useState } from 'react'
 import textRecognizer from '../utils/text-recognizer'
 import imageFinder from '../utils/image-finder'
 import { IMenuItem } from '../typings/data'
 import { useMenu } from '../contexts/menu'
 import textTranslator from '../utils/text-translator'
+import Toast from 'react-native-toast-message'
+import dishValidator from '../utils/dish-validator'
 
 const useVision = () => {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
   const { state, dispatch } = useMenu()
 
   const visualize = async (photoUrl: string, base64: string) => {
     dispatch({ type: 'SET_LOADING', payload: true })
-    dispatch({ type: 'SET_ERROR', payload: '' })
 
     try {
       /* DETECT TEXTS */
@@ -21,10 +19,17 @@ const useVision = () => {
         throw new Error()
       }
 
-      /* SANITIZE TEXTS */
-      const menuItemNames = recognizedTexts.filter((itemName) => {
-        return !/\d/.test(itemName)
+      /* VALIDATE TEXT ITEMS */
+      const booleanArray = await dishValidator(recognizedTexts)
+
+      const menuItemNames = recognizedTexts.filter((_item, index) => {
+        return booleanArray[index]
       })
+
+      /* SANITIZE TEXTS */
+      // const menuItemNames = validatedTexts.filter((itemName) => {
+      //   return !/\d/.test(itemName)
+      // })
 
       /* FIND RELATED IMAGES */
       let menuItems: IMenuItem[] = []
@@ -61,6 +66,7 @@ const useVision = () => {
           }
         }
       )
+
       dispatch({
         type: 'ADD_PAGE',
         payload: {
@@ -70,14 +76,17 @@ const useVision = () => {
         },
       })
     } catch (e) {
-      dispatch({ type: 'SET_ERROR', payload: 'Error processing image' })
+      Toast.show({
+        type: 'error',
+        text1: 'Error processing image. Please try again.',
+      })
       console.error(e)
     } finally {
       dispatch({ type: 'SET_LOADING', payload: false })
     }
   }
 
-  return { visualize, loading, error }
+  return { visualize }
 }
 
 export default useVision

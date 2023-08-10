@@ -11,6 +11,7 @@ import { useMenu } from '../../contexts/menu'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { MenuStackParamList } from '../../typings/navigators'
 import { IMenuPage } from '../../typings/data'
+import { StyledText } from '../../components'
 
 type Props = NativeStackScreenProps<MenuStackParamList, 'MenuGallery'>
 
@@ -27,12 +28,15 @@ export default function MenuGallery({ navigation }: Props) {
     return <Text>Loading</Text>
   }
 
-  if (state.error) {
-    return <Text>Error</Text>
-  }
-
-  if (state.pages && state.pages.length === 0) {
-    return <Text>No photos yet</Text>
+  if (state.pages && state.pages.length === 0 && !state.loading) {
+    return (
+      <View>
+        <StyledText size="HEADING_S">Your menu gallery is empty.</StyledText>
+        <StyledText size="L">
+          Take a photo of a menu and wait for the results.
+        </StyledText>
+      </View>
+    )
   }
 
   return (
