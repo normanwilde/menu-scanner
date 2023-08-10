@@ -20,7 +20,7 @@ const imageFinder = async (searchTerm: string) => {
       image: item.link,
       thumbnail: item.image.thumbnailLink,
     }))
-    console.log({ imageLinks })
+    
     return imageLinks
   } catch (e) {
     console.error(e)

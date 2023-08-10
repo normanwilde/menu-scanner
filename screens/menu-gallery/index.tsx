@@ -18,7 +18,7 @@ const { width } = Dimensions.get('screen')
 
 export default function MenuGallery({ navigation }: Props) {
   const { state } = useMenu()
-  console.log(state.pages[0])
+
   const goToMenu = (page: IMenuPage) => {
     navigation.navigate('MenuPage', { page: page })
   }
