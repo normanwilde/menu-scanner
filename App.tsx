@@ -6,6 +6,7 @@ import { MenuContextProvider } from './contexts/menu'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { useCallback, useEffect } from 'react'
+import Toast from 'react-native-toast-message'
 
 // SplashScreen.preventAutoHideAsync()
 
@@ -31,6 +32,7 @@ export default function App() {
       <StatusBar />
       <NavigationContainer>
         <Navigation />
+        <Toast />
       </NavigationContainer>
     </MenuContextProvider>
   )
