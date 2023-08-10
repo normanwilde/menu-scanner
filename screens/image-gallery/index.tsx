@@ -33,7 +33,7 @@ const renderItem = (imageUrl: string) => {
     <Image
       source={{ uri: imageUrl }}
       style={styles.image}
-      onError={(e) => console.log(e)}
+      onError={() => console.log(imageUrl)}
       placeholder={{
         uri: 'https://demofree.sirv.com/nope-not-here.jpg',
       }}

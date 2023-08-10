@@ -12,7 +12,6 @@ type Props = NativeStackScreenProps<MenuStackParamList, 'MenuGallery'>
 
 export default function MenuGallery({ navigation }: Props) {
   const { state } = useMenu()
-
   const goToMenu = (page: IMenuPage) => {
     navigation.navigate('MenuPage', { page: page })
   }
@@ -31,11 +30,10 @@ export default function MenuGallery({ navigation }: Props) {
 
   return (
     <View>
-      {state.pages.map((page, index) => {
+      {state.pages.map((page) => {
         return (
-          <Pressable onPress={() => goToMenu(page)}>
+          <Pressable onPress={() => goToMenu(page)} key={page.photoUrl}>
             <Image
-              key={page.photoUrl}
               source={{ uri: page.photoUrl }}
               style={{ width: 200, height: 300 }}
             />
