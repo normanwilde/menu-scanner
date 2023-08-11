@@ -9,11 +9,12 @@ import {
 import { Image } from 'expo-image'
 import { useMenu } from '../../contexts/menu'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { MenuStackParamList } from '../../typings/navigators'
+import { RootStackParamList } from '../../typings/navigators'
 import { IMenuPage } from '../../typings/data'
 import { StyledText } from '../../components'
+import { CameraIcon } from './camera-icon'
 
-type Props = NativeStackScreenProps<MenuStackParamList, 'MenuGallery'>
+type Props = NativeStackScreenProps<RootStackParamList, 'MenuGallery'>
 
 const { width } = Dimensions.get('screen')
 
@@ -48,6 +49,7 @@ export default function MenuGallery({ navigation }: Props) {
         showsHorizontalScrollIndicator={false}
         ItemSeparatorComponent={ItemSeparatorComponent}
       />
+      <CameraIcon />
     </View>
   )
 }

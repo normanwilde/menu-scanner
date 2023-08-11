@@ -1,11 +1,11 @@
 import { FlatList, View, Dimensions, StyleSheet, Text } from 'react-native'
 import { Image } from 'expo-image'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { MenuStackParamList } from '../../typings/navigators'
+import { RootStackParamList } from '../../typings/navigators'
 
 const { width } = Dimensions.get('screen')
 
-type Props = NativeStackScreenProps<MenuStackParamList, 'ImageGallery'>
+type Props = NativeStackScreenProps<RootStackParamList, 'ImageGallery'>
 
 export default function ImageGallery({ route }: Props) {
   const { dish } = route.params

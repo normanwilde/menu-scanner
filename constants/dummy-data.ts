@@ -1,0 +1,498 @@
+import { IMenuPage } from '../typings/data'
+
+export const DUMMY_DATA: IMenuPage = {
+  photoUrl:
+    'https://marketplace.canva.com/EAFI_i7T__g/1/0/1131w/canva-brown-black-modern-restaurant-food-menu-portrait-MqWj4UijfwU.jpg',
+  menuItems: [
+    {
+      texts: {
+        originalText: 'Western Dishes',
+        translatedText: 'Western Dishes',
+        sourceLanguage: 'en',
+        targetLanguage: 'en',
+      },
+      images: [
+        {
+          image:
+            'https://www.tasteatlas.com/images/dishes/f4291f3e82f84c33a5997f801e8fb24f.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTts7isxYmnkrf-JaPiCk_SKHVfEUefqdY0oZPdJAJ34bYAIrCOjXc6-A&s',
+        },
+        {
+          image:
+            'https://theeatguide.com/wp-content/uploads/2020/05/hamburger.png',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9X6cuWNKnXfNFowGBOOvrrGZUPbl4unqTPTRcu0yFZedgr-B3smMwX7s&s',
+        },
+        {
+          image:
+            'https://irepo.primecp.com/2021/05/492686/Old-West-Cowboy-Food-Main_UserCommentImage_ID-4312848.jpg?v=4312848',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYei_AzpTi4v_kaZXUBcJ_-U8glYuvt-r1YJ_3ddNr5diLhbchHB_2v6UW&s',
+        },
+        {
+          image:
+            'https://cdn.tasteatlas.com//images/dishes/735ee384159a487d9efb6729a6071d7d.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0JtrbWZFYCR8th9J3JHOM6I6L8Y5czcRdQMkuAQ93R7gpoIPCRZc23A&s',
+        },
+        {
+          image:
+            'https://images-gmi-pmc.edge-generalmills.com/20e796ec-206a-4f07-8d19-9b94c96de641.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH7LAOXecvHYg1B11JosDBwJuo3uA9Le_OK60HDpY4dP5gOW3NWBcQlQ&s',
+        },
+        {
+          image:
+            'https://www.justonecookbook.com/wp-content/uploads/2023/02/Japanese-Stewed-Hamburger-Steak-Nikomi-Hambagu-4824-III.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmyuKUrFmHsPWJVjmgk-Ss3qJLJUhdc3V3ehfRaVmuzirgXUuKFCmMoA&s',
+        },
+        {
+          image:
+            'https://www.unileverfoodsolutions.com.sg/en/chef-inspiration/western-world-cuisine/favourite-western-side-dishes/jcr:content/parsys/content-aside-footer/columncontrol/columnctrl_parsys_1/textimage_copy_copy_/image.transform/jpeg-optimized/image.image_2.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgtBWMLNh8YA65ZguwjEh0fzY0SSNKujPIdBpuwdwmN_TL9NJRq-ip&s',
+        },
+        {
+          image:
+            'https://faunalytics.org/wp-content/uploads/2017/06/34430611714_d6e328ff4c_zrecrop-690x325.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS0y3KbfNLwaJ7J0TGxGOfUKWYN2FeViOpkSEuIFYv6C2W0TJesp9JIss&s',
+        },
+        {
+          image:
+            'https://media.istockphoto.com/id/1292745850/vector/western-food-menu-line-icon.jpg?s=1024x1024&w=is&k=20&c=1j2R5AICuSR4VbjRM6s85o6Pa7_PWTiJ-SvJxnDqGzA=',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsRJBPEz1n9npSIbLlg5G2jG9hBYvMFf6GqxZ_1umaWBPg-JtWh0IxQw&s',
+        },
+        {
+          image:
+            'https://images.lifestyleasia.com/wp-content/uploads/sites/6/2022/03/03140502/hero3-1587x900.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOkZNYcUspt3SFFRF7WHPeykoQfYF8RBRo53EiV7I_4qpuLUPizeOVMiQ&s',
+        },
+      ],
+    },
+    {
+      texts: {
+        originalText: 'Chicago Deep - Dish Pizza',
+        translatedText: 'Chicago Deep - Dish Pizza',
+        sourceLanguage: 'en',
+        targetLanguage: 'en',
+      },
+      images: [
+        {
+          image:
+            'https://www.foodnetwork.com/content/dam/images/food/fullset/2019/2/19/0/KC2004_Deep-Dish-Pizza_s4x3.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIZk_xTaX-pnW7R8QqVZpeWQWmkYSVmOHMW3_luUXFFre0ZcaHCUA98A&s',
+        },
+        {
+          image:
+            'https://res.cloudinary.com/hksqkdlah/image/upload/SFS_chicago_deep_dish_pizza-16_cehf9d.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSKPL3EEtGSoa5DBjTV-tK1dLrxEeOpoOwN3tIo4h01VS7-27JItoc_iVc&s',
+        },
+        {
+          image:
+            'https://sallysbakingaddiction.com/wp-content/uploads/2014/12/Chicago-Style-Deep-Dish-Pizza-Recipe-on-sallysbakingaddiction.com_.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8e6pztqQ7VN2JUkAn8CPApQzHONHxwyDrPgGyQQV0Fwxhl1ZdjPWI-uY&s',
+        },
+        {
+          image:
+            'https://www.seriouseats.com/thmb/lHnCDGM2KlV-gtAsJRLjvniBKhw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/20190817-chicago-deep-dish-pizza-Mi-Pi-6-layne-dixon-30b49f34cff0454f9a53b2ce808b1ffc.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQAjhKQutYN7VYZJql8vxnwjALqW-G3eljjDSga6Kc8avQDi5IBSrxVg&s',
+        },
+        {
+          image:
+            'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2019/2/19/0/KC2004_Deep-Dish-Pizza_s4x3.jpg.rend.hgtvcom.616.462.suffix/1550603328845.jpeg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcl2B3gWu6aDqTlYxdlWErCU-_7ll0QtTyN9TEHtBZ2mc6pBMnTvwk8yQ&s',
+        },
+        {
+          image:
+            'https://www.thecuriouschickpea.com/wp-content/uploads/2020/12/Deep-Dish-Pizza-3.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPIrkFYbhGMV4TENam-q7gRwHTFTNp7VarO1yBoRST9MAtb52ZsUWg6BM&s',
+        },
+        {
+          image:
+            'https://www.allrecipes.com/thmb/dMzh3GeO0LE-oIts4lmOo7-CNxU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/5271646-chicago-deep-dish-pizza-Chef-John-1x1-1-b38859ab581d48d1a47aac4ad11056c6.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8knp87KgsNwvO0dnhMLRDnfrJNtR3g3ic8zo9vhsMVe9XJHOrPkmdKx9z&s',
+        },
+        {
+          image:
+            'https://upload.wikimedia.org/wikipedia/commons/4/4f/Chicago-Style_Stuffed_Pizza.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAZZDfd1sqBnPIHJrykkhxr3q07eyhYATYYdCuwUmvOk-XhnQzc525pG0&s',
+        },
+        {
+          image:
+            'https://sallysbakingaddiction.com/wp-content/uploads/2014/12/best-chicago-style-pizza-recipe.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_ZsOoeAtT0KFxk4zA3OF_1mleTXpViIeLnSxSZ-shqhliIm-jRI0GE4w&s',
+        },
+        {
+          image:
+            'https://www.bhg.com/thmb/49ZhpV0sEAvrQGm55x0VIk7tuSQ=/1244x0/filters:no_upscale():strip_icc()/deep-dish-pizza-R162090-31bde0c81270469d8bdbc3c25107eda6.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgjI65vAuGllaEs-K_x7pejRsbU4u9eHsL2tktHeHzEPMYGBZUNuoyfY52&s',
+        },
+      ],
+    },
+    {
+      texts: {
+        originalText: 'Double beef hamburger',
+        translatedText: 'Double beef hamburger',
+        sourceLanguage: 'en',
+        targetLanguage: 'en',
+      },
+      images: [
+        {
+          image:
+            'https://www.kitchensanctuary.com/wp-content/uploads/2021/05/Double-Cheeseburger-square-FS-42.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-saeh7PbNmRc_tTBCaJUkJxa2Q1o3-mKN-YWy74cNim8Re_JB-Z4U1ig&s',
+        },
+        {
+          image:
+            'https://media-cdn.tripadvisor.com/media/photo-s/1c/cd/af/5b/double-gorilla-burger.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI9NB10FZGLUUOK8O2KBaa0E0D7b3WjfBsI4VNTg-G0o04dBbBBf_UFzk&s',
+        },
+        {
+          image:
+            'https://cdn.drinksfeed.com/2022/07/595fc6be-double-beef-burger.png',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh0xIaJpWkBHRpzZ_lwvYRl7uFbjW279ItqDfWhknpS3gwYTmjUbvONe4&s',
+        },
+        {
+          image:
+            'https://www.gffoodservice.com.au/content/uploads/2021/05/GF2870_GFFoodService_QBA_BurgerTravelTest_Recipe_HeroImage_V1.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrmhS2VJRugxzKOKABoUsnQnka0daIB2W9PzCl9nx-DNR2wjay3w0_01Y&s',
+        },
+        {
+          image: 'https://pizzahampstead.com/wp-content/uploads/2016/09/38.png',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOUBITfO_dMkc0BNs2pcLATsQ0EBpJhNOm6rcsFSVnoFzUTreA668Nhmsi&s',
+        },
+        {
+          image:
+            'https://simply-delicious-food.com/wp-content/uploads/2020/08/Bourbon-basted-cheeseburger-2-500x500.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg42EW236vNueCqzIEX7LphI_JOs8bujlA_Rb2crhY11si-EP49yWIq9QG&s',
+        },
+        {
+          image:
+            'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-Double-Cheeseburger:1-3-product-tile-desktop?wid=829&hei=515&dpr=off',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCN6ozIsQyZ3TYNJy3R40nNsaFZGf2r1A1cHxAf2kmf-x7eQhYnTuR_EU&s',
+        },
+        {
+          image:
+            'https://hips.hearstapps.com/countryliving/assets/15/27/1435692139-bite-of-summer-burgers-0715-beef.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UcDi12wItyUZ4YcxxKE8iMOeH1uYbvoXP1A0Oir0qFQjd87qvqebxko&s',
+        },
+        {
+          image:
+            'https://groundbeefrecipes.com/wp-content/uploads/double-bacon-cheeseburger-recipe-2.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS93SJg8NvIGnNQp4cde_pVtnmo-rFYcjiJvr79u0tQ2QROfyDphl0OWNQ&s',
+        },
+        {
+          image:
+            'https://natashaskitchen.com/wp-content/uploads/2021/06/Smashed-Burgers-5-728x1092.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbFdbNYQPG5kd1RDgw6OzFMSSUSYYmBMutqp9gJrK7ioiR5jkvm5oTvQ&s',
+        },
+      ],
+    },
+    {
+      texts: {
+        originalText: 'Barbecue Ribs',
+        translatedText: 'Barbecue Ribs',
+        sourceLanguage: 'en',
+        targetLanguage: 'en',
+      },
+      images: [
+        {
+          image:
+            'https://www.allrecipes.com/thmb/gVocwHi0RMwyjfJ1g6q8VHacxJU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/22469-Barbecue-Ribs-ddmfs-4x3-208-0221b0213517493494a29c1c76a8d1cc.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs5mhJ9xU3rcWcIaxqZm5we0lNWycdX6mO5VlHrSF8_j-Vs9At3MmNu3s&s',
+        },
+        {
+          image:
+            'https://www.onceuponachef.com/images/2022/06/baby-back-ribs-18-1200x1397.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOYq4Wegykrjdn1v9RY4NDbTzSpDXJlT8BTT8YM65KASscoph21xRpHeE0&s',
+        },
+        {
+          image:
+            'https://www.foodnetwork.com/content/dam/images/food/fullset/2015/7/21/3/FNM_090115-Best-Barbecue-Ribs-Ever-Recipe_s4x3.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgRtFYaS_RMib48JgYhdzDjsM5XZ7ZPSzuL0X5xZXDc7XwPuoupB-36Q&s',
+        },
+        {
+          image:
+            'https://cafedelites.com/wp-content/uploads/2018/06/Oven-Pork-Ribs-IMAGE-3.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQsd5uTJ1woxvccQKcpoxbOe61naG_8oefPWrC9p4AwkanoSRR6uQ0DNU&s',
+        },
+        {
+          image:
+            'https://www.allrecipes.com/thmb/IWVelWahUb2gQxixWJC2N-HXp0k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/22469-Barbecue-Ribs-ddmfs-2x1-210-e799db142f594b00bb317bb357d0971c.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3YI4xdatcHteN11YMQZh2R14Zhea9Xq_fCSAm874PZY_msnY5PcG01HE&s',
+        },
+        {
+          image:
+            'https://cafedelites.com/wp-content/uploads/2018/06/Oven-Pork-Ribs-IMAGE-5.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUdJvI01e7KhIMU8qEyw5hvBryrAegR38CGF50tztGrdAUNL6AD4m8-A&s',
+        },
+        {
+          image:
+            'https://www.onceuponachef.com/images/2022/06/baby-back-ribs-18.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_06cO84Yw5gpw0rDq_RdG9twOiSL14GxBLjqIJMdjBJSyIm5encsOZVYo&s',
+        },
+        {
+          image:
+            'https://www.seriouseats.com/thmb/B64_8AhCs78Ag_0IkIPAkmO_4SQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2016__06__20150730-anova-sous-vide-rib-guide-food-lab-primary-wet-white-j-kenji-lopez-alt-ed91c537b77b4a559a78d5570e52b439.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGw1YVUmbQescg58JVEID3jwEzQ_LVhlYDb79JXvyBxSRl6qDzwA1Upg&s',
+        },
+        {
+          image:
+            'https://www.southernliving.com/thmb/sQ3jAjFAP-SPt_upe-Im4rxMKrQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/oven-baked-baby-back-ribs-beauty-332_preview-34579f7f15ed4548ae3bb5b2048aab60.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrzVwEm3kVY1PBwG_FgJWR1O46a2pVCJFOUSsR6Pmk8LnBaSxLltCDZQ&s',
+        },
+        {
+          image:
+            'https://www.spendwithpennies.com/wp-content/uploads/2022/06/Oven-Baked-Ribs-SpendWithPennies-4.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1e92KKy9J8C4ehMm6_I5SFH6d1eU3_pM-sEE_jdUJKicpX_osefKcUZ8&s',
+        },
+      ],
+    },
+    {
+      texts: {
+        originalText: 'Buffalo Wings',
+        translatedText: 'Buffalo Wings',
+        sourceLanguage: 'en',
+        targetLanguage: 'en',
+      },
+      images: [
+        {
+          image:
+            'https://www.recipetineats.com/wp-content/uploads/2019/01/Baked-Buffalo-Wings_0.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnf2v2pq16SCvrB_rOKmeruohYotyJjtVz3Adbq7ddh2Tj0L-CFpMC1w&s',
+        },
+        {
+          image:
+            'https://natashaskitchen.com/wp-content/uploads/2022/02/Buffalo-Wings-4.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE0fTxmJpOWAZXB5QLVMLAUylsrCxXzCXRQPtlXL59I5UtOli66EJJ_Q&s',
+        },
+        {
+          image:
+            'https://hips.hearstapps.com/hmg-prod/images/classic-buffalo-wings-horizontal-279-1547506155.jpg?crop=1xw:0.84375xh;center,top',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT58yzailYhreLvTSrkrMftgIEXjBXPSTpBoeF9rDrWKzDXazLQ8fMm-kM&s',
+        },
+        {
+          image:
+            'https://www.dinneratthezoo.com/wp-content/uploads/2016/08/baked-buffalo-wings-11.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Mh2q4DLJ0QhbeqrdWUvftMYHwmKOdpsE2IKVVcjcDVOt1N9y0v2C9sE&s',
+        },
+        {
+          image:
+            'https://natashaskitchen.com/wp-content/uploads/2022/02/Buffalo-Wings-SQ.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTneJI4_wmOwrwJHNT_Le1UiZ4I-mMFhCAdiHVD0tUQdskcay6OMQX8flI&s',
+        },
+        {
+          image:
+            'https://allthehealthythings.com/wp-content/uploads/2020/04/Crispy-Baked-Buffalo-Chicken-Wings-5-scaled.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXnRAnx8oyF6jnLWcDXh4eXysMmEUe80sgThFivCZgjlC7itIro7h2GQ&s',
+        },
+        {
+          image:
+            'https://www.allrecipes.com/thmb/GwdML2o-xsFGnHTEp-uy7RWMEOc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/166638-baked-buffalo-wings-ddmfs-beauty-3x4-90787930d20b402e9dde79c22fced332.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGWzrDCSg-lnC85rv-q1xPPTpV1N36yfr3qoSsv6nznK61cTyrNoKlGH4&s',
+        },
+        {
+          image:
+            'https://hips.hearstapps.com/hmg-prod/images/classic-buffalo-wings-horizontal-279-1547506155.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPIIuvJUm2RyAYNuOTiIf7ZlOSOrJfgKIkhLLAFig5ZCBZDcQNCVTIug&s',
+        },
+        {
+          image:
+            'https://eatthegains.com/wp-content/uploads/2020/01/Air-Fryer-Buffalo-Wings-5.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYLSIo6O5bt_Et1yLUZAhzcLqnFWeHjVHLdLFt60PW97af-LCDGTI3Pb8&s',
+        },
+        {
+          image:
+            'https://images.themodernproper.com/billowy-turkey/production/posts/2021/Buffalo-Chicken-Wings-9.jpeg?w=1200&h=1800&q=82&fm=jpg&fit=crop&dm=1643679665&s=cba49b7a9741a6cf80c908ded1df04d0',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGWHk-hn-6E7F68qygHfytpGHcEyGvNYa1cln7qNXx4fQOd7fSsXB9Xg&s',
+        },
+      ],
+    },
+    {
+      texts: {
+        originalText: 'Meatloaf',
+        translatedText: 'Meatloaf',
+        sourceLanguage: 'en',
+        targetLanguage: 'en',
+      },
+      images: [
+        {
+          image:
+            'http://embed.widencdn.net/img/beef/eomdci19bw/exact/meatloaf.jpg?keep=c&u=7fueml',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSii6Brp_-HdEYKzWAwbMDrE-FGSnlM9q2LAlofG0HK6eiuobn2yu1QTI0&s',
+        },
+        {
+          image:
+            'https://www.spendwithpennies.com/wp-content/uploads/2022/12/1200-The-Best-Meatloaf-Recipe-SpendWithPennies.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQl09GPLa4GQZvmkCBfHpgTkofMEXmTNGeatnr2cj7tXkWQ20PgY7T6A&s',
+        },
+        {
+          image:
+            'https://www.allrecipes.com/thmb/bgpLGzYB0laZ00F2X8ywmJVaz9I=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/16354-easy-meatloaf-mfs-76-0055f8cfe9154e4a9bce951b796c86a8.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7U9D9P1AMSxzlqOBfGdPnN4t6nCNr2BfM-Q47IIMfAFMSq5ovPI1muA&s',
+        },
+        {
+          image:
+            'https://www.budgetbytes.com/wp-content/uploads/2021/09/Classic-Meatloaf-side.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSumjdj2nZA1uDVq1Ax0pi6gHi73923fMVJRFoBBT8CF8YWjGtKEwpDQRk&s',
+        },
+        {
+          image:
+            'https://www.iheartnaptime.net/wp-content/uploads/2022/11/Meatloaf-Recipe-I-Heart-Naptime.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFZE-yW4yVuDM5bIu0JjUrGetvujH5BCWNE2G5dMlZbBjCXZOUayoN8w&s',
+        },
+        {
+          image:
+            'https://natashaskitchen.com/wp-content/uploads/2019/02/Meatloaf-Recipe-5-600x900.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlnGZRwhADVQttt_0tbMJ-BkmYNEf7HJWXd_0PwjFrGWVPDIvQ3S9shcM&s',
+        },
+        {
+          image:
+            'https://www.seriouseats.com/thmb/9fFcin4mGxn5M69G2g9PuLAWBPo=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/20220201-the-food-labs-all-american-meatloaf-hero-1f8c1d25b5f5484fb4afca5635346aac.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQkC6nBhr_bU-kIAI6M2PFjuXyiu2htjUzchvS--2F37JVsRB0EqlS7Q&s',
+        },
+        {
+          image:
+            'https://www.allrecipes.com/thmb/1lz2bMINEdg5THAegEmZ217zrHU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/74360-the-best-meatloaf-ive-ever-made-mfs-425-6fae2aa63a4c4e90941dd897c2ed47a7.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqqPrpFP6Z0SlTTmeKRVzByltPk8L_QezPdkK1lKVCVd5r5hjuq_GHjA&s',
+        },
+        {
+          image:
+            'https://www.homemadeinterest.com/wp-content/uploads/2023/01/easy-meatloaf_6.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXja1g8Re36K-uY_6Z0Zma-Y-1MvyQbVBzfve7f5RBDtY9ss3rp2a4r7bX&s',
+        },
+        {
+          image:
+            'https://embed.widencdn.net/img/beef/eomdci19bw/1120x840px/meatloaf.jpg?keep=c&u=7fueml',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIXiJSwpexwVVikelf8tJszPQxxpHvEMuu7wFG2XZliBU9DVp-TO9nWek&s',
+        },
+      ],
+    },
+    {
+      texts: {
+        originalText: 'Roasted Chicken',
+        translatedText: 'Roasted Chicken',
+        sourceLanguage: 'en',
+        targetLanguage: 'en',
+      },
+      images: [
+        {
+          image:
+            'https://www.dinneratthezoo.com/wp-content/uploads/2018/10/roasted-chicken-4.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ873oVQ9SdblNdf47y7ttSfWC7nbm13tVNl2JZxjwWmZ3xh94t7Zl4OQ&s',
+        },
+        {
+          image:
+            'https://www.jocooks.com/wp-content/uploads/2021/11/roast-chicken-1-22.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI6XBIUOgwaVdGc0ThToL3Ut5CKisBogO0W3FCpR3OsIo11bYfybXlvvM&s',
+        },
+        {
+          image:
+            'https://assets.epicurious.com/photos/62f16ed5fe4be95d5a460eed/1:1/w_4318,h_4318,c_limit/RoastChicken_RECIPE_080420_37993.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx8PJsJlonQNXaSmsQuVx-Aiz6DdcPQZgNqBrLLe0aC2ewdGz6jjJfgvyG&s',
+        },
+        {
+          image:
+            'https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2022/10/Roast-Chicken-main.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxq2eKFGGi_WQ8vddA3Us0qeuG22Gl5_NEEWpAKUOL8CnBzrYnT4Iy3rE&s',
+        },
+        {
+          image:
+            'https://assets.epicurious.com/photos/62f16ed5fe4be95d5a460eed/16:9/w_5803,h_3264,c_limit/RoastChicken_RECIPE_080420_37993.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8QrWZCOehyReUd2vdmmN_Aki4CxWdoOV-Bg4Klqdc9afyUJHoKsXgauU&s',
+        },
+        {
+          image:
+            'https://www.allrecipes.com/thmb/ZXXxFiCw2k7C-Uo_1UomrqAXrgM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/juicy-roasted-chicken-523131c0e0cf47319d8b87d3b3095f25.jpeg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvvVVRgFHMgqv7STLRRYhJ6ciLlYulm9RomN8kkg4km1-Uxrrq0epAMSgK&s',
+        },
+        {
+          image:
+            'https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2022/10/Roast-Chicken-5.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFguBPBCHn-21YpGgLgEYSeo-_W_SUjo8imLcyXayHVrAcNXE3Ml6v4uw&s',
+        },
+        {
+          image:
+            'https://feelgoodfoodie.net/wp-content/uploads/2020/11/Roasted-Chicken-with-Garlic-Herbs-6.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy3MUZwrZW9W2XHX3iBQxIY1UIPF9tuNmSAJWqCtlzXqFCpJwhVtYQKX4&s',
+        },
+        {
+          image:
+            'https://www.culinaryhill.com/wp-content/uploads/2021/02/Rotisserie-Chicken-Culinary-Hill-1200x800-1-500x500.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3lLA7Lp18K8oRTLMVZpj9jrOX3mSkTTyLaj_rzrJNTXsnC1KU54ZPnD4&s',
+        },
+        {
+          image:
+            'https://www.spendwithpennies.com/wp-content/uploads/2020/05/1200-Rotisserie-Chicken-SpendWithPennies-11-800x1200.jpg',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0f_840OBDQDvkvGTp8WAufGC9wNz2eeY2ugjeXXQKLqqO1vZ-L2e96g&s',
+        },
+      ],
+    },
+  ],
+  timestamp: 1691755878873,
+}

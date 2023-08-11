@@ -1,3 +1,5 @@
+// TODO: delete
+
 import { BottomTabParamList } from '../typings/navigators'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import MenuStack from './menu-stack'

@@ -1,6 +1,7 @@
 import { createContext, useContext, useReducer } from 'react'
 
 import { IMenuPage, IMenuItem, LanguageCode } from '../typings/data'
+import { DUMMY_DATA } from '../constants/dummy-data'
 
 export interface IMenuPageContextState {
   pages: IMenuPage[]
@@ -8,8 +9,11 @@ export interface IMenuPageContextState {
   targetLanguage: LanguageCode
 }
 
+const TEMP_INITIAL_STATE = [DUMMY_DATA]
+
 const initialState: IMenuPageContextState = {
-  pages: [],
+  // pages: [],
+  pages: TEMP_INITIAL_STATE,
   loading: false,
   targetLanguage: 'en',
 }

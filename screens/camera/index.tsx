@@ -11,18 +11,10 @@ import { Camera } from 'expo-camera'
 import { useRef } from 'react'
 import { Entypo } from '@expo/vector-icons'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import type { CompositeScreenProps } from '@react-navigation/native'
-import {
-  BottomTabParamList,
-  RootStackParamList,
-} from '../../typings/navigators'
+import { RootStackParamList } from '../../typings/navigators'
 import useVision from '../../hooks/useVision'
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 
-type Props = CompositeScreenProps<
-  BottomTabScreenProps<BottomTabParamList, 'MenuStack'>,
-  NativeStackScreenProps<RootStackParamList>
->
+type Props = NativeStackScreenProps<RootStackParamList, 'Camera'>
 
 export default function CameraModal({ navigation }: Props) {
   const [permission, requestPermission] = Camera.useCameraPermissions()
@@ -58,7 +50,7 @@ export default function CameraModal({ navigation }: Props) {
   }
 
   const goToMenuGallery = () => {
-    navigation.navigate('MenuStack', { screen: 'MenuGallery' })
+    navigation.navigate('MenuGallery')
   }
 
   const goBack = () => {
