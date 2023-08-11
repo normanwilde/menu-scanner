@@ -1,6 +1,12 @@
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { Pressable, View, StyleSheet, Dimensions } from 'react-native'
+import {
+  Pressable,
+  View,
+  StyleSheet,
+  Dimensions,
+  LayoutChangeEvent,
+} from 'react-native'
 import { RootStackParamList } from '../../typings/navigators'
 import { Entypo } from '@expo/vector-icons'
 import { COLOR, SPACING } from '../../constants/styles'
@@ -10,7 +16,8 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
-
+import { useHeaderHeight } from '@react-navigation/elements'
+import { useState } from 'react'
 const { width, height } = Dimensions.get('screen')
 
 // 428
@@ -22,10 +29,16 @@ export function CameraIcon() {
     useNavigation<
       NativeStackNavigationProp<RootStackParamList, 'MenuGallery'>
     >()
+  const headerHeight = useHeaderHeight()
+  const [iconHeight, setIconHeight] = useState(0)
 
   /* Handlers */
   const goToCamera = () => {
     navigation.navigate('Camera')
+  }
+
+  const onLayout = (e: LayoutChangeEvent) => {
+    setIconHeight(e.nativeEvent.layout.height)
   }
 
   const offset = useSharedValue({ x: 0, y: 0 })
@@ -47,23 +60,30 @@ export function CameraIcon() {
         y: e.translationY + savedVerticalOffset.value.y,
       }
     })
-    .onEnd((e) => {
-      const endingVerticalOffset = Math.min(0, e.translationY)
+    .onEnd(() => {
+      const endingVerticalOffset = Math.min(
+        0,
+        Math.max(
+          offset.value.y,
+          headerHeight + iconHeight + SPACING.XXL + SPACING.XL - height
+        )
+      )
 
-      console.log(endingVerticalOffset)
       savedVerticalOffset.value = {
         x: 0,
-        y: offset.value.y,
+        y: endingVerticalOffset,
       }
       offset.value = {
         ...offset.value,
         x: 0,
+        y: endingVerticalOffset,
       }
     })
 
   return (
     <GestureDetector gesture={panGesture}>
       <AnimatedPressable
+        onLayout={onLayout}
         onPress={goToCamera}
         style={[styles.container, animatedStyles]}
       >
