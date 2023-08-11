@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { Pressable, View, StyleSheet } from 'react-native'
+import { Pressable, View, StyleSheet, Dimensions } from 'react-native'
 import { RootStackParamList } from '../../typings/navigators'
 import { Entypo } from '@expo/vector-icons'
 import { COLOR, SPACING } from '../../constants/styles'
@@ -11,6 +11,10 @@ import Animated, {
 } from 'react-native-reanimated'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 
+const { width, height } = Dimensions.get('screen')
+
+// 428
+// 926
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable)
 
 export function CameraIcon() {
@@ -43,7 +47,10 @@ export function CameraIcon() {
         y: e.translationY + savedVerticalOffset.value.y,
       }
     })
-    .onEnd(() => {
+    .onEnd((e) => {
+      const endingVerticalOffset = Math.min(0, e.translationY)
+
+      console.log(endingVerticalOffset)
       savedVerticalOffset.value = {
         x: 0,
         y: offset.value.y,
@@ -74,7 +81,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     padding: SPACING.XL,
     borderRadius: 50,
-    right: SPACING.L,
+    right: SPACING.XL,
     bottom: SPACING.XXL,
   },
 })
