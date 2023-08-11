@@ -4,10 +4,7 @@ import { IMenuItem } from '../../typings/data'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import {
-  MenuStackParamList,
-  RootStackParamList,
-} from '../../typings/navigators'
+import { RootStackParamList } from '../../typings/navigators'
 
 type Props = {
   menuItem: IMenuItem
@@ -15,7 +12,7 @@ type Props = {
 
 export default function DishCard({ menuItem }: Props) {
   const navigation =
-    useNavigation<NativeStackNavigationProp<MenuStackParamList, 'MenuPage'>>()
+    useNavigation<NativeStackNavigationProp<RootStackParamList, 'MenuPage'>>()
 
   const goToImageGallery = () => {
     navigation.navigate('ImageGallery', { dish: menuItem })

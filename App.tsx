@@ -8,6 +8,7 @@ import * as SplashScreen from 'expo-splash-screen'
 import { useCallback, useEffect } from 'react'
 import Toast from 'react-native-toast-message'
 import 'react-native-url-polyfill/auto'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 // SplashScreen.preventAutoHideAsync()
 
@@ -32,7 +33,9 @@ export default function App() {
     <MenuContextProvider>
       <StatusBar />
       <NavigationContainer>
-        <Navigation />
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <Navigation />
+        </GestureHandlerRootView>
         <Toast />
       </NavigationContainer>
     </MenuContextProvider>

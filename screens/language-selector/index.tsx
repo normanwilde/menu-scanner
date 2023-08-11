@@ -36,6 +36,9 @@ export default function LanguageSelector({ navigation }: Props) {
 
   return (
     <View>
+      <StyledText size="HEADING_XS" style={styles.headerText}>
+        Translate menu to
+      </StyledText>
       <FlatList
         data={languageArray}
         renderItem={({ item }) =>
@@ -43,6 +46,7 @@ export default function LanguageSelector({ navigation }: Props) {
         }
         keyExtractor={(item) => item.code}
         showsHorizontalScrollIndicator={false}
+        ItemSeparatorComponent={ItemSeparatorComponent}
       />
     </View>
   )
@@ -61,7 +65,7 @@ const renderItem = (
           styles.row,
           {
             backgroundColor: isSelected
-              ? COLOR.backgroundTertiary
+              ? COLOR.primaryLight
               : COLOR.backgroundWhite,
           },
         ]}
@@ -73,12 +77,23 @@ const renderItem = (
   )
 }
 
+const ItemSeparatorComponent = () => {
+  return <View style={styles.itemSeparator} />
+}
+
 const styles = StyleSheet.create({
-  image: {},
+  headerText: {
+    paddingVertical: SPACING.M,
+    paddingHorizontal: SPACING.M,
+  },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: SPACING.M,
     paddingVertical: SPACING.S,
+  },
+  itemSeparator: {
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: 'black',
   },
 })

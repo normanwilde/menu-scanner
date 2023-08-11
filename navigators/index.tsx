@@ -11,10 +11,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export default function Navigation() {
   return (
-    <Stack.Navigator
-      initialRouteName="MenuGallery"
-      screenOptions={{ headerRight: HeaderIcon }}
-    >
+    <Stack.Navigator initialRouteName="MenuGallery">
       <Stack.Screen
         name="Camera"
         component={CameraScreen}
@@ -23,13 +20,14 @@ export default function Navigation() {
       <Stack.Screen
         name="LanguageSelector"
         component={LanguageSelectorScreen}
-        options={{ presentation: 'modal', headerTitle: 'Translate menu to' }}
+        options={{ presentation: 'modal', headerShown: false }}
       />
       <Stack.Screen
         name="MenuGallery"
         component={MenuGalleryScreen}
         options={{
           headerTitle: 'Dyner',
+          headerRight: HeaderIcon,
         }}
       />
       <Stack.Screen

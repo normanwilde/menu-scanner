@@ -1,16 +1,11 @@
 import { Pressable, FlatList, StyleSheet, View } from 'react-native'
-import { Image } from 'expo-image'
-import { useMenu } from '../../contexts/menu'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import {
-  MenuStackParamList,
-  RootStackParamList,
-} from '../../typings/navigators'
+import { RootStackParamList } from '../../typings/navigators'
 import DishCard from './dish-card'
 import { IMenuItem } from '../../typings/data'
 import { SPACING } from '../../constants/styles'
 
-type Props = NativeStackScreenProps<MenuStackParamList, 'MenuPage'>
+type Props = NativeStackScreenProps<RootStackParamList, 'MenuPage'>
 
 export default function MenuPage({ navigation, route }: Props) {
   const { page } = route.params

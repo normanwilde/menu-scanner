@@ -4,6 +4,14 @@ import { Pressable, View, StyleSheet } from 'react-native'
 import { RootStackParamList } from '../../typings/navigators'
 import { Entypo } from '@expo/vector-icons'
 import { COLOR, SPACING } from '../../constants/styles'
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated'
+import { Gesture, GestureDetector } from 'react-native-gesture-handler'
+
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable)
 
 export function CameraIcon() {
   const navigation =
@@ -16,12 +24,45 @@ export function CameraIcon() {
     navigation.navigate('Camera')
   }
 
+  const offset = useSharedValue({ x: 0, y: 0 })
+  const savedVerticalOffset = useSharedValue({ x: 0, y: 0 })
+
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      transform: [
+        { translateX: withSpring(offset.value.x) },
+        { translateY: withSpring(offset.value.y) },
+      ],
+    }
+  })
+
+  const panGesture = Gesture.Pan()
+    .onUpdate((e) => {
+      offset.value = {
+        x: e.translationX + savedVerticalOffset.value.x,
+        y: e.translationY + savedVerticalOffset.value.y,
+      }
+    })
+    .onEnd(() => {
+      savedVerticalOffset.value = {
+        x: 0,
+        y: offset.value.y,
+      }
+      offset.value = {
+        ...offset.value,
+        x: 0,
+      }
+    })
+
   return (
-    <View style={styles.container}>
-      <Pressable onPress={goToCamera}>
+    <GestureDetector gesture={panGesture}>
+      <AnimatedPressable
+        onPress={goToCamera}
+        style={[styles.container, animatedStyles]}
+      >
         <Entypo name="camera" size={SPACING.XL} color="black" />
-      </Pressable>
-    </View>
+      </AnimatedPressable>
+    </GestureDetector>
   )
 }
 

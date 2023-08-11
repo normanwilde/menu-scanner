@@ -13,6 +13,7 @@ import { RootStackParamList } from '../../typings/navigators'
 import { IMenuPage } from '../../typings/data'
 import { StyledText } from '../../components'
 import { CameraIcon } from './camera-icon'
+import { SPACING } from '../../constants/styles'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MenuGallery'>
 
@@ -80,10 +81,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   itemSeparator: {
-    height: 20,
+    // height: 20,
   },
   itemContainer: {
     alignItems: 'center',
+    paddingVertical: SPACING.L,
   },
   imageWrapper: {
     alignItems: 'center',
