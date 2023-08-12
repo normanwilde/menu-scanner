@@ -47,8 +47,8 @@ export function CameraIcon() {
   const animatedStyles = useAnimatedStyle(() => {
     return {
       transform: [
-        { translateX: withSpring(offset.value.x) },
-        { translateY: withSpring(offset.value.y) },
+        { translateX: offset.value.x },
+        { translateY: offset.value.y },
       ],
     }
   })
@@ -70,25 +70,30 @@ export function CameraIcon() {
       )
 
       savedVerticalOffset.value = {
-        x: 0,
+        ...savedVerticalOffset.value,
         y: endingVerticalOffset,
       }
       offset.value = {
         ...offset.value,
-        x: 0,
-        y: endingVerticalOffset,
+        x: withSpring(0),
+        y: withSpring(endingVerticalOffset),
       }
     })
 
   return (
     <GestureDetector gesture={panGesture}>
-      <AnimatedPressable
-        onLayout={onLayout}
-        onPress={goToCamera}
-        style={[styles.container, animatedStyles]}
-      >
-        <Entypo name="camera" size={SPACING.XL} color="black" />
-      </AnimatedPressable>
+      <Animated.View style={animatedStyles}>
+        <Pressable
+          onLayout={onLayout}
+          onPress={goToCamera}
+          style={({ pressed }) => [
+            styles.container,
+            { backgroundColor: pressed ? COLOR.errorDarker : COLOR.errorDark },
+          ]}
+        >
+          <Entypo name="camera" size={SPACING.XL} color="black" />
+        </Pressable>
+      </Animated.View>
     </GestureDetector>
   )
 }
