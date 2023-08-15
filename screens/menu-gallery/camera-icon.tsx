@@ -12,8 +12,10 @@ import { Entypo } from '@expo/vector-icons'
 import { COLOR, SPACING } from '../../constants/styles'
 import Animated, {
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
   withSpring,
+  withTiming,
 } from 'react-native-reanimated'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import { useHeaderHeight } from '@react-navigation/elements'
@@ -43,17 +45,34 @@ export function CameraIcon() {
 
   const offset = useSharedValue({ x: 0, y: 0 })
   const savedVerticalOffset = useSharedValue({ x: 0, y: 0 })
+  const bgColor = useSharedValue(0)
+  const isInteracting = useSharedValue(false)
+  const scale = useDerivedValue(() => {
+    return isInteracting.value ? withTiming(1.1) : withTiming(1)
+  })
 
   const animatedStyles = useAnimatedStyle(() => {
     return {
       transform: [
         { translateX: offset.value.x },
         { translateY: offset.value.y },
+        { scale: scale.value },
       ],
     }
   })
 
+  const animatedBackground = useAnimatedStyle(() => {
+    return {
+      backgroundColor: isInteracting.value
+        ? COLOR.errorDarker
+        : COLOR.errorDark,
+    }
+  })
+
   const panGesture = Gesture.Pan()
+    .onBegin(() => {
+      isInteracting.value = true
+    })
     .onUpdate((e) => {
       offset.value = {
         x: e.translationX + savedVerticalOffset.value.x,
@@ -79,20 +98,20 @@ export function CameraIcon() {
         y: withSpring(endingVerticalOffset),
       }
     })
+    .onFinalize(() => {
+      isInteracting.value = false
+    })
 
   return (
     <GestureDetector gesture={panGesture}>
       <Animated.View style={animatedStyles}>
-        <Pressable
+        <AnimatedPressable
           onLayout={onLayout}
           onPress={goToCamera}
-          style={({ pressed }) => [
-            styles.container,
-            { backgroundColor: pressed ? COLOR.errorDarker : COLOR.errorDark },
-          ]}
+          style={[styles.container, animatedBackground]}
         >
           <Entypo name="camera" size={SPACING.XL} color="black" />
-        </Pressable>
+        </AnimatedPressable>
       </Animated.View>
     </GestureDetector>
   )
