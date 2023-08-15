@@ -1,4 +1,10 @@
-import { Pressable, FlatList, StyleSheet, View } from 'react-native'
+import {
+  Pressable,
+  FlatList,
+  StyleSheet,
+  View,
+  SectionList,
+} from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
 import DishCard from './dish-card'
@@ -19,6 +25,7 @@ export default function MenuPage({ navigation, route }: Props) {
         style={styles.flatList}
         keyExtractor={(_item, index) => String(index)} // TODO: find better key
       />
+   
     </View>
   )
 }

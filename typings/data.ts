@@ -130,3 +130,8 @@ export interface IMenuPage {
   menuItems: IMenuItem[]
   timestamp: number
 }
+
+export interface IMenuPageSection {
+  title: string
+  data: IMenuPage[]
+}

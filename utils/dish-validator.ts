@@ -7,14 +7,14 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration)
 // TODO: improve the prompt. it shd not rely on previous answers
 const dishValidator = async (stringArray: string[]) => {
-  const prompt = `here's an array of strings: ${stringArray}. based on your knowledge, reply to me with an array of booleans which indicate whether the item in the string array is a food or dish. the boolean array must contain the same amount of items as the original string array`
+  const prompt = `Map this array to an array of booleans indicating based on whether the item could be an item on a restaurant menu: ${stringArray}.`
 
   try {
     const result = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
       messages: [{ role: 'user', content: prompt }],
       temperature: 0,
-      max_tokens: 2000, // 4000 much cuased error
+      max_tokens: 2000, // 4000 caused error
     })
 
     /* Magic happening */

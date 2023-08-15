@@ -5,6 +5,7 @@ import {
   View,
   StyleSheet,
   Dimensions,
+  SectionList,
 } from 'react-native'
 import { Image } from 'expo-image'
 import { useMenu } from '../../contexts/menu'
@@ -14,6 +15,8 @@ import { IMenuPage } from '../../typings/data'
 import { StyledText } from '../../components'
 import { CameraIcon } from './camera-icon'
 import { SPACING } from '../../constants/styles'
+import { groupMenuPages } from '../../utils/menu-grouper'
+import { useSharedValue } from 'react-native-reanimated'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MenuGallery'>
 
@@ -22,8 +25,16 @@ const { width } = Dimensions.get('screen')
 export default function MenuGallery({ navigation }: Props) {
   const { state } = useMenu()
 
+  const opacity = useSharedValue(0)
+
   const goToMenu = (page: IMenuPage) => {
     navigation.navigate('MenuPage', { page: page })
+  }
+
+  const animatedStyles = () => {
+    return {
+      opacity: opacity
+    }
   }
 
   if (state.loading) {
@@ -43,12 +54,13 @@ export default function MenuGallery({ navigation }: Props) {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={state.pages}
+      <SectionList
+        sections={groupMenuPages(state.pages)}
         renderItem={({ item }) => renderItem(item, goToMenu)}
         keyExtractor={(item) => item.photoUrl}
         showsHorizontalScrollIndicator={false}
         ItemSeparatorComponent={ItemSeparatorComponent}
+        renderSectionHeader={renderSectionHeader}
       />
       <CameraIcon />
     </View>
@@ -69,6 +81,24 @@ const renderItem = (
         <Image source={{ uri: menuPage.photoUrl }} style={styles.image} />
       </View>
     </Pressable>
+  )
+}
+
+const renderSectionHeader = ({
+  section: { title },
+}: {
+  section: { title: string }
+}) => {
+  const date = new Date(Number(title))
+  const visibleDate = date.toLocaleDateString('en-US', {
+    month: 'short',
+    year: 'numeric',
+    day: 'numeric',
+  })
+  return (
+    <View style={styles.sectionHeaderWrapper}>
+      <StyledText size="L">{visibleDate}</StyledText>
+    </View>
   )
 }
 
@@ -97,5 +127,8 @@ const styles = StyleSheet.create({
   image: {
     width: width * 0.8,
     aspectRatio: 3 / 4,
+  },
+  sectionHeaderWrapper: {
+    paddingHorizontal: SPACING.M,
   },
 })
