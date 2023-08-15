@@ -26,7 +26,7 @@ const { width, height } = Dimensions.get('screen')
 // 926
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable)
 
-const ICON_SCALE = 1.1
+const ICON_SCALE = 1.2
 
 export function CameraIcon() {
   const navigation =
