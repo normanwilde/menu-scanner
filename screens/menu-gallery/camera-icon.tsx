@@ -26,6 +26,8 @@ const { width, height } = Dimensions.get('screen')
 // 926
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable)
 
+const ICON_SCALE = 1.1
+
 export function CameraIcon() {
   const navigation =
     useNavigation<
@@ -45,10 +47,9 @@ export function CameraIcon() {
 
   const offset = useSharedValue({ x: 0, y: 0 })
   const savedVerticalOffset = useSharedValue({ x: 0, y: 0 })
-  const bgColor = useSharedValue(0)
   const isInteracting = useSharedValue(false)
   const scale = useDerivedValue(() => {
-    return isInteracting.value ? withTiming(1.1) : withTiming(1)
+    return isInteracting.value ? withTiming(ICON_SCALE) : withTiming(1)
   })
 
   const animatedStyles = useAnimatedStyle(() => {
@@ -66,6 +67,16 @@ export function CameraIcon() {
       backgroundColor: isInteracting.value
         ? COLOR.errorDarker
         : COLOR.errorDark,
+      right: withTiming(
+        isInteracting.value
+          ? SPACING.XL + (ICON_SCALE - 1) * headerHeight
+          : SPACING.XL
+      ),
+      bottom: withTiming(
+        isInteracting.value
+          ? SPACING.XXL - (ICON_SCALE - 1) * headerHeight
+          : SPACING.XXL
+      ),
     }
   })
 
@@ -125,7 +136,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     padding: SPACING.XL,
     borderRadius: 50,
-    right: SPACING.XL,
-    bottom: SPACING.XXL,
+    // right: SPACING.XL,
+    // bottom: SPACING.XXL,
   },
 })
