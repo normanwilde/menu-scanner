@@ -7,6 +7,8 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration)
 // TODO: improve the prompt. it shd not rely on previous answers
 const dishValidator = async (stringArray: string[]) => {
+  return stringArray
+
   const prompt = `Map this array to an array of booleans indicating based on whether the item could be an item on a restaurant menu: ${stringArray}. Return no text other than the array. The array should only contain true or false as values.`
 
   try {

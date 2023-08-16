@@ -1,10 +1,14 @@
+// TODO: do not filter out non latin characters
+
 const textSanitizer = (rawTexts: string[]) => {
   const sanitizedTexts = rawTexts
     .map((item) => {
-      return item.replaceAll(/[^a-zA-Z ]/g, '').trim()
+      return item
+        .replaceAll(/[!@#$€£%¥₹₽₩^&*()\-_+=\[\]{}|;:'",.<>/?\\0-9]/g, '')
+        .trim()
     })
     .filter((item) => {
-      return item.length < 50 && 2 < item.length
+      return 2 < item.length
     })
 
   return sanitizedTexts

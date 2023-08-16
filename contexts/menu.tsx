@@ -15,7 +15,7 @@ const initialState: IMenuPageContextState = {
   // pages: [],
   pages: TEMP_INITIAL_STATE,
   loading: false,
-  targetLanguage: 'en',
+  targetLanguage: 'hu',
 }
 
 export const MenuPageContext = createContext<{

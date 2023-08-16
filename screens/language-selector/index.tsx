@@ -39,15 +39,17 @@ export default function LanguageSelector({ navigation }: Props) {
       <StyledText size="HEADING_XS" style={styles.headerText}>
         Translate menu to
       </StyledText>
-      <FlatList
-        data={languageArray}
-        renderItem={({ item }) =>
-          renderItem(item, state.targetLanguage, selectLanguage)
-        }
-        keyExtractor={(item) => item.code}
-        showsHorizontalScrollIndicator={false}
-        ItemSeparatorComponent={ItemSeparatorComponent}
-      />
+      <View style={styles.listWrapper}>
+        <FlatList
+          data={languageArray}
+          renderItem={({ item }) =>
+            renderItem(item, state.targetLanguage, selectLanguage)
+          }
+          keyExtractor={(item) => item.code}
+          showsHorizontalScrollIndicator={false}
+          ItemSeparatorComponent={ItemSeparatorComponent}
+        />
+      </View>
     </View>
   )
 }
@@ -85,6 +87,9 @@ const styles = StyleSheet.create({
   headerText: {
     paddingVertical: SPACING.M,
     paddingHorizontal: SPACING.M,
+  },
+  listWrapper: {
+    marginVertical: SPACING.M,
   },
   row: {
     flexDirection: 'row',
