@@ -45,8 +45,8 @@ export function CameraIcon() {
     setIconHeight(e.nativeEvent.layout.height)
   }
 
-  const offset = useSharedValue({ x: 0, y: 0 })
-  const savedVerticalOffset = useSharedValue({ x: 0, y: 0 })
+  const verticalOffset = useSharedValue(0)
+  const horizontalOffset = useSharedValue(0)
   const isInteracting = useSharedValue(false)
   const scale = useDerivedValue(() => {
     return isInteracting.value ? withTiming(ICON_SCALE) : withTiming(1)
@@ -55,8 +55,8 @@ export function CameraIcon() {
   const animatedStyles = useAnimatedStyle(() => {
     return {
       transform: [
-        { translateX: offset.value.x },
-        { translateY: offset.value.y },
+        { translateX: horizontalOffset.value },
+        { translateY: verticalOffset.value },
         { scale: scale.value },
       ],
     }
@@ -84,30 +84,20 @@ export function CameraIcon() {
     .onBegin(() => {
       isInteracting.value = true
     })
-    .onUpdate((e) => {
-      offset.value = {
-        x: e.translationX + savedVerticalOffset.value.x,
-        y: e.translationY + savedVerticalOffset.value.y,
-      }
+    .onChange((e) => {
+      horizontalOffset.value += e.changeX
+      verticalOffset.value += e.changeY
     })
     .onEnd(() => {
       const endingVerticalOffset = Math.min(
         0,
         Math.max(
-          offset.value.y,
+          verticalOffset.value,
           headerHeight + iconHeight + SPACING.XXL + SPACING.XL - height
         )
       )
-
-      savedVerticalOffset.value = {
-        ...savedVerticalOffset.value,
-        y: endingVerticalOffset,
-      }
-      offset.value = {
-        ...offset.value,
-        x: withSpring(0),
-        y: withSpring(endingVerticalOffset),
-      }
+      verticalOffset.value = withSpring(endingVerticalOffset)
+      horizontalOffset.value = withSpring(0)
     })
     .onFinalize(() => {
       isInteracting.value = false
