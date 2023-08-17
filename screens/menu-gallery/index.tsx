@@ -1,7 +1,5 @@
 import {
-  FlatList,
   Pressable,
-  Text,
   View,
   StyleSheet,
   Dimensions,
@@ -16,7 +14,6 @@ import { StyledText } from '../../components'
 import { CameraIcon } from './camera-icon'
 import { SPACING } from '../../constants/styles'
 import { groupMenuPages } from '../../utils/menu-grouper'
-import { useSharedValue } from 'react-native-reanimated'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MenuGallery'>
 
@@ -25,20 +22,8 @@ const { width } = Dimensions.get('screen')
 export default function MenuGallery({ navigation }: Props) {
   const { state } = useMenu()
 
-  const opacity = useSharedValue(0)
-
   const goToMenu = (page: IMenuPage) => {
     navigation.navigate('MenuPage', { page: page })
-  }
-
-  const animatedStyles = () => {
-    return {
-      opacity: opacity
-    }
-  }
-
-  if (state.loading) {
-    return <Text>Loading</Text>
   }
 
   if (state.pages && state.pages.length === 0 && !state.loading) {
