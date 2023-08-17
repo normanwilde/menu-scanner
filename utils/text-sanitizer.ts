@@ -1,5 +1,3 @@
-// TODO: do not filter out non latin characters
-
 const textSanitizer = (rawTexts: string[]) => {
   const sanitizedTexts = rawTexts
     .map((item) => {

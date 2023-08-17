@@ -116,16 +116,19 @@ export interface IMenuText {
 }
 
 export interface IMenuImage {
+  id: string
   thumbnail: string
   image: string
 }
 
 export interface IMenuItem {
+  id: string
   texts: IMenuText
   images: IMenuImage[]
 }
 
 export interface IMenuPage {
+  id: string
   photoUrl: string
   menuItems: IMenuItem[]
   timestamp: number

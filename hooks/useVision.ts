@@ -6,6 +6,7 @@ import textTranslator from '../utils/text-translator'
 import Toast from 'react-native-toast-message'
 import dishValidator from '../utils/dish-validator'
 import textSanitizer from '../utils/text-sanitizer'
+import { getRandomId } from '../utils'
 
 const useVision = () => {
   const { state, dispatch } = useMenu()
@@ -44,6 +45,7 @@ const useVision = () => {
           throw new Error()
         }
         const menuItem: IMenuItem = {
+          id: getRandomId(),
           texts: {
             originalText: itemName,
           },
@@ -75,6 +77,7 @@ const useVision = () => {
       dispatch({
         type: 'ADD_PAGE',
         payload: {
+          id: getRandomId(),
           photoUrl,
           menuItems: menuItemsWithTranslations,
           timestamp: Number(new Date()),
