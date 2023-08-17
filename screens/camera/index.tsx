@@ -40,7 +40,7 @@ export default function CameraModal({ navigation }: Props) {
   /* Handlers */
   const takePhoto = async () => {
     const data = await cameraRef?.current?.takePictureAsync({
-      quality: 0.5,
+      quality: 0.1,
       base64: true,
     })
     if (data && data.base64) {

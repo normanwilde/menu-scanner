@@ -15,7 +15,7 @@ export default function ImageGallery({ route }: Props) {
         horizontal
         data={dish.images}
         renderItem={({ item }) => renderItem(item.image)}
-        keyExtractor={(item) => item.image}
+        keyExtractor={(item) => item.id}
         pagingEnabled
         showsHorizontalScrollIndicator={false}
       />

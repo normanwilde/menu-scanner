@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { IImageSearchResponseDTO } from '../typings/DTO'
 import { IMenuImage } from '../typings/data'
+import { getRandomId } from '.'
 
 const imageFinder = async (searchTerm: string) => {
   const imageUrl = 'https://www.googleapis.com/customsearch/v1?'
@@ -17,10 +18,11 @@ const imageFinder = async (searchTerm: string) => {
       return []
     }
     const imageLinks: IMenuImage[] = imageResult.data.items.map((item) => ({
+      id: getRandomId(),
       image: item.link,
       thumbnail: item.image.thumbnailLink,
     }))
-    
+
     return imageLinks
   } catch (e) {
     console.error(e)

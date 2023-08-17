@@ -2,6 +2,7 @@ import { createContext, useContext, useReducer } from 'react'
 
 import { IMenuPage, IMenuItem, LanguageCode } from '../typings/data'
 import { DUMMY_DATA } from '../constants/dummy-data'
+import { getRandomId } from '../utils'
 
 export interface IMenuPageContextState {
   pages: IMenuPage[]
@@ -63,6 +64,13 @@ type Action =
       }
     }
   | {
+      type: 'DUPLICATE_ITEM'
+      payload: {
+        pageId: string
+        itemId: string
+      }
+    }
+  | {
       type: 'SET_LOADING'
       payload: boolean
     }
@@ -77,6 +85,7 @@ const reducer = (
 ): IMenuPageContextState => {
   switch (action.type) {
     case 'ADD_PAGE':
+      console.log(JSON.stringify(action.payload))
       return {
         ...state,
         pages: [action.payload, ...state.pages],
@@ -91,6 +100,28 @@ const reducer = (
       return {
         ...state,
         pages: pagesWithUpdatedPage,
+      }
+    case 'DUPLICATE_ITEM':
+      const newPages = state.pages.map((menuPage) => {
+        if (menuPage.id !== action.payload.pageId) {
+          return menuPage
+        }
+        // if menu page is found
+        const itemIndex = menuPage.menuItems
+          .map((item) => item.id)
+          .indexOf(action.payload.itemId)
+        const duplicatedItem = {
+          ...menuPage.menuItems[itemIndex],
+          id: getRandomId(),
+        }
+        menuPage.menuItems.splice(itemIndex, 0, duplicatedItem)
+        return menuPage
+      })
+      console.log(newPages)
+
+      return {
+        ...state,
+        pages: newPages,
       }
     case 'SPLIT_ITEM':
       const pagesWithSplitItem = state.pages.map((menuPage) => {

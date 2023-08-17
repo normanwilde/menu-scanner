@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Dimensions,
   SectionList,
+  Text,
 } from 'react-native'
 import { Image } from 'expo-image'
 import { useMenu } from '../../contexts/menu'
@@ -23,7 +24,11 @@ export default function MenuGallery({ navigation }: Props) {
   const { state } = useMenu()
 
   const goToMenu = (page: IMenuPage) => {
-    navigation.navigate('MenuPage', { page: page })
+    navigation.navigate('MenuPage', { pageId: page.id })
+  }
+
+  if (state.loading) {
+    return <Text>Loading</Text>
   }
 
   if (state.pages && state.pages.length === 0 && !state.loading) {
@@ -42,7 +47,7 @@ export default function MenuGallery({ navigation }: Props) {
       <SectionList
         sections={groupMenuPages(state.pages)}
         renderItem={({ item }) => renderItem(item, goToMenu)}
-        keyExtractor={(item) => item.photoUrl}
+        keyExtractor={(item) => item.id}
         showsHorizontalScrollIndicator={false}
         ItemSeparatorComponent={ItemSeparatorComponent}
         renderSectionHeader={renderSectionHeader}

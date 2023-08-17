@@ -10,28 +10,33 @@ import { RootStackParamList } from '../../typings/navigators'
 import DishCard from './dish-card'
 import { IMenuItem } from '../../typings/data'
 import { SPACING } from '../../constants/styles'
+import { useMenu } from '../../contexts/menu'
+import { useMemo } from 'react'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MenuPage'>
 
-export default function MenuPage({ navigation, route }: Props) {
-  const { page } = route.params
+export default function MenuPage({ route }: Props) {
+  const { pageId } = route.params
+  const { state } = useMenu()
+  const menuItems = useMemo(() => {
+    return state.pages.find((page) => page.id === pageId)?.menuItems
+  }, [pageId, state.pages])
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={page.menuItems}
-        renderItem={({ item }) => renderItem(item)}
+        data={menuItems}
+        renderItem={({ item }) => renderItem(pageId, item)}
         ItemSeparatorComponent={ItemSeparatorComponent}
         style={styles.flatList}
-        keyExtractor={(_item, index) => String(index)} // TODO: find better key
+        keyExtractor={(item) => item.id}
       />
-   
     </View>
   )
 }
 
-const renderItem = (menuItem: IMenuItem) => {
-  return <DishCard menuItem={menuItem} />
+const renderItem = (pageId: string, menuItem: IMenuItem) => {
+  return <DishCard pageId={pageId} menuItem={menuItem} />
 }
 
 const ItemSeparatorComponent = () => {
