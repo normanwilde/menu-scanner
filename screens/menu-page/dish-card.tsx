@@ -6,7 +6,10 @@ import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
 import { useMenu } from '../../contexts/menu'
-import Animated, { FadeIn, Layout } from 'react-native-reanimated'
+import Animated, { FadeIn, Layout, runOnJS } from 'react-native-reanimated'
+import { useState } from 'react'
+import EditModal from './edit-modal'
+import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 
 type Props = {
   pageId: string
@@ -15,11 +18,20 @@ type Props = {
 
 export default function DishCard({ pageId, menuItem }: Props) {
   const { dispatch } = useMenu()
+  const [showModal, setShowModal] = useState(false)
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList, 'MenuPage'>>()
 
   const goToImageGallery = () => {
     navigation.navigate('ImageGallery', { dish: menuItem })
+  }
+
+  const showEditModal = () => {
+    setShowModal(true)
+  }
+
+  const hideEditModal = () => {
+    setShowModal(false)
   }
 
   const duplicateItem = () => {
@@ -29,9 +41,31 @@ export default function DishCard({ pageId, menuItem }: Props) {
     })
   }
 
+  const singleTapGesture = Gesture.Tap()
+    .numberOfTaps(1)
+    .onStart(() => {
+      runOnJS(goToImageGallery)()
+    })
+
+  const doubleTapGesture = Gesture.Tap()
+    .numberOfTaps(2)
+    .onStart(() => {
+      runOnJS(duplicateItem)()
+    })
+
+  const longPressGesture = Gesture.LongPress().onStart(() => {
+    runOnJS(showEditModal)()
+  })
+
+  const composedGesture = Gesture.Exclusive(
+    longPressGesture,
+    doubleTapGesture,
+    singleTapGesture
+  )
+
   return (
-    <Animated.View entering={FadeIn.duration(500)}>
-      <Pressable onPress={goToImageGallery} onLongPress={duplicateItem}>
+    <GestureDetector gesture={composedGesture}>
+      <Animated.View entering={FadeIn.duration(500)}>
         <View style={styles.container}>
           {menuItem.images[0] ? (
             <Image
@@ -48,8 +82,14 @@ export default function DishCard({ pageId, menuItem }: Props) {
             <Text>{menuItem.texts.translatedText}</Text>
           </View>
         </View>
-      </Pressable>
-    </Animated.View>
+        <EditModal
+          isModalVisible={showModal}
+          menuItem={menuItem}
+          pageId={pageId}
+          hideModal={hideEditModal}
+        />
+      </Animated.View>
+    </GestureDetector>
   )
 }
 

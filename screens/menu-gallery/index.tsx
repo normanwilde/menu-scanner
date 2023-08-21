@@ -15,6 +15,7 @@ import { StyledText } from '../../components'
 import { CameraIcon } from './camera-icon'
 import { SPACING } from '../../constants/styles'
 import { groupMenuPages } from '../../utils/menu-grouper'
+import { useMemo } from 'react'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MenuGallery'>
 
@@ -22,10 +23,15 @@ const { width } = Dimensions.get('screen')
 
 export default function MenuGallery({ navigation }: Props) {
   const { state } = useMenu()
+  console.log(state.pages)
 
   const goToMenu = (page: IMenuPage) => {
     navigation.navigate('MenuPage', { pageId: page.id })
   }
+
+  const sections = useMemo(() => {
+    return groupMenuPages(state.pages)
+  }, [state.pages])
 
   if (state.loading) {
     return <Text>Loading</Text>
@@ -45,7 +51,7 @@ export default function MenuGallery({ navigation }: Props) {
   return (
     <View style={styles.container}>
       <SectionList
-        sections={groupMenuPages(state.pages)}
+        sections={sections}
         renderItem={({ item }) => renderItem(item, goToMenu)}
         keyExtractor={(item) => item.id}
         showsHorizontalScrollIndicator={false}

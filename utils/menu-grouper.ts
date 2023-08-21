@@ -17,11 +17,12 @@ export const groupMenuPages = (data: IMenuPage[]): IMenuPageSection[] => {
         sectionObject[itemDate] = []
       }
 
-      sectionObject[itemDate] = [menuPage, ...sectionObject[itemDate]]
+      sectionObject[itemDate] = [...sectionObject[itemDate], menuPage]
       return sectionObject
     },
     {}
   )
+  console.log(sectionObject)
   return Object.entries(sectionObject).map(([key, value]) => ({
     title: key,
     data: value,

@@ -71,6 +71,14 @@ type Action =
       }
     }
   | {
+      type: 'EDIT_ITEM'
+      payload: {
+        pageId: string
+        itemId: string
+        editedItem: IMenuItem
+      }
+    }
+  | {
       type: 'SET_LOADING'
       payload: boolean
     }
@@ -122,6 +130,29 @@ const reducer = (
       return {
         ...state,
         pages: newPages,
+      }
+    case 'EDIT_ITEM':
+      const newPagesEdited = state.pages.map((menuPage) => {
+        if (menuPage.id !== action.payload.pageId) {
+          return menuPage
+        }
+        // if menu page is found
+        const newItems = menuPage.menuItems.map((menuItem) => {
+          if (menuItem.id !== action.payload.itemId) {
+            return menuItem
+          }
+          return action.payload.editedItem
+        })
+        return {
+          ...menuPage,
+          menuItems: newItems,
+        }
+      })
+      console.log(newPagesEdited)
+
+      return {
+        ...state,
+        pages: newPagesEdited,
       }
     case 'SPLIT_ITEM':
       const pagesWithSplitItem = state.pages.map((menuPage) => {
