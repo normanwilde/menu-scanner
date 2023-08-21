@@ -12,6 +12,7 @@ import { IMenuItem } from '../../typings/data'
 import { SPACING } from '../../constants/styles'
 import { useMenu } from '../../contexts/menu'
 import { useMemo } from 'react'
+import { CenteredLoader } from '../../components'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MenuPage'>
 
@@ -21,6 +22,10 @@ export default function MenuPage({ route }: Props) {
   const menuItems = useMemo(() => {
     return state.pages.find((page) => page.id === pageId)?.menuItems
   }, [pageId, state.pages])
+
+  if (state.loading) {
+    return <CenteredLoader />
+  }
 
   return (
     <View style={styles.container}>

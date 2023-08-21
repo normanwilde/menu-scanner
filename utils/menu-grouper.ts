@@ -22,7 +22,7 @@ export const groupMenuPages = (data: IMenuPage[]): IMenuPageSection[] => {
     },
     {}
   )
-  console.log(sectionObject)
+
   return Object.entries(sectionObject).map(([key, value]) => ({
     title: key,
     data: value,

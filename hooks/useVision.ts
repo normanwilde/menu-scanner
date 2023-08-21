@@ -83,6 +83,10 @@ const useVision = () => {
           timestamp: Number(new Date()),
         },
       })
+      Toast.show({
+        type: 'success',
+        text1: 'Image successfully processed.',
+      })
     } catch (e) {
       Toast.show({
         type: 'error',
@@ -94,7 +98,59 @@ const useVision = () => {
     }
   }
 
-  return { visualize }
+  const refetch = async (itemName: string, pageId: string, itemId: string) => {
+    dispatch({ type: 'SET_LOADING', payload: true })
+
+    try {
+      /* FIND RELATED IMAGES */
+      const images = await imageFinder(itemName)
+      if (!images) {
+        throw new Error()
+      }
+
+      /* TRANSLATE TEXTS */
+      const targetLanguage = state.targetLanguage
+      const translations = await textTranslator([itemName], targetLanguage)
+      if (!translations) {
+        throw new Error()
+      }
+
+      const editedItem = {
+        id: itemId,
+        texts: {
+          originalText: itemName,
+          translatedText: translations[0].translatedText,
+          sourceLanguage: translations[0].detectedSourceLanguage,
+          targetLanguage,
+        },
+        images,
+      }
+
+      dispatch({
+        type: 'EDIT_ITEM',
+        payload: {
+          pageId,
+          itemId,
+          editedItem,
+        },
+      })
+      Toast.show({
+        type: 'success',
+        text1: 'Menu item successfully updated.',
+      })
+      return 'ok'
+    } catch (e) {
+      Toast.show({
+        type: 'error',
+        text1: 'Error updating menu item. Please try again.',
+      })
+      console.error(e)
+    } finally {
+      dispatch({ type: 'SET_LOADING', payload: false })
+    }
+  }
+
+  return { visualize, refetch }
 }
 
 export default useVision

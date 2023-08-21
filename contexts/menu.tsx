@@ -93,7 +93,6 @@ const reducer = (
 ): IMenuPageContextState => {
   switch (action.type) {
     case 'ADD_PAGE':
-      console.log(JSON.stringify(action.payload))
       return {
         ...state,
         pages: [action.payload, ...state.pages],
@@ -125,7 +124,6 @@ const reducer = (
         menuPage.menuItems.splice(itemIndex, 0, duplicatedItem)
         return menuPage
       })
-      console.log(newPages)
 
       return {
         ...state,
@@ -148,7 +146,6 @@ const reducer = (
           menuItems: newItems,
         }
       })
-      console.log(newPagesEdited)
 
       return {
         ...state,

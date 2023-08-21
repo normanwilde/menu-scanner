@@ -5,6 +5,7 @@ import { RootStackParamList } from '../../typings/navigators'
 import { useNavigation } from '@react-navigation/native'
 import { StyledText } from '../styled-text'
 import { useMenu } from '../../contexts/menu'
+import { SPACING } from '../../constants/styles'
 
 export function HeaderIcon() {
   /* Hooks */
@@ -29,7 +30,7 @@ export function HeaderIcon() {
 
 const styles = StyleSheet.create({
   container: {
-    gap: 25,
+    gap: SPACING.XL,
     flexDirection: 'row',
   },
 })

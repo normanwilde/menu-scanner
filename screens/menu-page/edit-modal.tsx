@@ -14,10 +14,11 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
 import { useMenu } from '../../contexts/menu'
 import Animated, { FadeIn, Layout } from 'react-native-reanimated'
-import { StyledText } from '../../components'
+import { CenteredLoader, StyledText } from '../../components'
 import { TextInput } from 'react-native-gesture-handler'
 import { useState } from 'react'
 import { FONT, SPACING } from '../../constants/styles'
+import useVision from '../../hooks/useVision'
 
 type Props = {
   isModalVisible: boolean
@@ -30,11 +31,11 @@ export default function EditModal({
   isModalVisible,
   menuItem,
   hideModal,
+  pageId,
 }: Props) {
-  const { dispatch } = useMenu()
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList, 'MenuPage'>>()
   const [text, setText] = useState(menuItem.texts.originalText)
+  const { refetch } = useVision()
+  const { state } = useMenu()
 
   const splitText = text.split(' ')
 
@@ -51,20 +52,35 @@ export default function EditModal({
     setText(menuItem.texts.originalText)
   }
 
+  const saveEditedItem = async () => {
+    await refetch(text, pageId, menuItem.id)
+    onHideModal()
+  }
+
+  if (state.loading) {
+    return <CenteredLoader />
+  }
+
   return (
     <Modal visible={isModalVisible}>
       <SafeAreaView style={styles.outerContainer}>
         <View style={styles.container}>
-          <Pressable onPress={onHideModal}>
-            <StyledText>Close modal</StyledText>
-          </Pressable>
+          <View
+            style={{ flexDirection: 'row', justifyContent: 'space-between' }}
+          >
+            <Pressable onPress={onHideModal}>
+              <StyledText>Close modal</StyledText>
+            </Pressable>
+            <Pressable onPress={saveEditedItem}>
+              <StyledText>Save</StyledText>
+            </Pressable>
+          </View>
           <View>
             <TextInput
               value={text}
               onChangeText={setText}
               multiline={true}
               style={styles.input}
-              autoFocus
             />
           </View>
           {splitText.map((word, index) => {
@@ -83,7 +99,6 @@ export default function EditModal({
 const styles = StyleSheet.create({
   outerContainer: {
     flex: 1,
-    backgroundColor: 'lightblue',
   },
   container: {
     flex: 1,

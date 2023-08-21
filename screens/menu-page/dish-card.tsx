@@ -10,6 +10,8 @@ import Animated, { FadeIn, Layout, runOnJS } from 'react-native-reanimated'
 import { useState } from 'react'
 import EditModal from './edit-modal'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
+import { SPACING } from '../../constants/styles'
+import { StyledText } from '../../components'
 
 type Props = {
   pageId: string
@@ -78,8 +80,8 @@ export default function DishCard({ pageId, menuItem }: Props) {
             </View>
           )}
           <View style={styles.textContainer}>
-            <Text>{menuItem.texts.originalText}</Text>
-            <Text>{menuItem.texts.translatedText}</Text>
+            <StyledText size="L">{menuItem.texts.originalText}</StyledText>
+            <StyledText size="L">{menuItem.texts.translatedText}</StyledText>
           </View>
         </View>
         <EditModal
@@ -97,10 +99,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    padding: 10,
+    padding: SPACING.S,
     borderRadius: 50,
     backgroundColor: 'lightblue',
-    marginHorizontal: 20,
+    marginHorizontal: SPACING.M,
+    alignItems: 'center',
+    gap: SPACING.L,
   },
   image: {
     width: 100,

@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Pressable,
   SafeAreaView,
+  Dimensions,
 } from 'react-native'
 import { Camera } from 'expo-camera'
 import { useRef } from 'react'
@@ -13,6 +14,9 @@ import { Entypo } from '@expo/vector-icons'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
 import useVision from '../../hooks/useVision'
+import { SPACING } from '../../constants/styles'
+
+const { width } = Dimensions.get('screen')
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Camera'>
 
@@ -59,16 +63,20 @@ export default function CameraModal({ navigation }: Props) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Pressable onPress={goBack}>
-        <Entypo name="circle-with-cross" size={24} color="black" />
-      </Pressable>
-      <Camera style={styles.camera} ref={cameraRef}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={takePhoto}>
-            <Text style={styles.text}>Take Picture</Text>
-          </TouchableOpacity>
-        </View>
-      </Camera>
+      <View style={styles.cameraWrapper}>
+        <Camera style={styles.camera} ref={cameraRef}>
+          <View style={styles.backButtonContainer}>
+            <Pressable onPress={goBack}>
+              <Entypo name="circle-with-cross" size={48} color="black" />
+            </Pressable>
+          </View>
+        </Camera>
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={takePhoto}>
+          <View style={styles.cameraButton} />
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   )
 }
@@ -76,7 +84,16 @@ export default function CameraModal({ navigation }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: 'black',
+  },
+  backButtonContainer: {
+    alignItems: 'flex-end',
+    paddingRight: SPACING.M,
+    paddingTop: SPACING.M,
+  },
+  cameraWrapper: {
+    width,
+    aspectRatio: 3 / 4,
   },
   camera: {
     flex: 1,
@@ -85,16 +102,16 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: 'transparent',
-    margin: 64,
   },
   button: {
     flex: 1,
-    alignSelf: 'flex-end',
     alignItems: 'center',
+    justifyContent: 'center',
   },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
+  cameraButton: {
+    height: 75,
+    width: 75,
+    backgroundColor: 'red',
+    borderRadius: 50,
   },
 })

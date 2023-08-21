@@ -5,30 +5,40 @@ import Navigation from './navigators'
 import { MenuContextProvider } from './contexts/menu'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
-import { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
 import Toast from 'react-native-toast-message'
 import 'react-native-url-polyfill/auto'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
-// SplashScreen.preventAutoHideAsync()
+SplashScreen.preventAutoHideAsync()
 
 export default function App() {
-  // const [fontsLoaded] = useFonts({
-  //   'Inter-Black': require('./assets/fonts/Inter-Black.otf'),
-  // })
+  const [fontsLoaded] = useFonts({
+    'Lato-Thin': require('./assets/fonts/Lato-Thin.ttf'),
+    'Lato-ThinItalic': require('./assets/fonts/Lato-ThinItalic.ttf'),
+    'Lato-Light': require('./assets/fonts/Lato-Light.ttf'),
+    'Lato-LightItalic': require('./assets/fonts/Lato-LightItalic.ttf'),
+    'Lato-Regular': require('./assets/fonts/Lato-Regular.ttf'),
+    'Lato-Italic': require('./assets/fonts/Lato-Italic.ttf'),
+    'Lato-Bold': require('./assets/fonts/Lato-Bold.ttf'),
+    'Lato-BoldItalic': require('./assets/fonts/Lato-BoldItalic.ttf'),
+    'Lato-Black': require('./assets/fonts/Lato-Black.ttf'),
+    'Lato-BlackItalic': require('./assets/fonts/Lato-BlackItalic.ttf'),
+  })
 
-  // useEffect(() => {
-  //   const hideSplashScreen = async () => {
-  //     if (fontsLoaded) {
-  //       await SplashScreen.hideAsync()
-  //     }
-  //   }
-  //   hideSplashScreen()
-  // }, [fontsLoaded])
+  useEffect(() => {
+    const hideSplashScreen = async () => {
+      if (fontsLoaded) {
+        await SplashScreen.hideAsync()
+      }
+    }
+    hideSplashScreen()
+  }, [fontsLoaded])
 
-  // if (!fontsLoaded) {
-  //   return null
-  // }
+  if (!fontsLoaded) {
+    return null
+  }
+
   return (
     <MenuContextProvider>
       <StatusBar />

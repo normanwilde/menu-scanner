@@ -11,7 +11,7 @@ import { useMenu } from '../../contexts/menu'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
 import { IMenuPage } from '../../typings/data'
-import { StyledText } from '../../components'
+import { CenteredLoader, StyledText } from '../../components'
 import { CameraIcon } from './camera-icon'
 import { SPACING } from '../../constants/styles'
 import { groupMenuPages } from '../../utils/menu-grouper'
@@ -23,7 +23,6 @@ const { width } = Dimensions.get('screen')
 
 export default function MenuGallery({ navigation }: Props) {
   const { state } = useMenu()
-  console.log(state.pages)
 
   const goToMenu = (page: IMenuPage) => {
     navigation.navigate('MenuPage', { pageId: page.id })
@@ -34,7 +33,7 @@ export default function MenuGallery({ navigation }: Props) {
   }, [state.pages])
 
   if (state.loading) {
-    return <Text>Loading</Text>
+    return <CenteredLoader />
   }
 
   if (state.pages && state.pages.length === 0 && !state.loading) {
