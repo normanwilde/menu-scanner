@@ -9,7 +9,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
 import DishCard from './dish-card'
 import { IMenuItem } from '../../typings/data'
-import { SPACING } from '../../constants/styles'
+import { COLOR, SPACING } from '../../constants/styles'
 import { useMenu } from '../../contexts/menu'
 import { useMemo } from 'react'
 import { CenteredLoader } from '../../components'
@@ -51,6 +51,7 @@ const ItemSeparatorComponent = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: COLOR.white,
   },
   flatList: {
     flex: 1,

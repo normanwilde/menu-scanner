@@ -71,17 +71,23 @@ export const COLOR = {
   white: PALETTE.gray0,
   black: PALETTE.gray1000,
 
-  primaryMain: PALETTE.gray600,
-  primaryLight: PALETTE.gray500,
-  primaryDark: PALETTE.gray700,
-  primaryBlack: PALETTE.gray800,
-  primaryWhite: PALETTE.gray300,
-
   accentMain: PALETTE.red600,
   accentLight: PALETTE.red500,
   accentDark: PALETTE.red700,
-  AccentVeryDark: PALETTE.red800,
-  AccentVeryLight: PALETTE.red300,
+  accentVeryDark: PALETTE.red800,
+  accentVeryLight: PALETTE.red300,
+
+  backgroundMain: PALETTE.gray200,
+  backgroundLight: PALETTE.gray100,
+  backgroundVeryLight: PALETTE.gray50,
+  backgroundDark: PALETTE.gray300,
+  backgroundVeryDark: PALETTE.gray400,
+
+  primaryMain: PALETTE.gray600,
+  primaryLight: PALETTE.gray500,
+  primaryVeryLight: PALETTE.gray500,
+  primaryDark: PALETTE.gray700,
+  primaryVeryDark: PALETTE.gray700,
 
   errorMain: PALETTE.red400,
   errorLight: PALETTE.red300,
@@ -116,11 +122,9 @@ export const FONT = {
   M: wp(4),
   L: wp(5),
   XL: wp(6),
-  HEADING_XS: wp(8),
-  HEADING_S: wp(9),
-  HEADING_M: wp(12),
-  HEADING_L: wp(14),
-  HEADING_XL: wp(14),
+  HEADING_S: wp(8),
+  HEADING_M: wp(10),
+  HEADING_L: wp(12),
 } as const
 
 export const FONT_WEIGHT = {

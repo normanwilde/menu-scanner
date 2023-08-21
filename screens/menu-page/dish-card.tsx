@@ -10,7 +10,7 @@ import Animated, { FadeIn, Layout, runOnJS } from 'react-native-reanimated'
 import { useState } from 'react'
 import EditModal from './edit-modal'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
-import { SPACING } from '../../constants/styles'
+import { COLOR, SPACING } from '../../constants/styles'
 import { StyledText } from '../../components'
 
 type Props = {
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: SPACING.S,
     borderRadius: 50,
-    backgroundColor: 'lightblue',
+    backgroundColor: COLOR.backgroundLight,
     marginHorizontal: SPACING.M,
     alignItems: 'center',
     gap: SPACING.L,

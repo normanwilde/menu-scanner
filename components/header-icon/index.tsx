@@ -22,7 +22,7 @@ export function HeaderIcon() {
     <View style={styles.container}>
       <Pressable onPress={goToLanguageSelector}>
         <Entypo name="language" size={24} color="black" />
-        <StyledText>{state.targetLanguage}</StyledText>
+        <StyledText size="S">{state.targetLanguage}</StyledText>
       </Pressable>
     </View>
   )
