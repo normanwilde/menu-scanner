@@ -35,6 +35,7 @@ export default function MenuPage({ route }: Props) {
         ItemSeparatorComponent={ItemSeparatorComponent}
         style={styles.flatList}
         keyExtractor={(item) => item.id}
+        contentContainerStyle={styles.flatListContent}
       />
     </View>
   )
@@ -55,6 +56,9 @@ const styles = StyleSheet.create({
   },
   flatList: {
     flex: 1,
+  },
+  flatListContent: {
+    paddingVertical: SPACING.L,
   },
   itemSeparator: {
     height: 20,

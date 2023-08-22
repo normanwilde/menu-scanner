@@ -80,10 +80,10 @@ export default function DishCard({ pageId, menuItem }: Props) {
             </View>
           )}
           <View style={styles.textContainer}>
-            <StyledText weight="bold" size="L">
+            <StyledText weight="bold" size="XL">
               {menuItem.texts.originalText}
             </StyledText>
-            <StyledText size="M">{menuItem.texts.translatedText}</StyledText>
+            <StyledText size="L">{menuItem.texts.translatedText}</StyledText>
           </View>
         </View>
         <EditModal
@@ -103,8 +103,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: SPACING.S,
     borderRadius: 50,
-    backgroundColor: COLOR.backgroundLight,
-    marginHorizontal: SPACING.M,
+    // backgroundColor: COLOR.backgroundMain,
+    marginHorizontal: SPACING.S,
     alignItems: 'center',
     gap: SPACING.L,
   },

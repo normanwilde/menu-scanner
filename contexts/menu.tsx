@@ -52,10 +52,6 @@ export const useMenu = () => useContext(MenuPageContext)
 type Action =
   | { type: 'ADD_PAGE'; payload: IMenuPage }
   | {
-      type: 'ADD_TEXTS'
-      payload: { photoUrl: string; menuItems: IMenuItem[] }
-    }
-  | {
       type: 'SPLIT_ITEM'
       payload: {
         photoUrl: string
@@ -97,17 +93,6 @@ const reducer = (
         ...state,
         pages: [action.payload, ...state.pages],
       }
-    case 'ADD_TEXTS':
-      const pagesWithUpdatedPage = state.pages.map((menuPage) => {
-        if (menuPage.photoUrl === action.payload.photoUrl) {
-          return { ...menuPage, menuItems: action.payload.menuItems }
-        }
-        return menuPage
-      })
-      return {
-        ...state,
-        pages: pagesWithUpdatedPage,
-      }
     case 'DUPLICATE_ITEM':
       const newPages = state.pages.map((menuPage) => {
         if (menuPage.id !== action.payload.pageId) {
@@ -121,7 +106,7 @@ const reducer = (
           ...menuPage.menuItems[itemIndex],
           id: getRandomId(),
         }
-        menuPage.menuItems.splice(itemIndex, 0, duplicatedItem)
+        menuPage.menuItems.splice(itemIndex + 1, 0, duplicatedItem)
         return menuPage
       })
 

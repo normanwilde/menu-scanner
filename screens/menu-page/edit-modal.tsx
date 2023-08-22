@@ -16,8 +16,8 @@ import { useMenu } from '../../contexts/menu'
 import Animated, { FadeIn, Layout } from 'react-native-reanimated'
 import { CenteredLoader, StyledText } from '../../components'
 import { TextInput } from 'react-native-gesture-handler'
-import { useState } from 'react'
-import { FONT, SPACING } from '../../constants/styles'
+import { useEffect, useRef, useState } from 'react'
+import { COLOR, FONT, SPACING } from '../../constants/styles'
 import useVision from '../../hooks/useVision'
 
 type Props = {
@@ -36,6 +36,14 @@ export default function EditModal({
   const [text, setText] = useState(menuItem.texts.originalText)
   const { refetch } = useVision()
   const { state } = useMenu()
+
+  const inputRef = useRef<TextInput>(null)
+
+  useEffect(() => {
+    if (isModalVisible) {
+      inputRef.current?.focus()
+    }
+  }, [isModalVisible])
 
   const splitText = text.split(' ')
 
@@ -76,21 +84,28 @@ export default function EditModal({
               <StyledText>Save</StyledText>
             </Pressable>
           </View>
-          <View>
+          <View style={styles.inputWrapper}>
             <TextInput
               value={text}
               onChangeText={setText}
               multiline={true}
               style={styles.input}
+              ref={inputRef}
             />
           </View>
-          {splitText.map((word, index) => {
-            return (
-              <Pressable onPress={() => deleteWord(index)} key={index}>
-                <StyledText size="L">{word}</StyledText>
-              </Pressable>
-            )
-          })}
+          <View style={styles.bubbleContainer}>
+            {splitText.map((word, index) => {
+              return (
+                <Pressable
+                  onPress={() => deleteWord(index)}
+                  key={index}
+                  style={styles.itemBubble}
+                >
+                  <StyledText size="L">{word}</StyledText>
+                </Pressable>
+              )
+            })}
+          </View>
         </View>
       </SafeAreaView>
     </Modal>
@@ -105,8 +120,25 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: SPACING.L,
   },
+  inputWrapper: {},
   input: {
+    borderColor: COLOR.accentDark,
+    borderWidth: SPACING.XXS,
+    borderRadius: 50,
+    paddingHorizontal: SPACING.M,
+
     fontSize: FONT.L,
     backgroundColor: 'white',
+  },
+  bubbleContainer: {
+    flexDirection: 'row',
+    gap: SPACING.S,
+    flexWrap: 'wrap',
+  },
+  itemBubble: {
+    paddingVertical: SPACING.XS,
+    paddingHorizontal: SPACING.S,
+    backgroundColor: COLOR.accentLight,
+    borderRadius: SPACING.M,
   },
 })

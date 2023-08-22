@@ -14,6 +14,7 @@ import { StyledText } from '../../components'
 import { useCallback, useState } from 'react'
 import { COLOR, SPACING } from '../../constants/styles'
 import Animated, {
+  interpolate,
   useAnimatedScrollHandler,
   useAnimatedStyle,
   useSharedValue,
@@ -115,7 +116,7 @@ const renderItem = (imageUrl: string) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLOR.primaryWhite,
+    backgroundColor: COLOR.white,
   },
   image: {
     width,
