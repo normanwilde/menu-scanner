@@ -34,7 +34,8 @@ export default function Navigation() {
         name="MenuPage"
         component={MenuPageScreen}
         options={{
-          headerTitle: 'Menu',
+          headerTitle: 'Dishes',
+          headerLargeTitle: true,
         }}
       />
       <Stack.Screen

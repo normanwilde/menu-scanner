@@ -22,7 +22,7 @@ export type TextProps = RNTextProps & {
 }
 
 export const StyledText = ({
-  color = 'primaryMain',
+  color = 'textPrimary',
   size = 'M',
   weight = 'regular',
   ...props

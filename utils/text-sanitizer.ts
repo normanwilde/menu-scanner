@@ -3,6 +3,7 @@ const textSanitizer = (rawTexts: string[]) => {
     .map((item) => {
       return item
         .replaceAll(/[!@#$€£%¥₹₽₩^&*()\-_+=\[\]{}|;:'",.<>/?\\0-9]/g, '')
+        .replaceAll(/\s+/g, ' ')
         .trim()
     })
     .filter((item) => {

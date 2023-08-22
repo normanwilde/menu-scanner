@@ -1,9 +1,7 @@
 import {
-  Pressable,
   FlatList,
   StyleSheet,
   View,
-  SectionList,
 } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
@@ -36,6 +34,7 @@ export default function MenuPage({ route }: Props) {
         style={styles.flatList}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.flatListContent}
+        contentInsetAdjustmentBehavior="automatic"
       />
     </View>
   )

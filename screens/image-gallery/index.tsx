@@ -136,10 +136,10 @@ const styles = StyleSheet.create({
     paddingLeft: SPACING.M,
     paddingTop: SPACING.L,
     gap: SPACING.M,
-    backgroundColor: COLOR.primaryWhite,
+    backgroundColor: COLOR.backgroundPrimary,
   },
   verticalLine: {
-    backgroundColor: COLOR.accentDark,
+    backgroundColor: COLOR.accentPrimary,
     width: SPACING.XXS,
   },
   textContainer: {

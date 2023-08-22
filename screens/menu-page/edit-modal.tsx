@@ -5,10 +5,11 @@ import {
   StyleSheet,
   Modal,
   SafeAreaView,
+  ScrollView,
 } from 'react-native'
 import { Image } from 'expo-image'
 import { IMenuItem } from '../../typings/data'
-import { Ionicons } from '@expo/vector-icons'
+import { Entypo, Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
@@ -60,6 +61,10 @@ export default function EditModal({
     setText(menuItem.texts.originalText)
   }
 
+  const trimText = () => {
+    setText(text.trim())
+  }
+
   const saveEditedItem = async () => {
     const trimmedText = text.trim()
     await refetch(trimmedText, pageId, menuItem.id)
@@ -73,40 +78,54 @@ export default function EditModal({
   return (
     <Modal visible={isModalVisible}>
       <SafeAreaView style={styles.outerContainer}>
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
           <View
             style={{ flexDirection: 'row', justifyContent: 'space-between' }}
           >
             <Pressable onPress={onHideModal}>
-              <StyledText>Close modal</StyledText>
+              <Entypo name="circle-with-cross" size={24} color="black" />
             </Pressable>
             <Pressable onPress={saveEditedItem}>
-              <StyledText>Save</StyledText>
+              <Entypo name="save" size={24} color="black" />
             </Pressable>
           </View>
-          <View style={styles.inputWrapper}>
-            <TextInput
-              value={text}
-              onChangeText={setText}
-              multiline={true}
-              style={styles.input}
-              ref={inputRef}
-            />
+          <StyledText size="HEADING_S" weight="black">
+            {text}
+          </StyledText>
+          <View style={styles.sectionContainer}>
+            <StyledText size="HEADING_XS" weight="bold">
+              Edit content
+            </StyledText>
+            <View style={styles.inputWrapper}>
+              <TextInput
+                value={text}
+                onChangeText={setText}
+                multiline={true}
+                style={styles.input}
+                ref={inputRef}
+                onBlur={trimText}
+              />
+            </View>
           </View>
-          <View style={styles.bubbleContainer}>
-            {splitText.map((word, index) => {
-              return (
-                <Pressable
-                  onPress={() => deleteWord(index)}
-                  key={index}
-                  style={styles.itemBubble}
-                >
-                  <StyledText size="L">{word}</StyledText>
-                </Pressable>
-              )
-            })}
+          <View style={styles.sectionContainer}>
+            <StyledText size="HEADING_XS" weight="bold">
+              Delete words
+            </StyledText>
+            <View style={styles.bubbleContainer}>
+              {splitText.map((word, index) => {
+                return (
+                  <Pressable
+                    onPress={() => deleteWord(index)}
+                    key={index}
+                    style={styles.itemBubble}
+                  >
+                    <StyledText size="XL">{word}</StyledText>
+                  </Pressable>
+                )
+              })}
+            </View>
           </View>
-        </View>
+        </ScrollView>
       </SafeAreaView>
     </Modal>
   )
@@ -120,14 +139,19 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: SPACING.L,
   },
+  sectionContainer: {
+    paddingBottom: SPACING.M,
+  },
   inputWrapper: {},
   input: {
-    borderColor: COLOR.accentDark,
+    borderColor: COLOR.accentTertiary,
     borderWidth: SPACING.XXS,
-    borderRadius: 50,
+    borderRadius: SPACING.L,
     paddingHorizontal: SPACING.M,
+    paddingVertical: SPACING.S,
+    justifyContent: 'center',
 
-    fontSize: FONT.L,
+    fontSize: FONT.XL,
     backgroundColor: 'white',
   },
   bubbleContainer: {
@@ -138,7 +162,7 @@ const styles = StyleSheet.create({
   itemBubble: {
     paddingVertical: SPACING.XS,
     paddingHorizontal: SPACING.S,
-    backgroundColor: COLOR.accentLight,
+    backgroundColor: COLOR.accentQuaternary,
     borderRadius: SPACING.M,
   },
 })

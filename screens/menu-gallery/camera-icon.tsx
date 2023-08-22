@@ -65,8 +65,8 @@ export function CameraIcon() {
   const animatedBackground = useAnimatedStyle(() => {
     return {
       backgroundColor: isInteracting.value
-        ? COLOR.accentLight
-        : COLOR.accentMain,
+        ? COLOR.accentPrimary
+        : COLOR.accentSecondary,
       right: withTiming(
         isInteracting.value
           ? SPACING.XL + (ICON_SCALE - 1) * headerHeight
@@ -120,7 +120,7 @@ export function CameraIcon() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLOR.accentDark,
+    backgroundColor: COLOR.accentPrimary,
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',

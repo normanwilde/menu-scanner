@@ -52,14 +52,6 @@ export const useMenu = () => useContext(MenuPageContext)
 type Action =
   | { type: 'ADD_PAGE'; payload: IMenuPage }
   | {
-      type: 'SPLIT_ITEM'
-      payload: {
-        photoUrl: string
-        menuItemIndex: number
-        translatedTexts: IMenuItem[]
-      }
-    }
-  | {
       type: 'DUPLICATE_ITEM'
       payload: {
         pageId: string
@@ -68,6 +60,14 @@ type Action =
     }
   | {
       type: 'EDIT_ITEM'
+      payload: {
+        pageId: string
+        itemId: string
+        editedItem: IMenuItem
+      }
+    }
+  | {
+      type: 'CREATE_ITEM'
       payload: {
         pageId: string
         itemId: string
@@ -115,7 +115,7 @@ const reducer = (
         pages: newPages,
       }
     case 'EDIT_ITEM':
-      const newPagesEdited = state.pages.map((menuPage) => {
+      const newPagesWithEdited = state.pages.map((menuPage) => {
         if (menuPage.id !== action.payload.pageId) {
           return menuPage
         }
@@ -134,23 +134,24 @@ const reducer = (
 
       return {
         ...state,
-        pages: newPagesEdited,
+        pages: newPagesWithEdited,
       }
-    case 'SPLIT_ITEM':
-      const pagesWithSplitItem = state.pages.map((menuPage) => {
-        if (menuPage.photoUrl === action.payload.photoUrl) {
-          menuPage.menuItems.splice(
-            action.payload.menuItemIndex,
-            1,
-            ...action.payload.translatedTexts
-          )
+    case 'CREATE_ITEM':
+      const newPagesWithCreated = state.pages.map((menuPage) => {
+        if (menuPage.id !== action.payload.pageId) {
           return menuPage
         }
+        // if menu page is found
+        const itemIndex = menuPage.menuItems
+          .map((item) => item.id)
+          .indexOf(action.payload.itemId)
+        menuPage.menuItems.splice(itemIndex + 1, 0, action.payload.editedItem)
         return menuPage
       })
+
       return {
         ...state,
-        pages: pagesWithSplitItem,
+        pages: newPagesWithCreated,
       }
     case 'SET_LOADING':
       return {

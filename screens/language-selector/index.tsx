@@ -36,7 +36,7 @@ export default function LanguageSelector({ navigation }: Props) {
 
   return (
     <View>
-      <StyledText size="HEADING_XS" style={styles.headerText}>
+      <StyledText size="HEADING_S" style={styles.headerText}>
         Translate menu to
       </StyledText>
       <View style={styles.listWrapper}>
@@ -67,8 +67,8 @@ const renderItem = (
           styles.row,
           {
             backgroundColor: isSelected
-              ? COLOR.primaryLight
-              : COLOR.backgroundWhite,
+              ? COLOR.backgroundQuaternary
+              : COLOR.backgroundSecondary,
           },
         ]}
       >
