@@ -53,7 +53,8 @@ export default function EditModal({
   }
 
   const saveEditedItem = async () => {
-    await refetch(text, pageId, menuItem.id)
+    const trimmedText = text.trim()
+    await refetch(trimmedText, pageId, menuItem.id)
     onHideModal()
   }
 

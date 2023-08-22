@@ -80,8 +80,10 @@ export default function DishCard({ pageId, menuItem }: Props) {
             </View>
           )}
           <View style={styles.textContainer}>
-            <StyledText size="L">{menuItem.texts.originalText}</StyledText>
-            <StyledText size="L">{menuItem.texts.translatedText}</StyledText>
+            <StyledText weight="bold" size="L">
+              {menuItem.texts.originalText}
+            </StyledText>
+            <StyledText size="M">{menuItem.texts.translatedText}</StyledText>
           </View>
         </View>
         <EditModal
