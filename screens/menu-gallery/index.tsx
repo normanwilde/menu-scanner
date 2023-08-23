@@ -13,7 +13,7 @@ import { RootStackParamList } from '../../typings/navigators'
 import { IMenuPage } from '../../typings/data'
 import { CenteredLoader, StyledText } from '../../components'
 import { CameraIcon } from './camera-icon'
-import { SPACING } from '../../constants/styles'
+import { COLOR, SPACING } from '../../constants/styles'
 import { groupMenuPages } from '../../utils/menu-grouper'
 import { useMemo } from 'react'
 
@@ -104,6 +104,7 @@ const ItemSeparatorComponent = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: COLOR.backgroundPrimary,
   },
   itemSeparator: {
     // height: 20,

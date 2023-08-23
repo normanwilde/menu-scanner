@@ -1,8 +1,4 @@
-import {
-  FlatList,
-  StyleSheet,
-  View,
-} from 'react-native'
+import { FlatList, StyleSheet, View } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
 import DishCard from './dish-card'
@@ -51,7 +47,7 @@ const ItemSeparatorComponent = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLOR.white,
+    backgroundColor: COLOR.backgroundPrimary,
   },
   flatList: {
     flex: 1,

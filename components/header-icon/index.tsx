@@ -5,7 +5,7 @@ import { RootStackParamList } from '../../typings/navigators'
 import { useNavigation } from '@react-navigation/native'
 import { StyledText } from '../styled-text'
 import { useMenu } from '../../contexts/menu'
-import { SPACING } from '../../constants/styles'
+import { COLOR, SPACING } from '../../constants/styles'
 
 export function HeaderIcon() {
   /* Hooks */
@@ -21,7 +21,7 @@ export function HeaderIcon() {
   return (
     <View style={styles.container}>
       <Pressable onPress={goToLanguageSelector}>
-        <Entypo name="language" size={24} color="black" />
+        <Entypo name="language" size={24} color={COLOR.textPrimary} />
         <StyledText size="S">{state.targetLanguage}</StyledText>
       </Pressable>
     </View>

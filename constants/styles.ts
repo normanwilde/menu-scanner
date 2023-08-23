@@ -76,20 +76,20 @@ export const COLOR = {
   white: PALETTE.white,
   black: PALETTE.black,
 
-  textPrimary: PALETTE.gray900,
-  textSecondary: PALETTE.gray800,
-  textTertiary: PALETTE.gray700,
-  textQuaternary: PALETTE.gray600,
+  textPrimary: PALETTE.gray50,
+  textSecondary: PALETTE.gray100,
+  textTertiary: PALETTE.gray200,
+  textQuaternary: PALETTE.gray300,
 
-  backgroundPrimary: PALETTE.gray50,
-  backgroundSecondary: PALETTE.gray100,
-  backgroundTertiary: PALETTE.gray200,
-  backgroundQuaternary: PALETTE.gray300,
+  backgroundPrimary: PALETTE.gray950,
+  backgroundSecondary: PALETTE.gray900,
+  backgroundTertiary: PALETTE.gray800,
+  backgroundQuaternary: PALETTE.gray700,
 
-  accentPrimary: PALETTE.red800,
-  accentSecondary: PALETTE.red700,
-  accentTertiary: PALETTE.red600,
-  accentQuaternary: PALETTE.red500,
+  accentPrimary: PALETTE.red500,
+  accentSecondary: PALETTE.red600,
+  accentTertiary: PALETTE.red700,
+  accentQuaternary: PALETTE.red400,
 
   errorPrimary: PALETTE.red400,
   errorSecondary: PALETTE.red300,
@@ -141,4 +141,16 @@ export const FONT_WEIGHT = {
   boldItalic: 'Lato-BoldItalic',
   black: 'Lato-Black',
   blackItalic: 'Lato-BlackItalic',
+}
+
+export const THEME = {
+  dark: true,
+  colors: {
+    primary: COLOR.accentPrimary,
+    background: COLOR.backgroundPrimary,
+    card: 'rgb(255, 255, 255)',
+    text: 'rgb(28, 28, 30)',
+    border: 'rgb(199, 199, 204)',
+    notification: 'rgb(255, 69, 58)',
+  },
 }

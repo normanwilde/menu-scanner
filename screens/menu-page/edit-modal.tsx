@@ -83,10 +83,14 @@ export default function EditModal({
             style={{ flexDirection: 'row', justifyContent: 'space-between' }}
           >
             <Pressable onPress={onHideModal}>
-              <Entypo name="circle-with-cross" size={24} color="black" />
+              <Entypo
+                name="circle-with-cross"
+                size={24}
+                color={COLOR.textSecondary}
+              />
             </Pressable>
             <Pressable onPress={saveEditedItem}>
-              <Entypo name="save" size={24} color="black" />
+              <Entypo name="save" size={24} color={COLOR.textSecondary} />
             </Pressable>
           </View>
           <StyledText size="HEADING_S" weight="black">
@@ -134,6 +138,7 @@ export default function EditModal({
 const styles = StyleSheet.create({
   outerContainer: {
     flex: 1,
+    backgroundColor: COLOR.backgroundPrimary,
   },
   container: {
     flex: 1,

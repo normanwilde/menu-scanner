@@ -6,12 +6,23 @@ import MenuGalleryScreen from '../screens/menu-gallery'
 import MenuPageScreen from '../screens/menu-page'
 import ImageGalleryScreen from '../screens/image-gallery'
 import { HeaderIcon } from '../components'
+import { COLOR } from '../constants/styles'
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export default function Navigation() {
   return (
-    <Stack.Navigator initialRouteName="MenuGallery">
+    <Stack.Navigator
+      initialRouteName="MenuGallery"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: COLOR.backgroundPrimary,
+        },
+        headerTitleStyle: {
+          color: COLOR.textPrimary,
+        },
+      }}
+    >
       <Stack.Screen
         name="Camera"
         component={CameraScreen}
