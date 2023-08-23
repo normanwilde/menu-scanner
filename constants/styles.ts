@@ -146,10 +146,10 @@ export const FONT_WEIGHT = {
 export const THEME = {
   dark: true,
   colors: {
-    primary: COLOR.accentPrimary,
+    primary: COLOR.textPrimary,
     background: COLOR.backgroundPrimary,
     card: 'rgb(255, 255, 255)',
-    text: 'rgb(28, 28, 30)',
+    text: COLOR.backgroundPrimary,
     border: 'rgb(199, 199, 204)',
     notification: 'rgb(255, 69, 58)',
   },

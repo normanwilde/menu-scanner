@@ -21,6 +21,7 @@ export default function Navigation() {
         headerTitleStyle: {
           color: COLOR.textPrimary,
         },
+        headerBackTitleVisible: false,
       }}
     >
       <Stack.Screen
