@@ -12,6 +12,12 @@ import EditModal from './edit-modal'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import { COLOR, SPACING } from '../../constants/styles'
 import { StyledText } from '../../components'
+import {
+  Menu,
+  MenuOption,
+  MenuOptions,
+  MenuTrigger,
+} from 'react-native-popup-menu'
 
 type Props = {
   pageId: string
@@ -39,6 +45,13 @@ export default function DishCard({ pageId, menuItem }: Props) {
   const duplicateItem = () => {
     dispatch({
       type: 'DUPLICATE_ITEM',
+      payload: { pageId, itemId: menuItem.id },
+    })
+  }
+
+  const deleteItem = () => {
+    dispatch({
+      type: 'DELETE_ITEM',
       payload: { pageId, itemId: menuItem.id },
     })
   }
@@ -87,7 +100,22 @@ export default function DishCard({ pageId, menuItem }: Props) {
           </View>
         </View>
       </GestureDetector>
-      <Entypo name="dots-three-vertical" size={24} color={COLOR.textPrimary} />
+      <Menu>
+        <MenuTrigger>
+          <Entypo
+            name="dots-three-vertical"
+            size={24}
+            color={COLOR.textPrimary}
+          />
+        </MenuTrigger>
+        <MenuOptions>
+          <MenuOption onSelect={showEditModal} text="Edit" />
+          <MenuOption onSelect={duplicateItem} text="Duplicate" />
+          <MenuOption onSelect={deleteItem}>
+            <Text style={{ color: 'red' }}>Delete</Text>
+          </MenuOption>
+        </MenuOptions>
+      </Menu>
       <EditModal
         isModalVisible={showModal}
         menuItem={menuItem}

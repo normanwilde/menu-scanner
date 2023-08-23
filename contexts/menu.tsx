@@ -67,6 +67,13 @@ type Action =
       }
     }
   | {
+      type: 'DELETE_ITEM'
+      payload: {
+        pageId: string
+        itemId: string
+      }
+    }
+  | {
       type: 'CREATE_ITEM'
       payload: {
         pageId: string
@@ -135,6 +142,25 @@ const reducer = (
       return {
         ...state,
         pages: newPagesWithEdited,
+      }
+    case 'DELETE_ITEM':
+      const newPagesWithDeleted = state.pages.map((menuPage) => {
+        if (menuPage.id !== action.payload.pageId) {
+          return menuPage
+        }
+        // if menu page is found
+        const remainingItems = menuPage.menuItems.filter((menuItem) => {
+          return menuItem.id !== action.payload.itemId
+        })
+        return {
+          ...menuPage,
+          menuItems: remainingItems,
+        }
+      })
+
+      return {
+        ...state,
+        pages: newPagesWithDeleted,
       }
     case 'CREATE_ITEM':
       const newPagesWithCreated = state.pages.map((menuPage) => {

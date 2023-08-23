@@ -10,6 +10,7 @@ import Toast from 'react-native-toast-message'
 import 'react-native-url-polyfill/auto'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { THEME } from './constants/styles'
+import { MenuProvider } from 'react-native-popup-menu'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -44,11 +45,13 @@ export default function App() {
     <MenuContextProvider>
       <StatusBar />
       <NavigationContainer theme={THEME}>
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          <Navigation />
-        </GestureHandlerRootView>
-        <Toast />
-        <StatusBar style="light" />
+        <MenuProvider>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <Navigation />
+          </GestureHandlerRootView>
+          <Toast />
+          <StatusBar style="light" />
+        </MenuProvider>
       </NavigationContainer>
     </MenuContextProvider>
   )
