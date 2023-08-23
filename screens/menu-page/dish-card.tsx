@@ -108,12 +108,18 @@ export default function DishCard({ pageId, menuItem }: Props) {
             color={COLOR.textPrimary}
           />
         </MenuTrigger>
-        <MenuOptions>
-          <MenuOption onSelect={showEditModal} text="Edit" />
-          <MenuOption onSelect={duplicateItem} text="Duplicate" />
-          <MenuOption onSelect={deleteItem}>
-            <Text style={{ color: 'red' }}>Delete</Text>
-          </MenuOption>
+        <MenuOptions style={styles.menuOptionsContainer}>
+          <MenuOptionItem text="Edit" icon="pencil" onSelect={showEditModal} />
+          <MenuOptionItem
+            text="Duplicate"
+            icon="duplicate"
+            onSelect={duplicateItem}
+          />
+          <MenuOptionItem
+            text="Delete"
+            icon="trash-bin"
+            onSelect={deleteItem}
+          />
         </MenuOptions>
       </Menu>
       <EditModal
@@ -123,6 +129,23 @@ export default function DishCard({ pageId, menuItem }: Props) {
         hideModal={hideEditModal}
       />
     </Animated.View>
+  )
+}
+
+const MenuOptionItem = ({
+  text,
+  icon,
+  onSelect,
+}: {
+  text: string
+  icon: keyof typeof Ionicons.glyphMap
+  onSelect: () => void
+}) => {
+  return (
+    <MenuOption onSelect={onSelect} style={styles.menuOptionContainer}>
+      <Ionicons name={icon} size={24} color={COLOR.textPrimary} />
+      <StyledText color="textPrimary">{text}</StyledText>
+    </MenuOption>
   )
 }
 
@@ -153,5 +176,13 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
+  },
+  menuOptionsContainer: {
+    backgroundColor: COLOR.backgroundSecondary,
+  },
+  menuOptionContainer: {
+    flexDirection: 'row',
+    gap: SPACING.M,
+    alignItems: 'center',
   },
 })
