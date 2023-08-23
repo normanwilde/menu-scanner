@@ -101,14 +101,14 @@ export default function ImageGallery({ route }: Props) {
 }
 
 const renderItem = (imageUrl: string) => {
+  /*
+  expo-image placeholder prop doesn't work on Android, images are not rendered properly.
+  */
   return (
     <Image
       source={{ uri: imageUrl }}
       style={styles.image}
       onError={() => console.error(imageUrl)}
-      placeholder={{
-        uri: 'https://demofree.sirv.com/nope-not-here.jpg',
-      }}
     />
   )
 }
