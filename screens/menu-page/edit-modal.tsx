@@ -98,7 +98,7 @@ export default function EditModal({
           </StyledText>
           <View style={styles.sectionContainer}>
             <StyledText size="HEADING_XS" weight="bold">
-              Edit content
+              Edit dish name
             </StyledText>
             <View style={styles.inputWrapper}>
               <TextInput

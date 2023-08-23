@@ -14,7 +14,7 @@ import { Entypo } from '@expo/vector-icons'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
 import useVision from '../../hooks/useVision'
-import { SPACING } from '../../constants/styles'
+import { COLOR, SPACING } from '../../constants/styles'
 
 const { width } = Dimensions.get('screen')
 
@@ -63,14 +63,14 @@ export default function CameraModal({ navigation }: Props) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.backButtonContainer}>
+        <Pressable onPress={goBack}>
+          <Entypo name="cross" size={48} color={COLOR.textPrimary} />
+        </Pressable>
+      </View>
+
       <View style={styles.cameraWrapper}>
-        <Camera style={styles.camera} ref={cameraRef}>
-          <View style={styles.backButtonContainer}>
-            <Pressable onPress={goBack}>
-              <Entypo name="circle-with-cross" size={48} color="black" />
-            </Pressable>
-          </View>
-        </Camera>
+        <Camera style={styles.camera} ref={cameraRef}></Camera>
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={takePhoto}>
@@ -84,12 +84,11 @@ export default function CameraModal({ navigation }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: COLOR.backgroundPrimary,
   },
   backButtonContainer: {
-    alignItems: 'flex-end',
-    paddingRight: SPACING.M,
-    paddingTop: SPACING.M,
+    paddingLeft: SPACING.M,
+    paddingVertical: SPACING.M,
   },
   cameraWrapper: {
     width,

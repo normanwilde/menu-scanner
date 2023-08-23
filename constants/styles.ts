@@ -82,9 +82,9 @@ export const COLOR = {
   textQuaternary: PALETTE.gray300,
 
   backgroundPrimary: PALETTE.gray950,
-  backgroundSecondary: PALETTE.gray900,
-  backgroundTertiary: PALETTE.gray800,
-  backgroundQuaternary: PALETTE.gray700,
+  backgroundSecondary: PALETTE.gray700,
+  backgroundTertiary: PALETTE.gray600,
+  backgroundQuaternary: PALETTE.gray500,
 
   accentPrimary: PALETTE.red500,
   accentSecondary: PALETTE.red600,

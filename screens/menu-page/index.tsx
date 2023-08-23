@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
 import DishCard from './dish-card'
@@ -7,6 +7,8 @@ import { COLOR, SPACING } from '../../constants/styles'
 import { useMenu } from '../../contexts/menu'
 import { useMemo } from 'react'
 import { CenteredLoader } from '../../components'
+import { FlatList } from 'react-native-gesture-handler'
+import Animated from 'react-native-reanimated'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MenuPage'>
 
@@ -23,7 +25,7 @@ export default function MenuPage({ route }: Props) {
 
   return (
     <View style={styles.container}>
-      <FlatList
+      <Animated.FlatList
         data={menuItems}
         renderItem={({ item }) => renderItem(pageId, item)}
         ItemSeparatorComponent={ItemSeparatorComponent}

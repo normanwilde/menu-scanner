@@ -31,25 +31,24 @@ export default function LanguageSelector({ navigation }: Props) {
     dispatch({ type: 'SET_LANGUAGE', payload: language })
     setTimeout(() => {
       navigation.goBack()
-    }, 500)
+    }, 200)
   }
 
   return (
-    <View>
-      <StyledText size="HEADING_S" style={styles.headerText}>
+    <View style={styles.container}>
+      <StyledText size="HEADING_S" weight="bold" style={styles.headerText}>
         Translate menu to
       </StyledText>
-      <View style={styles.listWrapper}>
-        <FlatList
-          data={languageArray}
-          renderItem={({ item }) =>
-            renderItem(item, state.targetLanguage, selectLanguage)
-          }
-          keyExtractor={(item) => item.code}
-          showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={ItemSeparatorComponent}
-        />
-      </View>
+      <FlatList
+        data={languageArray}
+        renderItem={({ item }) =>
+          renderItem(item, state.targetLanguage, selectLanguage)
+        }
+        keyExtractor={(item) => item.code}
+        showsHorizontalScrollIndicator={false}
+        ItemSeparatorComponent={ItemSeparatorComponent}
+        contentContainerStyle={styles.flatListContent}
+      />
     </View>
   )
 }
@@ -67,13 +66,13 @@ const renderItem = (
           styles.row,
           {
             backgroundColor: isSelected
-              ? COLOR.backgroundQuaternary
-              : COLOR.backgroundSecondary,
+              ? COLOR.accentPrimary
+              : COLOR.backgroundPrimary,
           },
         ]}
       >
         <StyledText size="XL">{item.languageName}</StyledText>
-        <Entypo name="chevron-right" size={24} color="black" />
+        <Entypo name="chevron-right" size={24} color={COLOR.textPrimary} />
       </View>
     </Pressable>
   )
@@ -84,12 +83,15 @@ const ItemSeparatorComponent = () => {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   headerText: {
-    paddingVertical: SPACING.M,
+    paddingTop: SPACING.M,
     paddingHorizontal: SPACING.M,
   },
-  listWrapper: {
-    marginVertical: SPACING.M,
+  flatListContent: {
+    paddingBottom: SPACING.L,
   },
   row: {
     flexDirection: 'row',
@@ -99,6 +101,6 @@ const styles = StyleSheet.create({
   },
   itemSeparator: {
     height: StyleSheet.hairlineWidth,
-    backgroundColor: 'black',
+    backgroundColor: COLOR.textPrimary,
   },
 })

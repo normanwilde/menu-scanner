@@ -1,7 +1,7 @@
 import { Pressable, Text, View, StyleSheet } from 'react-native'
 import { Image } from 'expo-image'
 import { IMenuItem } from '../../typings/data'
-import { Ionicons } from '@expo/vector-icons'
+import { Entypo, Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
@@ -66,9 +66,9 @@ export default function DishCard({ pageId, menuItem }: Props) {
   )
 
   return (
-    <GestureDetector gesture={composedGesture}>
-      <Animated.View entering={FadeIn.duration(500)}>
-        <View style={styles.container}>
+    <Animated.View entering={FadeIn.duration(500)} style={styles.container}>
+      <GestureDetector gesture={composedGesture}>
+        <View style={styles.dishContent}>
           {menuItem.images[0] ? (
             <Image
               source={{ uri: menuItem.images[0].thumbnail }}
@@ -86,24 +86,29 @@ export default function DishCard({ pageId, menuItem }: Props) {
             <StyledText size="L">{menuItem.texts.translatedText}</StyledText>
           </View>
         </View>
-        <EditModal
-          isModalVisible={showModal}
-          menuItem={menuItem}
-          pageId={pageId}
-          hideModal={hideEditModal}
-        />
-      </Animated.View>
-    </GestureDetector>
+      </GestureDetector>
+      <Entypo name="dots-three-vertical" size={24} color={COLOR.textPrimary} />
+      <EditModal
+        isModalVisible={showModal}
+        menuItem={menuItem}
+        pageId={pageId}
+        hideModal={hideEditModal}
+      />
+    </Animated.View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  dishContent: {
     flex: 1,
     flexDirection: 'row',
     padding: SPACING.S,
     borderRadius: 50,
-    // backgroundColor: COLOR.backgroundMain,
+    backgroundColor: COLOR.backgroundPrimary,
     marginHorizontal: SPACING.S,
     alignItems: 'center',
     gap: SPACING.L,
