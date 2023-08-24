@@ -165,8 +165,8 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   itemBubble: {
-    paddingVertical: SPACING.XS,
-    paddingHorizontal: SPACING.S,
+    paddingVertical: SPACING.S,
+    paddingHorizontal: SPACING.M,
     backgroundColor: COLOR.accentQuaternary,
     borderRadius: SPACING.M,
   },

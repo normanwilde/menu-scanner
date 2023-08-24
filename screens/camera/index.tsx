@@ -65,13 +65,14 @@ export default function CameraModal({ navigation }: Props) {
     <SafeAreaView style={styles.container}>
       <View style={styles.backButtonContainer}>
         <Pressable onPress={goBack}>
-          <Entypo name="cross" size={48} color={COLOR.textPrimary} />
+          <Entypo name="cross" size={SPACING.XXL} color={COLOR.textPrimary} />
         </Pressable>
       </View>
 
       <View style={styles.cameraWrapper}>
         <Camera style={styles.camera} ref={cameraRef}></Camera>
       </View>
+
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={takePhoto}>
           <View style={styles.cameraButton} />
@@ -88,7 +89,6 @@ const styles = StyleSheet.create({
   },
   backButtonContainer: {
     paddingLeft: SPACING.M,
-    paddingVertical: SPACING.M,
   },
   cameraWrapper: {
     width,
@@ -99,8 +99,6 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    flexDirection: 'row',
-    backgroundColor: 'transparent',
   },
   button: {
     flex: 1,

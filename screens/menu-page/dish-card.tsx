@@ -104,11 +104,15 @@ export default function DishCard({ pageId, menuItem }: Props) {
         <MenuTrigger>
           <Entypo
             name="dots-three-vertical"
-            size={24}
+            size={SPACING.L}
             color={COLOR.textPrimary}
           />
         </MenuTrigger>
-        <MenuOptions style={styles.menuOptionsContainer}>
+        <MenuOptions
+          customStyles={{
+            optionsContainer: styles.menuOptionsContainer,
+          }}
+        >
           <MenuOptionItem text="Edit" icon="pencil" onSelect={showEditModal} />
           <MenuOptionItem
             text="Duplicate"
@@ -153,14 +157,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
+    paddingVertical: SPACING.M,
+    paddingHorizontal: SPACING.S,
   },
   dishContent: {
     flex: 1,
     flexDirection: 'row',
-    padding: SPACING.S,
-    borderRadius: 50,
-    backgroundColor: COLOR.backgroundPrimary,
-    marginHorizontal: SPACING.S,
     alignItems: 'center',
     gap: SPACING.L,
   },
@@ -171,14 +173,20 @@ const styles = StyleSheet.create({
   },
   iconWrapper: {
     borderRadius: 50,
-    backgroundColor: 'lightgrey',
+    backgroundColor: COLOR.textTertiary,
     overflow: 'hidden',
   },
   textContainer: {
     flex: 1,
   },
   menuOptionsContainer: {
-    backgroundColor: COLOR.backgroundSecondary,
+    backgroundColor: COLOR.backgroundTertiary,
+    overflow: 'hidden',
+    borderRadius: SPACING.M,
+    paddingHorizontal: SPACING.XS,
+    paddingVertical: SPACING.XXS,
+    borderWidth: SPACING.XXS,
+    borderColor: COLOR.backgroundSecondary,
   },
   menuOptionContainer: {
     flexDirection: 'row',

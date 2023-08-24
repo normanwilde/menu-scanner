@@ -28,7 +28,6 @@ export default function MenuPage({ route }: Props) {
       <Animated.FlatList
         data={menuItems}
         renderItem={({ item }) => renderItem(pageId, item)}
-        ItemSeparatorComponent={ItemSeparatorComponent}
         style={styles.flatList}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.flatListContent}
@@ -42,10 +41,6 @@ const renderItem = (pageId: string, menuItem: IMenuItem) => {
   return <DishCard pageId={pageId} menuItem={menuItem} />
 }
 
-const ItemSeparatorComponent = () => {
-  return <View style={styles.itemSeparator} />
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -56,8 +51,6 @@ const styles = StyleSheet.create({
   },
   flatListContent: {
     paddingVertical: SPACING.L,
-  },
-  itemSeparator: {
-    height: 20,
+    paddingHorizontal: SPACING.S,
   },
 })
