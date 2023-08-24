@@ -89,7 +89,11 @@ export default function DishCard({ pageId, menuItem }: Props) {
             />
           ) : (
             <View style={styles.iconWrapper}>
-              <Ionicons name="fast-food" size={100} color="black" />
+              <Ionicons
+                name="fast-food"
+                size={100}
+                color={COLOR.backgroundPrimary}
+              />
             </View>
           )}
           <View style={styles.textContainer}>
@@ -173,7 +177,7 @@ const styles = StyleSheet.create({
   },
   iconWrapper: {
     borderRadius: 50,
-    backgroundColor: COLOR.textTertiary,
+    backgroundColor: COLOR.textPrimary,
     overflow: 'hidden',
   },
   textContainer: {
