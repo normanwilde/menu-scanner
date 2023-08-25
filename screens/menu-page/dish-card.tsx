@@ -26,20 +26,11 @@ type Props = {
 
 export default function DishCard({ pageId, menuItem }: Props) {
   const { dispatch } = useMenu()
-  const [showModal, setShowModal] = useState(false)
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList, 'MenuPage'>>()
 
   const goToImageGallery = () => {
     navigation.navigate('ImageGallery', { dish: menuItem })
-  }
-
-  const showEditModal = () => {
-    setShowModal(true)
-  }
-
-  const hideEditModal = () => {
-    setShowModal(false)
   }
 
   const goToEditPage = () => {
@@ -114,6 +105,7 @@ export default function DishCard({ pageId, menuItem }: Props) {
             name="dots-three-vertical"
             size={SPACING.L}
             color={COLOR.textPrimary}
+            style={styles.icon}
           />
         </MenuTrigger>
         <MenuOptions
@@ -180,6 +172,9 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
+  },
+  icon: {
+    paddingLeft: SPACING.S,
   },
   menuOptionsContainer: {
     backgroundColor: COLOR.backgroundTertiary,
