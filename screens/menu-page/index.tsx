@@ -7,7 +7,6 @@ import { COLOR, SPACING } from '../../constants/styles'
 import { useMenu } from '../../contexts/menu'
 import { useMemo } from 'react'
 import { CenteredLoader } from '../../components'
-import { FlatList } from 'react-native-gesture-handler'
 import Animated from 'react-native-reanimated'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MenuPage'>

@@ -7,6 +7,7 @@ import MenuPageScreen from '../screens/menu-page'
 import ImageGalleryScreen from '../screens/image-gallery'
 import { HeaderIcon } from '../components'
 import { COLOR } from '../constants/styles'
+import EditMenuPageScreen from '../screens/edit-menu-page'
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
@@ -32,7 +33,10 @@ export default function Navigation() {
       <Stack.Screen
         name="LanguageSelector"
         component={LanguageSelectorScreen}
-        options={{ presentation: 'modal', headerShown: false }}
+        options={{
+          headerTitle: 'Target language',
+          headerLargeTitle: true,
+        }}
       />
       <Stack.Screen
         name="MenuGallery"
@@ -48,6 +52,13 @@ export default function Navigation() {
         options={{
           headerTitle: 'Dishes',
           headerLargeTitle: true,
+        }}
+      />
+      <Stack.Screen
+        name="EditMenuPage"
+        component={EditMenuPageScreen}
+        options={{
+          headerTitle: 'Edit Dish Name',
         }}
       />
       <Stack.Screen

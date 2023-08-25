@@ -42,6 +42,10 @@ export default function DishCard({ pageId, menuItem }: Props) {
     setShowModal(false)
   }
 
+  const goToEditPage = () => {
+    navigation.navigate('EditMenuPage', { pageId, menuItem })
+  }
+
   const duplicateItem = () => {
     dispatch({
       type: 'DUPLICATE_ITEM',
@@ -69,7 +73,7 @@ export default function DishCard({ pageId, menuItem }: Props) {
     })
 
   const longPressGesture = Gesture.LongPress().onStart(() => {
-    runOnJS(showEditModal)()
+    runOnJS(goToEditPage)()
   })
 
   const composedGesture = Gesture.Exclusive(
@@ -117,7 +121,7 @@ export default function DishCard({ pageId, menuItem }: Props) {
             optionsContainer: styles.menuOptionsContainer,
           }}
         >
-          <MenuOptionItem text="Edit" icon="pencil" onSelect={showEditModal} />
+          <MenuOptionItem text="Edit" icon="pencil" onSelect={goToEditPage} />
           <MenuOptionItem
             text="Duplicate"
             icon="duplicate"
@@ -130,12 +134,6 @@ export default function DishCard({ pageId, menuItem }: Props) {
           />
         </MenuOptions>
       </Menu>
-      <EditModal
-        isModalVisible={showModal}
-        menuItem={menuItem}
-        pageId={pageId}
-        hideModal={hideEditModal}
-      />
     </Animated.View>
   )
 }
@@ -189,8 +187,8 @@ const styles = StyleSheet.create({
     borderRadius: SPACING.M,
     paddingHorizontal: SPACING.XS,
     paddingVertical: SPACING.XXS,
-    borderWidth: SPACING.XXS,
-    borderColor: COLOR.backgroundSecondary,
+    borderWidth: SPACING.XXXS,
+    borderColor: COLOR.textSecondary,
   },
   menuOptionContainer: {
     flexDirection: 'row',

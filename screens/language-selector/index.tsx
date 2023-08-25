@@ -36,9 +36,6 @@ export default function LanguageSelector({ navigation }: Props) {
 
   return (
     <View style={styles.container}>
-      <StyledText size="HEADING_S" weight="bold" style={styles.headerText}>
-        Translate menu to
-      </StyledText>
       <FlatList
         data={languageArray}
         renderItem={({ item }) =>
@@ -87,7 +84,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   headerText: {
-    paddingTop: SPACING.M,
+    paddingVertical: SPACING.L,
     paddingHorizontal: SPACING.M,
   },
   flatListContent: {

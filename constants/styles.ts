@@ -161,7 +161,7 @@ export const THEME = {
     primary: COLOR.textPrimary,
     background: COLOR.backgroundPrimary,
     card: 'rgb(255, 255, 255)',
-    text: COLOR.backgroundPrimary,
+    text: COLOR.textPrimary,
     border: 'rgb(199, 199, 204)',
     notification: 'rgb(255, 69, 58)',
   },

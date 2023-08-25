@@ -6,6 +6,10 @@ export type RootStackParamList = {
   MenuPage: {
     pageId: string
   }
+  EditMenuPage: {
+    pageId: string
+    menuItem: IMenuItem
+  }
   ImageGallery: {
     dish: IMenuItem
   }
