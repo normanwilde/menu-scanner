@@ -4,12 +4,11 @@ import { IMenuImage } from '../typings/data'
 import { getRandomId } from '.'
 
 const imageFinder = async (searchTerm: string) => {
-  const imageUrl = 'https://www.googleapis.com/customsearch/v1?'
+  const API_URL = `${process.env.EXPO_PUBLIC_API_URL}/images`
+
   try {
-    const imageResult = await axios.get<IImageSearchResponseDTO>(imageUrl, {
+    const imageResult = await axios.get<IImageSearchResponseDTO>(API_URL, {
       params: {
-        key: process.env.EXPO_PUBLIC_GOOGLE_API_KEY,
-        cx: process.env.EXPO_PUBLIC_SEARCH_ENGINE_ID,
         q: searchTerm,
         searchType: 'image',
       },

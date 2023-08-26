@@ -2,7 +2,7 @@ import axios from 'axios'
 import { ITextTranslationDTO } from '../typings/DTO'
 import { LanguageCode } from '../typings/data'
 
-const API_URL = `https://translation.googleapis.com/language/translate/v2?key=${process.env.EXPO_PUBLIC_GOOGLE_API_KEY}`
+const API_URL = `${process.env.EXPO_PUBLIC_API_URL}/translations`
 
 const textTranslator = async (
   menuItemNames: string[],

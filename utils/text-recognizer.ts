@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { ITextDetectionResponseDTO } from '../typings/DTO'
 
-const API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${process.env.EXPO_PUBLIC_GOOGLE_API_KEY}`
+const API_URL = `${process.env.EXPO_PUBLIC_API_URL}/texts`
 
 const textRecognizer = async (image: string) => {
   try {
