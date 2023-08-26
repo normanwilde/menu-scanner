@@ -4,11 +4,12 @@ import { RootStackParamList } from '../../typings/navigators'
 import { useMenu } from '../../contexts/menu'
 import { CenteredLoader, StyledText } from '../../components'
 import { TextInput } from 'react-native-gesture-handler'
-import { useMemo, useState } from 'react'
+import { useLayoutEffect, useMemo, useState } from 'react'
 import { COLOR, FONT, SPACING } from '../../constants/styles'
 import useVision from '../../hooks/useVision'
 import { StyledButton } from '../../components/styled-button'
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
+import { UndoIcon } from './undo-icon'
 type Props = NativeStackScreenProps<RootStackParamList, 'EditMenuPage'>
 
 export default function EditMenuPage({ route, navigation }: Props) {
@@ -17,6 +18,12 @@ export default function EditMenuPage({ route, navigation }: Props) {
   const { refetch } = useVision()
   const { state, dispatch } = useMenu()
   const { bottom } = useSafeAreaInsets()
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => <UndoIcon resetWord={resetWord} />,
+    })
+  }, [navigation])
 
   const splitText = useMemo(() => text.split(' '), [text])
 
@@ -31,6 +38,10 @@ export default function EditMenuPage({ route, navigation }: Props) {
       .filter((_value, index) => index !== itemIndex)
       .join(' ')
     setText(newText)
+  }
+
+  const resetWord = () => {
+    setText(menuItem.texts.originalText)
   }
 
   const trimText = () => {
@@ -60,6 +71,12 @@ export default function EditMenuPage({ route, navigation }: Props) {
     await refetch(trimmedText, pageId, menuItem.id)
     navigation.goBack()
   }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => <UndoIcon resetWord={resetWord} />,
+    })
+  }, [navigation])
 
   if (state.loading) {
     return <CenteredLoader />

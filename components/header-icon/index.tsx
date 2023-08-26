@@ -1,6 +1,6 @@
 import { Entypo } from '@expo/vector-icons'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { Pressable, View, StyleSheet } from 'react-native'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { RootStackParamList } from '../../typings/navigators'
 import { useNavigation } from '@react-navigation/native'
 import { StyledText } from '../styled-text'
@@ -20,10 +20,10 @@ export function HeaderIcon() {
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={goToLanguageSelector}>
+      <TouchableOpacity onPress={goToLanguageSelector}>
         <Entypo name="language" size={24} color={COLOR.textPrimary} />
         <StyledText size="S">{state.targetLanguage}</StyledText>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   )
 }
