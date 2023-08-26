@@ -5,7 +5,7 @@ import LanguageSelectorScreen from '../screens/language-selector'
 import MenuGalleryScreen from '../screens/menu-gallery'
 import MenuPageScreen from '../screens/menu-page'
 import ImageGalleryScreen from '../screens/image-gallery'
-import { HeaderIcon } from '../components'
+import { HeaderCamera, HeaderIcon } from '../components'
 import { COLOR, FONT } from '../constants/styles'
 import EditMenuPageScreen from '../screens/edit-menu-page'
 import { HeaderLogo } from '../components/header-logo'
@@ -24,6 +24,7 @@ export default function Navigation() {
           color: COLOR.textPrimary,
         },
         headerBackTitleVisible: false,
+        headerBackButtonMenuEnabled: false,
       }}
     >
       <Stack.Screen
@@ -59,6 +60,7 @@ export default function Navigation() {
         options={{
           headerTitle: 'Dishes',
           headerLargeTitle: true,
+          headerRight: HeaderCamera,
         }}
       />
       <Stack.Screen
@@ -73,7 +75,7 @@ export default function Navigation() {
         component={ImageGalleryScreen}
         options={({ route }) => ({
           headerTitle: route.params.dish.texts.originalText,
-          headerBackTitleVisible: false,
+          headerRight: HeaderCamera,
         })}
       />
     </Stack.Navigator>

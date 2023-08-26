@@ -1,4 +1,5 @@
 export { StyledText } from './styled-text'
 export { HeaderIcon } from './header-icon'
+export { HeaderCamera } from './header-camera'
 export { CenteredLoader } from './loaders'
 export { StyledButton } from './styled-button'
