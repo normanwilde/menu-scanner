@@ -91,12 +91,12 @@ export const COLOR = {
   textPrimary: PALETTE.neutral50,
   textSecondary: PALETTE.neutral100,
   textTertiary: PALETTE.neutral200,
-  textQuaternary: PALETTE.neutral300,
+  textInverse: PALETTE.neutral950,
 
   backgroundPrimary: PALETTE.neutral950,
   backgroundSecondary: PALETTE.neutral800,
   backgroundTertiary: PALETTE.neutral700,
-  backgroundQuaternary: PALETTE.neutral600,
+  backgroundInverse: PALETTE.neutral50,
 
   accentPrimary: PALETTE.red500,
   accentSecondary: PALETTE.red600,

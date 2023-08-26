@@ -12,32 +12,35 @@ export type ButtonTypes = 'filled' | 'outlined' | 'disabled'
 
 type ButtonProps = RectButtonProps & {
   type?: ButtonTypes
-  loading?: boolean
   title: string
 }
 
 const textColors: Record<ButtonTypes, keyof typeof COLOR> = {
   filled: 'textPrimary',
-  outlined: 'backgroundPrimary',
-  disabled: 'textPrimary',
+  outlined: 'textInverse',
+  disabled: 'textInverse',
 }
 
 export const StyledButton = ({
   title,
   type = 'filled',
-  loading,
   ...props
 }: ButtonProps) => {
   /* Variables */
 
+  const dynamicType: ButtonTypes = useMemo(
+    () => (props.enabled ? type : 'disabled'),
+    [props.enabled, type]
+  )
+
   const buttonType = useMemo(
-    () => (loading ? types['disabled'] : types[type]),
-    [loading, type]
+    () => (props.enabled ? types[type] : types['disabled']),
+    [type, props.enabled]
   )
 
   const style = useMemo(
     () => [styles.container, buttonType, props.style],
-    [props.style, type, loading, buttonType]
+    [props.style, buttonType]
   )
 
   return (
@@ -46,26 +49,10 @@ export const StyledButton = ({
       https://github.com/software-mansion/react-native-gesture-handler/issues/477
     */
     <View style={style}>
-      <RectButton
-        {...props}
-        style={styles.wrapper}
-        enabled={!loading && props.enabled}
-      >
-        {loading ? (
-          <View
-            style={{
-              minHeight: 24,
-              flexDirection: 'column',
-              justifyContent: 'center',
-            }}
-          >
-            <ActivityIndicator size={FONT.M} color="white" />
-          </View>
-        ) : (
-          <StyledText size="L" weight="black" color={textColors[type]}>
-            {title}
-          </StyledText>
-        )}
+      <RectButton {...props} style={styles.wrapper} enabled={props.enabled}>
+        <StyledText size="L" weight="black" color={textColors[dynamicType]}>
+          {title}
+        </StyledText>
       </RectButton>
     </View>
   )
@@ -76,11 +63,10 @@ const types = StyleSheet.create<Record<ButtonTypes, ViewStyle>>({
     backgroundColor: COLOR.accentPrimary,
   },
   outlined: {
-    backgroundColor: COLOR.textPrimary,
+    backgroundColor: COLOR.backgroundInverse,
   },
   disabled: {
-    backgroundColor: COLOR.backgroundPrimary,
-    borderWidth: StyleSheet.hairlineWidth,
+    backgroundColor: COLOR.backgroundTertiary,
   },
 })
 

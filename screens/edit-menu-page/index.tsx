@@ -20,7 +20,7 @@ import { useMenu } from '../../contexts/menu'
 import Animated, { FadeIn, Layout } from 'react-native-reanimated'
 import { CenteredLoader, StyledText } from '../../components'
 import { TextInput } from 'react-native-gesture-handler'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { COLOR, FONT, SPACING } from '../../constants/styles'
 import useVision from '../../hooks/useVision'
 import { StyledButton } from '../../components/styled-button'
@@ -35,7 +35,14 @@ export default function EditMenuPage({ route, navigation }: Props) {
 
   const inputRef = useRef<TextInput>(null)
 
-  const splitText = text.split(' ')
+  const splitText = useMemo(() => text.split(' '), [text])
+
+  const buttonEnabled = useMemo(
+    () => text.trim() !== menuItem.texts.originalText,
+    [text, menuItem.texts.originalText]
+  )
+
+  console.log(buttonEnabled)
 
   const deleteWord = (itemIndex: number) => {
     const newText = text
@@ -118,11 +125,13 @@ export default function EditMenuPage({ route, navigation }: Props) {
           title="Update"
           style={styles.button}
           onPress={updateItem}
+          enabled={buttonEnabled}
         />
         <StyledButton
           title="Create New"
           style={styles.button}
           onPress={createNewItem}
+          enabled={buttonEnabled}
         />
       </View>
     </View>
