@@ -51,6 +51,8 @@ export const useMenu = () => useContext(MenuPageContext)
 
 type Action =
   | { type: 'ADD_PAGE'; payload: IMenuPage }
+  | { type: 'CLEAR_PAGES' }
+  | { type: 'DELETE_PAGE'; payload: { pageId: string } }
   | {
       type: 'DUPLICATE_ITEM'
       payload: {
@@ -100,6 +102,20 @@ const reducer = (
         ...state,
         pages: [action.payload, ...state.pages],
       }
+    case 'CLEAR_PAGES':
+      return {
+        ...state,
+        pages: [],
+      }
+    case 'DELETE_PAGE':
+      const newPagesWithDeletedPage = state.pages.filter(
+        (page) => page.id !== action.payload.pageId
+      )
+      return {
+        ...state,
+        pages: newPagesWithDeletedPage,
+      }
+
     case 'DUPLICATE_ITEM':
       const newPages = state.pages.map((menuPage) => {
         if (menuPage.id !== action.payload.pageId) {
