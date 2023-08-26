@@ -45,6 +45,7 @@ export default function LanguageSelector({ navigation }: Props) {
         showsHorizontalScrollIndicator={false}
         ItemSeparatorComponent={ItemSeparatorComponent}
         contentContainerStyle={styles.flatListContent}
+        contentInsetAdjustmentBehavior="automatic" // Used for largeHeaderTitle
       />
     </View>
   )
