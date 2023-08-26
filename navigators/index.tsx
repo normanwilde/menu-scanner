@@ -36,9 +36,6 @@ export default function Navigation() {
         options={{
           headerTitle: 'Target language',
           headerLargeTitle: true,
-          headerSearchBarOptions: {
-            placeholder: 'hello',
-          },
         }}
       />
       <Stack.Screen

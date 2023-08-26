@@ -7,6 +7,7 @@ import { Entypo } from '@expo/vector-icons'
 import { COLOR, SPACING } from '../../constants/styles'
 import { useMenu } from '../../contexts/menu'
 import { Language, LanguageCode } from '../../typings/data'
+import { useLayoutEffect, useState } from 'react'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'LanguageSelector'>
 
@@ -17,15 +18,32 @@ interface ILanguageItem {
 
 export default function LanguageSelector({ navigation }: Props) {
   const { state, dispatch } = useMenu()
+  const [search, setSearch] = useState('')
 
-  const languageArray = Object.entries(LANGUAGES).map(
-    ([code, languageName]) => {
+  const languageArray = Object.entries(LANGUAGES)
+    .map(([code, languageName]) => {
       return {
         code,
         languageName,
       }
-    }
-  ) as ILanguageItem[]
+    })
+    .filter((language) =>
+      language.languageName.toLowerCase().includes(search)
+    ) as ILanguageItem[]
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerSearchBarOptions: {
+        onChangeText: (event) =>
+          setSearch(event.nativeEvent.text.toLowerCase()),
+        textColor: COLOR.textPrimary,
+        headerIconColor: COLOR.textPrimary,
+        hideWhenScrolling: false,
+        hintTextColor: COLOR.textPrimary,
+        tintColor: COLOR.textPrimary,
+      },
+    })
+  }, [navigation])
 
   const selectLanguage = (language: LanguageCode) => {
     dispatch({ type: 'SET_LANGUAGE', payload: language })
@@ -45,7 +63,7 @@ export default function LanguageSelector({ navigation }: Props) {
         showsHorizontalScrollIndicator={false}
         ItemSeparatorComponent={ItemSeparatorComponent}
         contentContainerStyle={styles.flatListContent}
-        contentInsetAdjustmentBehavior="automatic" // Used for largeHeaderTitle
+        contentInsetAdjustmentBehavior="automatic" // Used for search bar
       />
     </View>
   )
