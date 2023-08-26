@@ -126,7 +126,5 @@ const styles = StyleSheet.create({
     position: 'absolute',
     padding: SPACING.XL,
     borderRadius: 50,
-    // right: SPACING.XL,
-    // bottom: SPACING.XXL,
   },
 })

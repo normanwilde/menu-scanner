@@ -42,27 +42,28 @@ export default function MenuGallery({ navigation }: Props) {
     return <CenteredLoader />
   }
 
-  if (state.pages && state.pages.length === 0 && !state.loading) {
-    return (
-      <View>
-        <StyledText size="HEADING_S">Your menu gallery is empty.</StyledText>
-        <StyledText size="L">
-          Take a photo of a menu and wait for the results.
-        </StyledText>
-      </View>
-    )
-  }
-
   return (
     <View style={styles.container}>
-      <StyledButton title="Clear Pages" onPress={clearPages} />
-      <SectionList
-        sections={sections}
-        renderItem={({ item }) => renderItem(item, goToMenu)}
-        keyExtractor={(item) => item.id}
-        ItemSeparatorComponent={ItemSeparatorComponent}
-        renderSectionHeader={renderSectionHeader}
-      />
+      {!state.pages.length && !state.loading ? (
+        <View style={{ flex: 1 }}>
+          <StyledText size="HEADING_S">Your menu gallery is empty.</StyledText>
+          <StyledText size="L">
+            Take a photo of a menu and wait for the results.
+          </StyledText>
+        </View>
+      ) : (
+        <>
+          <StyledButton title="Clear Pages" onPress={clearPages} />
+          <SectionList
+            sections={sections}
+            renderItem={({ item }) => renderItem(item, goToMenu)}
+            keyExtractor={(item) => item.id}
+            ItemSeparatorComponent={ItemSeparatorComponent}
+            renderSectionHeader={renderSectionHeader}
+          />
+        </>
+      )}
+
       <CameraIcon />
     </View>
   )
