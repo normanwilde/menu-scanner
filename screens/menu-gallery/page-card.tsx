@@ -55,9 +55,7 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.L,
   },
   imageWrapper: {
-    borderColor: COLOR.backgroundSecondary,
-    borderWidth: 1,
-    borderRadius: 40,
+    borderRadius: SPACING.XL,
     overflow: 'hidden',
   },
   image: {
