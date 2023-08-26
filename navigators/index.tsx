@@ -6,7 +6,7 @@ import MenuGalleryScreen from '../screens/menu-gallery'
 import MenuPageScreen from '../screens/menu-page'
 import ImageGalleryScreen from '../screens/image-gallery'
 import { HeaderIcon } from '../components'
-import { COLOR } from '../constants/styles'
+import { COLOR, FONT } from '../constants/styles'
 import EditMenuPageScreen from '../screens/edit-menu-page'
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
@@ -42,8 +42,14 @@ export default function Navigation() {
         name="MenuGallery"
         component={MenuGalleryScreen}
         options={{
-          headerTitle: 'Dyner',
+          headerTitle: 'DINERIFY',
           headerRight: HeaderIcon,
+          headerTitleStyle: {
+            fontFamily: 'RampartOne-Regular',
+            fontSize: FONT.XL,
+            fontWeight: '400', // For Android
+            color: COLOR.textPrimary,
+          },
         }}
       />
       <Stack.Screen

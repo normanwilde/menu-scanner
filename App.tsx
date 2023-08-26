@@ -26,6 +26,7 @@ export default function App() {
     'Lato-BoldItalic': require('./assets/fonts/Lato-BoldItalic.ttf'),
     'Lato-Black': require('./assets/fonts/Lato-Black.ttf'),
     'Lato-BlackItalic': require('./assets/fonts/Lato-BlackItalic.ttf'),
+    'RampartOne-Regular': require('./assets/fonts/RampartOne-Regular.ttf'),
   })
 
   useEffect(() => {
