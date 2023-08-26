@@ -13,6 +13,7 @@ export type ButtonTypes = 'filled' | 'outlined' | 'disabled'
 type ButtonProps = RectButtonProps & {
   type?: ButtonTypes
   title: string
+  enabled?: boolean
 }
 
 const textColors: Record<ButtonTypes, keyof typeof COLOR> = {
@@ -24,18 +25,19 @@ const textColors: Record<ButtonTypes, keyof typeof COLOR> = {
 export const StyledButton = ({
   title,
   type = 'filled',
+  enabled = true,
   ...props
 }: ButtonProps) => {
   /* Variables */
 
   const dynamicType: ButtonTypes = useMemo(
-    () => (props.enabled ? type : 'disabled'),
-    [props.enabled, type]
+    () => (enabled ? type : 'disabled'),
+    [enabled, type]
   )
 
   const buttonType = useMemo(
-    () => (props.enabled ? types[type] : types['disabled']),
-    [type, props.enabled]
+    () => (enabled ? types[type] : types['disabled']),
+    [type, enabled]
   )
 
   const style = useMemo(
@@ -49,7 +51,7 @@ export const StyledButton = ({
       https://github.com/software-mansion/react-native-gesture-handler/issues/477
     */
     <View style={style}>
-      <RectButton {...props} style={styles.wrapper} enabled={props.enabled}>
+      <RectButton {...props} style={styles.wrapper} enabled={enabled}>
         <StyledText size="L" weight="black" color={textColors[dynamicType]}>
           {title}
         </StyledText>

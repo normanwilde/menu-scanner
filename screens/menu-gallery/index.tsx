@@ -5,6 +5,8 @@ import {
   Dimensions,
   SectionList,
   Text,
+  TouchableOpacity,
+  TouchableHighlight,
 } from 'react-native'
 import { Image } from 'expo-image'
 import { useMenu } from '../../contexts/menu'
@@ -16,16 +18,20 @@ import { CameraIcon } from './camera-icon'
 import { COLOR, SPACING } from '../../constants/styles'
 import { groupMenuPages } from '../../utils/menu-grouper'
 import { useMemo } from 'react'
+import { StyledButton } from '../../components/styled-button'
+import { PageCard } from './page-card'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MenuGallery'>
 
-const { width } = Dimensions.get('screen')
-
 export default function MenuGallery({ navigation }: Props) {
-  const { state } = useMenu()
+  const { state, dispatch } = useMenu()
 
   const goToMenu = (page: IMenuPage) => {
     navigation.navigate('MenuPage', { pageId: page.id })
+  }
+
+  const clearPages = () => {
+    dispatch({ type: 'CLEAR_PAGES' })
   }
 
   const sections = useMemo(() => {
@@ -49,11 +55,11 @@ export default function MenuGallery({ navigation }: Props) {
 
   return (
     <View style={styles.container}>
+      <StyledButton title="Clear Pages" onPress={clearPages} />
       <SectionList
         sections={sections}
         renderItem={({ item }) => renderItem(item, goToMenu)}
         keyExtractor={(item) => item.id}
-        showsHorizontalScrollIndicator={false}
         ItemSeparatorComponent={ItemSeparatorComponent}
         renderSectionHeader={renderSectionHeader}
       />
@@ -66,17 +72,7 @@ const renderItem = (
   menuPage: IMenuPage,
   handlePress: (menuPage: IMenuPage) => void
 ) => {
-  return (
-    <Pressable
-      onPress={() => handlePress(menuPage)}
-      key={menuPage.photoUrl}
-      style={styles.itemContainer}
-    >
-      <View style={styles.imageWrapper}>
-        <Image source={{ uri: menuPage.photoUrl }} style={styles.image} />
-      </View>
-    </Pressable>
-  )
+  return <PageCard menuPage={menuPage} handlePress={handlePress} />
 }
 
 const renderSectionHeader = ({
@@ -109,21 +105,7 @@ const styles = StyleSheet.create({
   itemSeparator: {
     // height: 20,
   },
-  itemContainer: {
-    alignItems: 'center',
-    paddingVertical: SPACING.L,
-  },
-  imageWrapper: {
-    alignItems: 'center',
-    borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 40,
-    overflow: 'hidden',
-  },
-  image: {
-    width: width * 0.8,
-    aspectRatio: 3 / 4,
-  },
+
   sectionHeaderWrapper: {
     paddingHorizontal: SPACING.M,
   },
