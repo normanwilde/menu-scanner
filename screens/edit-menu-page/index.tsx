@@ -1,30 +1,14 @@
-import {
-  Pressable,
-  Text,
-  View,
-  StyleSheet,
-  Modal,
-  SafeAreaView,
-  ScrollView,
-} from 'react-native'
-import { Image } from 'expo-image'
-import { IMenuItem } from '../../typings/data'
-import { Entypo, Ionicons } from '@expo/vector-icons'
-import { useNavigation } from '@react-navigation/native'
-import {
-  NativeStackNavigationProp,
-  NativeStackScreenProps,
-} from '@react-navigation/native-stack'
+import { Pressable, View, StyleSheet, ScrollView } from 'react-native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
 import { useMenu } from '../../contexts/menu'
-import Animated, { FadeIn, Layout } from 'react-native-reanimated'
 import { CenteredLoader, StyledText } from '../../components'
 import { TextInput } from 'react-native-gesture-handler'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { COLOR, FONT, SPACING } from '../../constants/styles'
 import useVision from '../../hooks/useVision'
 import { StyledButton } from '../../components/styled-button'
-
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 type Props = NativeStackScreenProps<RootStackParamList, 'EditMenuPage'>
 
 export default function EditMenuPage({ route, navigation }: Props) {
@@ -32,8 +16,7 @@ export default function EditMenuPage({ route, navigation }: Props) {
   const [text, setText] = useState(menuItem.texts.originalText)
   const { refetch } = useVision()
   const { state, dispatch } = useMenu()
-
-  const inputRef = useRef<TextInput>(null)
+  const { bottom } = useSafeAreaInsets()
 
   const splitText = useMemo(() => text.split(' '), [text])
 
@@ -41,8 +24,6 @@ export default function EditMenuPage({ route, navigation }: Props) {
     () => text.trim() !== menuItem.texts.originalText,
     [text, menuItem.texts.originalText]
   )
-
-  console.log(buttonEnabled)
 
   const deleteWord = (itemIndex: number) => {
     const newText = text
@@ -63,6 +44,11 @@ export default function EditMenuPage({ route, navigation }: Props) {
   }
 
   const createNewItem = async () => {
+    /*
+    TODO
+    Currently the original item is updated and a copy is created from the original. 
+    The new item should be created second while keeping the original.
+    */
     const trimmedText = text.trim()
     dispatch({
       type: 'DUPLICATE_ITEM',
@@ -80,8 +66,8 @@ export default function EditMenuPage({ route, navigation }: Props) {
   }
 
   return (
-    <View style={styles.container}>
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
+    <View style={[styles.container, { paddingBottom: bottom }]}>
+      <ScrollView>
         <StyledText size="HEADING_S" weight="black">
           {text}
         </StyledText>
@@ -95,8 +81,8 @@ export default function EditMenuPage({ route, navigation }: Props) {
               onChangeText={setText}
               multiline={true}
               style={styles.input}
-              ref={inputRef}
               onBlur={trimText}
+              autoFocus
             />
           </View>
         </View>
@@ -172,7 +158,6 @@ const styles = StyleSheet.create({
     borderRadius: SPACING.M,
   },
   buttonWrapper: {
-    paddingBottom: SPACING.XXL,
     flexDirection: 'row',
     gap: SPACING.L,
   },
