@@ -53,7 +53,7 @@ export default function MenuGallery({ navigation }: Props) {
         </View>
       ) : (
         <>
-          <StyledButton title="Clear Pages" onPress={clearPages} />
+          {/* <StyledButton title="Clear Pages" onPress={clearPages} /> */}
           <SectionList
             sections={sections}
             renderItem={({ item }) => renderItem(item, goToMenu)}
@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLOR.backgroundPrimary,
+    paddingTop: SPACING.L,
   },
   itemSeparator: {
     // height: 20,

@@ -3,10 +3,10 @@ import React, { useMemo } from 'react'
 import type { RectButtonProps } from 'react-native-gesture-handler'
 import type { ViewStyle } from 'react-native'
 
-import { ActivityIndicator, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 import { StyledText } from '../styled-text'
-import { COLOR, FONT, SPACING } from '../../constants/styles'
+import { COLOR, SPACING } from '../../constants/styles'
 
 export type ButtonTypes = 'filled' | 'outlined' | 'disabled'
 
@@ -19,7 +19,7 @@ type ButtonProps = RectButtonProps & {
 const textColors: Record<ButtonTypes, keyof typeof COLOR> = {
   filled: 'textPrimary',
   outlined: 'textInverse',
-  disabled: 'textInverse',
+  disabled: 'backgroundSecondary',
 }
 
 export const StyledButton = ({

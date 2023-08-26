@@ -8,6 +8,7 @@ import ImageGalleryScreen from '../screens/image-gallery'
 import { HeaderIcon } from '../components'
 import { COLOR, FONT } from '../constants/styles'
 import EditMenuPageScreen from '../screens/edit-menu-page'
+import { HeaderLogo } from '../components/header-logo'
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
@@ -42,7 +43,7 @@ export default function Navigation() {
         name="MenuGallery"
         component={MenuGalleryScreen}
         options={{
-          headerTitle: 'DINERIFY',
+          headerTitle: HeaderLogo,
           headerRight: HeaderIcon,
           headerTitleStyle: {
             fontFamily: 'RampartOne-Regular',
