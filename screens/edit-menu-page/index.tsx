@@ -66,7 +66,7 @@ export default function EditMenuPage({ route, navigation }: Props) {
   }
 
   return (
-    <View style={[styles.container, { paddingBottom: bottom }]}>
+    <View style={[styles.container, { paddingBottom: bottom + SPACING.L }]}>
       <ScrollView>
         <StyledText size="HEADING_S" weight="black">
           {text}
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.M,
     paddingVertical: SPACING.S,
     justifyContent: 'center',
-
+    textAlignVertical: 'top',
     fontSize: FONT.XL,
     backgroundColor: 'white',
   },
