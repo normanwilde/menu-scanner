@@ -1,4 +1,4 @@
-import { Pressable, Text, View, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { Image } from 'expo-image'
 import { IMenuItem } from '../../typings/data'
 import { Entypo, Ionicons } from '@expo/vector-icons'
@@ -6,9 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
 import { useMenu } from '../../contexts/menu'
-import Animated, { FadeIn, Layout, runOnJS } from 'react-native-reanimated'
-import { useState } from 'react'
-import EditModal from './edit-modal'
+import Animated, { FadeIn, runOnJS } from 'react-native-reanimated'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import { COLOR, SPACING } from '../../constants/styles'
 import { StyledText } from '../../components'
@@ -177,13 +175,13 @@ const styles = StyleSheet.create({
     paddingLeft: SPACING.S,
   },
   menuOptionsContainer: {
-    backgroundColor: COLOR.backgroundTertiary,
+    backgroundColor: COLOR.backgroundSecondary,
     overflow: 'hidden',
     borderRadius: SPACING.M,
     paddingHorizontal: SPACING.XS,
     paddingVertical: SPACING.XXS,
-    borderWidth: SPACING.XXXS,
-    borderColor: COLOR.textSecondary,
+    borderWidth: 1,
+    borderColor: COLOR.backgroundInverse,
   },
   menuOptionContainer: {
     flexDirection: 'row',
