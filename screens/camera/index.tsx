@@ -15,6 +15,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
 import useVision from '../../hooks/useVision'
 import { COLOR, SPACING } from '../../constants/styles'
+import * as Linking from 'expo-linking'
 
 const { width } = Dimensions.get('screen')
 
@@ -24,24 +25,12 @@ export default function CameraModal({ navigation }: Props) {
   const [permission, requestPermission] = Camera.useCameraPermissions()
   const cameraRef = useRef<Camera>(null)
   const { visualize } = useVision()
-
+  console.log(permission)
   if (!permission) {
     // Camera permissions are still loading
     return <View />
   }
-  if (!permission.granted) {
-    // Camera permissions are not granted yet
-    return (
-      <View style={styles.container}>
-        <Text style={{ textAlign: 'center' }}>
-          We need your permission to show the camera
-        </Text>
-        <Button onPress={requestPermission} title="grant permission" />
-      </View>
-    )
-  }
 
-  /* Handlers */
   const takePhoto = async () => {
     const data = await cameraRef?.current?.takePictureAsync({
       quality: 0.1,
@@ -61,6 +50,14 @@ export default function CameraModal({ navigation }: Props) {
     navigation.goBack()
   }
 
+  const getPermission = () => {
+    if (permission.canAskAgain) {
+      requestPermission()
+    } else {
+      Linking.openSettings()
+    }
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.backButtonContainer}>
@@ -68,14 +65,34 @@ export default function CameraModal({ navigation }: Props) {
           <Entypo name="cross" size={SPACING.XXL} color={COLOR.textPrimary} />
         </Pressable>
       </View>
-
       <View style={styles.cameraWrapper}>
-        <Camera style={styles.camera} ref={cameraRef}></Camera>
+        {permission.granted ? (
+          <Camera style={styles.camera} ref={cameraRef}></Camera>
+        ) : (
+          <Button
+            color={COLOR.textSecondary}
+            onPress={getPermission}
+            title="Allow camera access"
+          />
+        )}
       </View>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={takePhoto}>
-          <View style={styles.cameraButton} />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={takePhoto}
+          disabled={!permission.granted}
+        >
+          <View
+            style={[
+              styles.cameraButton,
+              {
+                backgroundColor: permission.granted
+                  ? 'red'
+                  : COLOR.backgroundSecondary,
+              },
+            ]}
+          />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -91,8 +108,10 @@ const styles = StyleSheet.create({
     paddingLeft: SPACING.M,
   },
   cameraWrapper: {
+    justifyContent: 'center',
     width,
     aspectRatio: 3 / 4,
+    backgroundColor: COLOR.backgroundSecondary,
   },
   camera: {
     flex: 1,
