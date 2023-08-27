@@ -3,12 +3,15 @@ import { createContext, useContext, useReducer } from 'react'
 import { IMenuPage, IMenuItem, LanguageCode } from '../typings/data'
 import { DUMMY_DATA } from '../constants/dummy-data'
 import { getRandomId } from '../utils'
-
+import { getLocales } from 'expo-localization'
+import { LANGUAGES } from '../constants/data'
 export interface IMenuPageContextState {
   pages: IMenuPage[]
   loading: boolean
   targetLanguage: LanguageCode
 }
+
+const deviceLanguage = getLocales()?.[0].languageCode as LanguageCode
 
 const TEMP_INITIAL_STATE = [DUMMY_DATA]
 
@@ -16,7 +19,7 @@ const initialState: IMenuPageContextState = {
   // pages: [],
   pages: TEMP_INITIAL_STATE,
   loading: false,
-  targetLanguage: 'hu',
+  targetLanguage: LANGUAGES[deviceLanguage] ? deviceLanguage : 'en',
 }
 
 export const MenuPageContext = createContext<{
@@ -26,11 +29,6 @@ export const MenuPageContext = createContext<{
   state: initialState,
   dispatch: () => [],
 })
-
-interface ValueProps {
-  state: IMenuPageContextState
-  dispatch: React.Dispatch<Action>
-}
 
 interface IProps {
   children: React.ReactNode

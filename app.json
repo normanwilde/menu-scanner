@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.norman.wilde.menuscanner"
     },
     "android": {
       "adaptiveIcon": {
@@ -36,7 +37,8 @@
         {
           "cameraPermission": "Allow Menu Scanner to access your camera."
         }
-      ]
+      ],
+      "expo-localization"
     ],
     "extra": {
       "eas": {
