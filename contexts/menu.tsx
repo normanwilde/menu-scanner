@@ -1,23 +1,31 @@
-import { createContext, useContext, useReducer } from 'react'
+import { createContext, useContext, useEffect, useReducer } from 'react'
 
 import { IMenuPage, IMenuItem, LanguageCode } from '../typings/data'
 import { DUMMY_DATA } from '../constants/dummy-data'
 import { getRandomId } from '../utils'
 import { getLocales } from 'expo-localization'
 import { LANGUAGES } from '../constants/data'
+import { MMKV } from 'react-native-mmkv'
+
 export interface IMenuPageContextState {
   pages: IMenuPage[]
   loading: boolean
   targetLanguage: LanguageCode
 }
 
+export const storage = new MMKV()
+
+const storedPages = storage.getAllKeys().map((key) => {
+  return JSON.parse(storage.getString(key))
+}) as IMenuPage[]
+
 const deviceLanguage = getLocales()?.[0].languageCode as LanguageCode
 
 const TEMP_INITIAL_STATE = [DUMMY_DATA]
 
 const initialState: IMenuPageContextState = {
-  // pages: [],
-  pages: TEMP_INITIAL_STATE,
+  pages: storedPages,
+  // pages: TEMP_INITIAL_STATE,
   loading: false,
   targetLanguage: LANGUAGES[deviceLanguage] ? deviceLanguage : 'en',
 }
@@ -37,6 +45,13 @@ interface IProps {
 export const MenuContextProvider = ({ children }: IProps) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const value = { state, dispatch }
+
+  useEffect(() => {
+    storage.clearAll()
+    state.pages.forEach((page) => {
+      storage.set(page.id, JSON.stringify(page))
+    })
+  }, [state.pages])
 
   return (
     <MenuPageContext.Provider value={value}>
