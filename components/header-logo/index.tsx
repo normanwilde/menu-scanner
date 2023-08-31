@@ -4,7 +4,7 @@ import { COLOR, FONT, SPACING } from '../../constants/styles'
 export function HeaderLogo() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>DINERIFY</Text>
+      <Text style={styles.text}>MENULENS</Text>
     </View>
   )
 }
