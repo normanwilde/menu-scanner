@@ -25,7 +25,7 @@ export default function CameraModal({ navigation }: Props) {
   const [permission, requestPermission] = Camera.useCameraPermissions()
   const cameraRef = useRef<Camera>(null)
   const { visualize } = useVision()
-  console.log(permission)
+
   if (!permission) {
     // Camera permissions are still loading
     return <View />

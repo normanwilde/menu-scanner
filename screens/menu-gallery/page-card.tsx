@@ -24,7 +24,6 @@ export function PageCard({ menuPage, handlePress }: Props) {
   const { dispatch } = useMenu()
 
   const deletePage = () => {
-    console.log('hole')
     dispatch({ type: 'DELETE_PAGE', payload: { pageId: menuPage.id } })
   }
   return (
