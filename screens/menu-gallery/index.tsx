@@ -1,14 +1,4 @@
-import {
-  Pressable,
-  View,
-  StyleSheet,
-  Dimensions,
-  SectionList,
-  Text,
-  TouchableOpacity,
-  TouchableHighlight,
-} from 'react-native'
-import { Image } from 'expo-image'
+import { View, StyleSheet, SectionList, ScrollView } from 'react-native'
 import { useMenu } from '../../contexts/menu'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
@@ -45,12 +35,12 @@ export default function MenuGallery({ navigation }: Props) {
   return (
     <View style={styles.container}>
       {!state.pages.length && !state.loading ? (
-        <View style={{ flex: 1 }}>
+        <ScrollView style={{ flex: 1 }}>
           <StyledText size="HEADING_S">Your menu gallery is empty.</StyledText>
           <StyledText size="L">
             Take a photo of a menu and wait for the results.
           </StyledText>
-        </View>
+        </ScrollView>
       ) : (
         <>
           {/* <StyledButton title="Clear Pages" onPress={clearPages} /> */}
