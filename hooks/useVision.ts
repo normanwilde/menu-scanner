@@ -5,8 +5,8 @@ import { useMenu } from '../contexts/menu'
 import textTranslator from '../utils/text-translator'
 import Toast from 'react-native-toast-message'
 import dishValidator from '../utils/dish-validator'
-import textSanitizer from '../utils/text-sanitizer'
 import { getRandomId } from '../utils'
+import { LANGUAGES } from '../constants/data'
 
 const useVision = () => {
   const { state, dispatch } = useMenu()
@@ -21,65 +21,42 @@ const useVision = () => {
         throw new Error()
       }
       console.log({ recognizedTexts })
-      /* SANITIZE TEXTS*/
-      const sanitizedTexts = textSanitizer(recognizedTexts)
 
-      console.log({ sanitizedTexts })
+      /* CHAT GPT */
+      const foodNames = await dishValidator(
+        recognizedTexts,
+        LANGUAGES[state.targetLanguage]
+      )
 
-      /* VALIDATE TEXT ITEMS */
-      const booleanArray = await dishValidator(sanitizedTexts)
-      console.log({ booleanArray })
-      if (!booleanArray) {
+      if (!foodNames) {
         throw new Error()
       }
 
-      const menuItemNames = sanitizedTexts.filter((_item, index) => {
-        return booleanArray[index]
-      })
-
       /* FIND RELATED IMAGES */
       let menuItems: IMenuItem[] = []
-      for (let itemName of menuItemNames) {
-        const images = await imageFinder(itemName)
+      for (let food of foodNames) {
+        const images = await imageFinder(food.original)
         if (!images) {
           throw new Error()
         }
         const menuItem: IMenuItem = {
           id: getRandomId(),
           texts: {
-            originalText: itemName,
+            originalText: food.original,
+            translatedText: food.translated,
+            targetLanguage: state.targetLanguage,
           },
           images,
         }
         menuItems.push(menuItem)
       }
 
-      /* TRANSLATE TEXTS */
-      const targetLanguage = state.targetLanguage
-      const translations = await textTranslator(menuItemNames, targetLanguage)
-      if (!translations) {
-        throw new Error()
-      }
-      const menuItemsWithTranslations: IMenuItem[] = menuItems.map(
-        (menuItem, index) => {
-          return {
-            ...menuItem,
-            texts: {
-              ...menuItem.texts,
-              translatedText: translations[index].translatedText,
-              sourceLanguage: translations[index].detectedSourceLanguage,
-              targetLanguage,
-            },
-          }
-        }
-      )
-
       dispatch({
         type: 'ADD_PAGE',
         payload: {
           id: getRandomId(),
           photoUrl,
-          menuItems: menuItemsWithTranslations,
+          menuItems,
           timestamp: Number(new Date()),
         },
       })

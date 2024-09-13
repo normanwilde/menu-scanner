@@ -102,3 +102,10 @@ export interface ITextTranslationDTO {
     translations: ITextTranslationItemDTO[]
   }
 }
+
+export interface IAIItemDTO {
+  original: string
+  translated: string
+}
+
+export type IAIResponseDTO = IAIItemDTO[]

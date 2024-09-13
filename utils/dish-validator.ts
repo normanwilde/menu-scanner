@@ -1,38 +1,21 @@
-import { Configuration, OpenAIApi } from 'openai'
+import axios from 'axios'
+import { IAIResponseDTO } from '../typings/DTO'
 
-const configuration = new Configuration({
-  apiKey: process.env.EXPO_PUBLIC_OPEN_AI_API_KEY,
-})
+const API_URL = `${process.env.EXPO_PUBLIC_API_URL}/ai`
 
-const openai = new OpenAIApi(configuration)
-// TODO: improve the prompt. it shd not rely on previous answers
-const dishValidator = async (stringArray: string[]) => {
-  return stringArray
-
-  const prompt = `Map this array to an array of booleans indicating based on whether the item could be an item on a restaurant menu: ${stringArray}. Return no text other than the array. The array should only contain true or false as values.`
-
+const dishValidator = async (stringArray: string[], language: string) => {
   try {
-    const result = await openai.createChatCompletion({
-      model: 'gpt-3.5-turbo',
-      messages: [{ role: 'user', content: prompt }],
-      temperature: 0,
-      max_tokens: 2000, // 4000 caused error
-    })
-
-    /* Magic happening */
-    const regex = /\[([^\]]*)\]/g
-    const inputString = result.data.choices[0]?.message?.content
-    if (inputString) {
-      const match = regex.exec(inputString)
-      if (match) {
-        console.log({ match })
-        return JSON.parse(match[0])
-      }
+    const body = {
+      language,
+      text: stringArray.join(' '),
     }
-    return stringArray
+
+    const response = await axios.post<IAIResponseDTO>(API_URL, body)
+    console.log(response.data)
+    return response.data
   } catch (e) {
-    console.error(e)
-    return stringArray
+    console.log(e)
+    throw new Error()
   }
 }
 
