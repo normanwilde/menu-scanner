@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from 'react'
 
 import { IMenuPage, IMenuItem, LanguageCode } from '../typings/data'
-import { DUMMY_DATA } from '../constants/dummy-data'
 import { getRandomId } from '../utils'
 import { getLocales } from 'expo-localization'
 import { LANGUAGES } from '../constants/data'
@@ -21,11 +20,8 @@ const storedPages = storage.getAllKeys().map((key) => {
 
 const deviceLanguage = getLocales()?.[0].languageCode as LanguageCode
 
-const TEMP_INITIAL_STATE = [DUMMY_DATA]
-
 const initialState: IMenuPageContextState = {
   pages: storedPages,
-  // pages: TEMP_INITIAL_STATE,
   loading: false,
   targetLanguage: LANGUAGES[deviceLanguage] ? deviceLanguage : 'en',
 }

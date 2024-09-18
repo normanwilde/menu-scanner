@@ -85,8 +85,8 @@ const useVision = () => {
       }
 
       /* TRANSLATE TEXTS */
-      const targetLanguage = state.targetLanguage
-      const translations = await textTranslator([itemName], targetLanguage)
+      const { targetLanguage } = state
+      const translations = await textTranslator(itemName, targetLanguage)
       if (!translations) {
         throw new Error()
       }
@@ -95,8 +95,7 @@ const useVision = () => {
         id: itemId,
         texts: {
           originalText: itemName,
-          translatedText: translations[0].translatedText,
-          sourceLanguage: translations[0].detectedSourceLanguage,
+          translatedText: translations.translated,
           targetLanguage,
         },
         images,

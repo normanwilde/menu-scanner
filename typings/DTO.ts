@@ -1,4 +1,3 @@
-import { LANGUAGES } from '../constants/data'
 import { LanguageCode } from './data'
 
 export interface IImageItemDTO {
