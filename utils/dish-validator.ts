@@ -11,7 +11,6 @@ const dishValidator = async (stringArray: string[], language: string) => {
     }
 
     const response = await axios.post<IAIResponseDTO>(API_URL, body)
-    console.log(response.data)
     return response.data
   } catch (e) {
     console.log(e)

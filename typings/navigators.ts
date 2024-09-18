@@ -1,4 +1,4 @@
-import { IMenuItem, IMenuPage } from './data'
+import { IMenuItem } from './data'
 
 export type RootStackParamList = {
   Camera: undefined

@@ -20,7 +20,6 @@ const useVision = () => {
       if (!recognizedTexts) {
         throw new Error()
       }
-      console.log({ recognizedTexts })
 
       /* CHAT GPT */
       const foodNames = await dishValidator(
