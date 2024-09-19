@@ -1,5 +1,4 @@
 import {
-  Text,
   View,
   StyleSheet,
   Button,
@@ -8,7 +7,7 @@ import {
   SafeAreaView,
   Dimensions,
 } from 'react-native'
-import { Camera } from 'expo-camera'
+import { CameraView, useCameraPermissions } from 'expo-camera'
 import { useRef } from 'react'
 import { Entypo } from '@expo/vector-icons'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
@@ -22,8 +21,8 @@ const { width } = Dimensions.get('screen')
 type Props = NativeStackScreenProps<RootStackParamList, 'Camera'>
 
 export default function CameraModal({ navigation }: Props) {
-  const [permission, requestPermission] = Camera.useCameraPermissions()
-  const cameraRef = useRef<Camera>(null)
+  const [permission, requestPermission] = useCameraPermissions()
+  const cameraRef = useRef<CameraView>(null)
   const { visualize } = useVision()
 
   if (!permission) {
@@ -67,7 +66,7 @@ export default function CameraModal({ navigation }: Props) {
       </View>
       <View style={styles.cameraWrapper}>
         {permission.granted ? (
-          <Camera style={styles.camera} ref={cameraRef}></Camera>
+          <CameraView style={styles.camera} ref={cameraRef} />
         ) : (
           <Button
             color={COLOR.textSecondary}

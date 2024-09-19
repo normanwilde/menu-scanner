@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.norman.wilde.menuscanner"
@@ -38,7 +36,25 @@
           "cameraPermission": "Allow Menu Scanner to access your camera."
         }
       ],
-      "expo-localization"
+      "expo-localization",
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Lato-Thin.ttf",
+            "./assets/fonts/Lato-ThinItalic.ttf",
+            "./assets/fonts/Lato-Light.ttf",
+            "./assets/fonts/Lato-LightItalic.ttf",
+            "./assets/fonts/Lato-Regular.ttf",
+            "./assets/fonts/Lato-Italic.ttf",
+            "./assets/fonts/Lato-Bold.ttf",
+            "./assets/fonts/Lato-BoldItalic.ttf",
+            "./assets/fonts/Lato-Black.ttf",
+            "./assets/fonts/Lato-BlackItalic.ttf",
+            "./assets/fonts/RampartOne-Regular.ttf"
+          ]
+        }
+      ]
     ],
     "extra": {
       "eas": {
