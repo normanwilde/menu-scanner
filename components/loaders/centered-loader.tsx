@@ -3,7 +3,7 @@ import { ActivityIndicator, View, StyleSheet } from 'react-native'
 export const CenteredLoader = () => {
   return (
     <View style={styles.container}>
-      <ActivityIndicator />
+      <ActivityIndicator size="large" />
     </View>
   )
 }

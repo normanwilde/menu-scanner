@@ -1,7 +1,6 @@
 import {
   View,
   StyleSheet,
-  TouchableHighlight,
   Dimensions,
   Pressable,
   TouchableOpacity,
@@ -37,7 +36,7 @@ export function PageCard({ menuPage, handlePress }: Props) {
   }
 
   return (
-    <TouchableHighlight
+    <TouchableOpacity
       onPress={onPress}
       key={menuPage.photoFilePath}
       style={styles.container}
@@ -57,7 +56,7 @@ export function PageCard({ menuPage, handlePress }: Props) {
           </View>
         </TouchableOpacity>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   )
 }
 

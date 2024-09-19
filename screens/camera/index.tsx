@@ -77,22 +77,20 @@ export default function CameraModal({ navigation }: Props) {
       </View>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={takePhoto}
-          disabled={!permission.granted}
-        >
-          <View
-            style={[
-              styles.cameraButton,
-              {
-                backgroundColor: permission.granted
-                  ? 'red'
-                  : COLOR.backgroundSecondary,
-              },
-            ]}
-          />
-        </TouchableOpacity>
+        <View style={styles.button}>
+          <TouchableOpacity onPress={takePhoto} disabled={!permission.granted}>
+            <View
+              style={[
+                styles.cameraButton,
+                {
+                  backgroundColor: permission.granted
+                    ? 'red'
+                    : COLOR.backgroundSecondary,
+                },
+              ]}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   )
@@ -105,6 +103,7 @@ const styles = StyleSheet.create({
   },
   backButtonContainer: {
     paddingLeft: SPACING.M,
+    alignItems: 'flex-start',
   },
   cameraWrapper: {
     justifyContent: 'center',
