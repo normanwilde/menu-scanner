@@ -1,13 +1,14 @@
 import textRecognizer from '../utils/text-recognizer'
 import imageFinder from '../utils/image-finder'
 import { IMenuItem } from '../typings/data'
-import { useMenu } from '../contexts/menu'
+import { useMenu } from '../contexts'
 import textTranslator from '../utils/text-translator'
 import Toast from 'react-native-toast-message'
 import dishValidator from '../utils/dish-validator'
 import { getRandomId } from '../utils'
 import { LANGUAGES } from '../constants/data'
 import { notificationAsync, NotificationFeedbackType } from 'expo-haptics'
+import { saveImageToDocumentDirectory } from '../utils/file-system'
 
 const useVision = () => {
   const { state, dispatch } = useMenu()
@@ -51,11 +52,17 @@ const useVision = () => {
         menuItems.push(menuItem)
       }
 
+      const id = getRandomId()
+      const photoFilePath = await saveImageToDocumentDirectory(
+        photoUrl,
+        `${id}.jpg`
+      )
+
       dispatch({
         type: 'ADD_PAGE',
         payload: {
-          id: getRandomId(),
-          photoUrl,
+          id,
+          photoFilePath,
           menuItems,
           timestamp: Number(new Date()),
         },

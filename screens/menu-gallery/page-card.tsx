@@ -9,10 +9,12 @@ import {
 import { Image } from 'expo-image'
 import { COLOR, SPACING } from '../../constants/styles'
 import { StyledText } from '../../components'
-import { useMenu } from '../../contexts/menu'
+import { useMenu } from '../../contexts'
 import { IMenuPage } from '../../typings/data'
 import { Entypo } from '@expo/vector-icons'
 import { impactAsync, ImpactFeedbackStyle } from 'expo-haptics'
+import { deleteImageFromDocumentDirectory } from '../../utils/file-system'
+import { documentDirectory } from 'expo-file-system'
 
 const { width } = Dimensions.get('screen')
 
@@ -26,6 +28,7 @@ export function PageCard({ menuPage, handlePress }: Props) {
 
   const deletePage = () => {
     dispatch({ type: 'DELETE_PAGE', payload: { pageId: menuPage.id } })
+    deleteImageFromDocumentDirectory(menuPage.photoFilePath)
   }
 
   const onPress = () => {
@@ -36,11 +39,14 @@ export function PageCard({ menuPage, handlePress }: Props) {
   return (
     <TouchableHighlight
       onPress={onPress}
-      key={menuPage.photoUrl}
+      key={menuPage.photoFilePath}
       style={styles.container}
     >
       <View style={styles.imageWrapper}>
-        <Image source={{ uri: menuPage.photoUrl }} style={styles.image} />
+        <Image
+          source={{ uri: documentDirectory + menuPage.photoFilePath }}
+          style={styles.image}
+        />
         <TouchableOpacity style={styles.iconButton} onPress={deletePage}>
           <View style={styles.iconWrapper}>
             <Entypo

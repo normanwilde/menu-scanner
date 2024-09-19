@@ -4,7 +4,7 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { RootStackParamList } from '../../typings/navigators'
 import { useNavigation } from '@react-navigation/native'
 import { StyledText } from '../styled-text'
-import { useMenu } from '../../contexts/menu'
+import { useMenu } from '../../contexts'
 import { COLOR, SPACING } from '../../constants/styles'
 import { impactAsync, ImpactFeedbackStyle } from 'expo-haptics'
 export function HeaderIcon() {

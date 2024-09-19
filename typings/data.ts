@@ -129,7 +129,7 @@ export interface IMenuItem {
 
 export interface IMenuPage {
   id: string
-  photoUrl: string
+  photoFilePath: string // photos/id.jpg
   menuItems: IMenuItem[]
   timestamp: number
 }

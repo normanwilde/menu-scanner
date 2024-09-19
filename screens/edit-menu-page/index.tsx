@@ -1,7 +1,7 @@
 import { Pressable, View, StyleSheet, ScrollView } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../typings/navigators'
-import { useMenu } from '../../contexts/menu'
+import { useMenu } from '../../contexts'
 import { CenteredLoader, StyledText } from '../../components'
 import { TextInput } from 'react-native-gesture-handler'
 import { useLayoutEffect, useMemo, useState } from 'react'
