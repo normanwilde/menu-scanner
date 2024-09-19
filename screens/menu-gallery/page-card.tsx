@@ -12,6 +12,7 @@ import { StyledText } from '../../components'
 import { useMenu } from '../../contexts/menu'
 import { IMenuPage } from '../../typings/data'
 import { Entypo } from '@expo/vector-icons'
+import { impactAsync, ImpactFeedbackStyle } from 'expo-haptics'
 
 const { width } = Dimensions.get('screen')
 
@@ -26,9 +27,15 @@ export function PageCard({ menuPage, handlePress }: Props) {
   const deletePage = () => {
     dispatch({ type: 'DELETE_PAGE', payload: { pageId: menuPage.id } })
   }
+
+  const onPress = () => {
+    impactAsync(ImpactFeedbackStyle.Light)
+    handlePress(menuPage)
+  }
+
   return (
     <TouchableHighlight
-      onPress={() => handlePress(menuPage)}
+      onPress={onPress}
       key={menuPage.photoUrl}
       style={styles.container}
     >

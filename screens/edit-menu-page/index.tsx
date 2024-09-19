@@ -10,6 +10,8 @@ import useVision from '../../hooks/useVision'
 import { StyledButton } from '../../components/styled-button'
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { UndoIcon } from './undo-icon'
+import { impactAsync, ImpactFeedbackStyle } from 'expo-haptics'
+
 type Props = NativeStackScreenProps<RootStackParamList, 'EditMenuPage'>
 
 export default function EditMenuPage({ route, navigation }: Props) {
@@ -49,6 +51,7 @@ export default function EditMenuPage({ route, navigation }: Props) {
   }
 
   const updateItem = async () => {
+    impactAsync(ImpactFeedbackStyle.Light)
     const trimmedText = text.trim()
     await refetch(trimmedText, pageId, menuItem.id)
     navigation.goBack()
@@ -60,6 +63,7 @@ export default function EditMenuPage({ route, navigation }: Props) {
     Currently the original item is updated and a copy is created from the original. 
     The new item should be created second while keeping the original.
     */
+    impactAsync(ImpactFeedbackStyle.Light)
     const trimmedText = text.trim()
     dispatch({
       type: 'DUPLICATE_ITEM',
@@ -109,9 +113,13 @@ export default function EditMenuPage({ route, navigation }: Props) {
           </StyledText>
           <View style={styles.bubbleContainer}>
             {splitText.map((word, index) => {
+              const onPress = () => {
+                impactAsync(ImpactFeedbackStyle.Light)
+                deleteWord(index)
+              }
               return (
                 <Pressable
-                  onPress={() => deleteWord(index)}
+                  onPress={onPress}
                   key={index}
                   style={styles.itemBubble}
                 >

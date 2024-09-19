@@ -6,15 +6,16 @@ import { useNavigation } from '@react-navigation/native'
 import { StyledText } from '../styled-text'
 import { useMenu } from '../../contexts/menu'
 import { COLOR, SPACING } from '../../constants/styles'
-
+import { impactAsync, ImpactFeedbackStyle } from 'expo-haptics'
 export function HeaderIcon() {
   /* Hooks */
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>()
   const { state } = useMenu()
-  /* Handlers */
 
+  /* Handlers */
   const goToLanguageSelector = () => {
+    impactAsync(ImpactFeedbackStyle.Light)
     navigation.navigate('LanguageSelector')
   }
 

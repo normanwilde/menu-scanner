@@ -7,6 +7,7 @@ import Toast from 'react-native-toast-message'
 import dishValidator from '../utils/dish-validator'
 import { getRandomId } from '../utils'
 import { LANGUAGES } from '../constants/data'
+import { notificationAsync, NotificationFeedbackType } from 'expo-haptics'
 
 const useVision = () => {
   const { state, dispatch } = useMenu()
@@ -59,11 +60,13 @@ const useVision = () => {
           timestamp: Number(new Date()),
         },
       })
+      notificationAsync(NotificationFeedbackType.Success)
       Toast.show({
         type: 'success',
         text1: 'Image successfully processed.',
       })
     } catch (e) {
+      notificationAsync(NotificationFeedbackType.Error)
       Toast.show({
         type: 'error',
         text1: 'Error processing image. Please try again.',
@@ -109,12 +112,14 @@ const useVision = () => {
           editedItem,
         },
       })
+      notificationAsync(NotificationFeedbackType.Success)
       Toast.show({
         type: 'success',
         text1: 'Menu item successfully updated.',
       })
       return 'ok'
     } catch (e) {
+      notificationAsync(NotificationFeedbackType.Error)
       Toast.show({
         type: 'error',
         text1: 'Error updating menu item. Please try again.',

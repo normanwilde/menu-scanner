@@ -6,8 +6,9 @@ import { StyledText } from '../../components'
 import { Entypo } from '@expo/vector-icons'
 import { COLOR, SPACING } from '../../constants/styles'
 import { useMenu } from '../../contexts/menu'
-import { Language, LanguageCode } from '../../typings/data'
+import { LanguageCode } from '../../typings/data'
 import { useLayoutEffect, useState } from 'react'
+import { impactAsync, ImpactFeedbackStyle } from 'expo-haptics'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'LanguageSelector'>
 
@@ -74,16 +75,20 @@ const renderItem = (
   selectedItemCode: LanguageCode,
   selectLanguage: (languageName: LanguageCode) => void
 ) => {
-  const isSelected = selectedItemCode === item.code
+  const onPress = () => {
+    impactAsync(ImpactFeedbackStyle.Light)
+    selectLanguage(item.code)
+  }
   return (
-    <Pressable onPress={() => selectLanguage(item.code)}>
+    <Pressable onPress={onPress}>
       <View
         style={[
           styles.row,
           {
-            backgroundColor: isSelected
-              ? COLOR.accentPrimary
-              : COLOR.backgroundPrimary,
+            backgroundColor:
+              selectedItemCode === item.code
+                ? COLOR.accentPrimary
+                : COLOR.backgroundPrimary,
           },
         ]}
       >

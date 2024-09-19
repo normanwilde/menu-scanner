@@ -20,10 +20,10 @@ import Animated, {
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import { useHeaderHeight } from '@react-navigation/elements'
 import { useState } from 'react'
-const { width, height } = Dimensions.get('screen')
+import { impactAsync } from 'expo-haptics'
 
-// 428
-// 926
+const { height } = Dimensions.get('screen')
+
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable)
 
 const ICON_SCALE = 1.2
@@ -38,6 +38,7 @@ export function CameraIcon() {
 
   /* Handlers */
   const goToCamera = () => {
+    impactAsync
     navigation.navigate('Camera')
   }
 
