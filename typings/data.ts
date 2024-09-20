@@ -127,12 +127,16 @@ export interface IMenuItem {
   images: IMenuImage[]
 }
 
+export type IMenuItems = Record<string, IMenuItem>
+
 export interface IMenuPage {
   id: string
   photoFilePath: string // photos/id.jpg
-  menuItems: IMenuItem[]
+  menuItems: Record<string, IMenuItem>
   timestamp: number
 }
+
+export type IMenuPages = Record<string, IMenuPage>
 
 export interface IMenuPageSection {
   title: string

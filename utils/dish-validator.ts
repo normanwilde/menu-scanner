@@ -3,7 +3,10 @@ import { IAIResponseDTO } from '../typings/DTO'
 
 const API_URL = `${process.env.EXPO_PUBLIC_API_URL}/ai`
 
-const dishValidator = async (stringArray: string[], language: string) => {
+export const dishValidator = async (
+  stringArray: string[],
+  language: string
+) => {
   try {
     const body = {
       language,
@@ -17,5 +20,3 @@ const dishValidator = async (stringArray: string[], language: string) => {
     throw new Error()
   }
 }
-
-export default dishValidator

@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { IImageSearchResponseDTO } from '../typings/DTO'
 import { IMenuImage } from '../typings/data'
-import { getRandomId } from '.'
+import { getRandomId } from './crypto'
 
-const imageFinder = async (searchTerm: string) => {
+export const imageFinder = async (searchTerm: string) => {
   const API_URL = `${process.env.EXPO_PUBLIC_API_URL}/images`
 
   try {
@@ -27,5 +27,3 @@ const imageFinder = async (searchTerm: string) => {
     console.error(e)
   }
 }
-
-export default imageFinder

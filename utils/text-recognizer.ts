@@ -3,7 +3,7 @@ import { ITextDetectionResponseDTO } from '../typings/DTO'
 
 const API_URL = `${process.env.EXPO_PUBLIC_API_URL}/texts`
 
-const textRecognizer = async (image: string) => {
+export const textRecognizer = async (image: string) => {
   try {
     const body = {
       requests: [
@@ -39,5 +39,3 @@ const textRecognizer = async (image: string) => {
     console.error(e)
   }
 }
-
-export default textRecognizer

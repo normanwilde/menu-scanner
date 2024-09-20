@@ -1,7 +1,7 @@
-import { IMenuPage, IMenuPageSection } from '../typings/data'
+import { IMenuPage, IMenuPages, IMenuPageSection } from '../typings/data'
 
-export const groupMenuPages = (data: IMenuPage[]): IMenuPageSection[] => {
-  const sectionObject = data.reduce(
+export const groupMenuPages = (data: IMenuPages): IMenuPageSection[] => {
+  const sectionObject = Object.values(data).reduce(
     (
       sectionObject: Record<string, IMenuPage[]>,
       menuPage: IMenuPage

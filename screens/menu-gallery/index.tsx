@@ -6,19 +6,14 @@ import { IMenuPage } from '../../typings/data'
 import { CenteredLoader, StyledText } from '../../components'
 import { CameraIcon } from './camera-icon'
 import { COLOR, SPACING } from '../../constants/styles'
-import { groupMenuPages } from '../../utils/menu-grouper'
+import { groupMenuPages } from '../../utils'
 import { useCallback, useMemo } from 'react'
-import { StyledButton } from '../../components/styled-button'
 import { PageCard } from './page-card'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MenuGallery'>
 
 export default function MenuGallery({ navigation }: Props) {
-  const { state, dispatch } = useMenu()
-
-  const clearPages = () => {
-    dispatch({ type: 'CLEAR_PAGES' })
-  }
+  const { state } = useMenu()
 
   const sections = useMemo(() => {
     return groupMenuPages(state.pages)
@@ -40,7 +35,7 @@ export default function MenuGallery({ navigation }: Props) {
 
   return (
     <View style={styles.container}>
-      {!state.pages.length && !state.loading ? (
+      {!Object.keys(state.pages).length && !state.loading ? (
         <ScrollView contentContainerStyle={styles.emptyContainer}>
           <StyledText size="HEADING_S">Your menu gallery is empty.</StyledText>
           <StyledText size="L">
@@ -48,16 +43,13 @@ export default function MenuGallery({ navigation }: Props) {
           </StyledText>
         </ScrollView>
       ) : (
-        <>
-          {/* <StyledButton title="Clear Pages" onPress={clearPages} /> */}
-          <SectionList
-            sections={sections}
-            renderItem={renderItem}
-            keyExtractor={keyExtractor}
-            ItemSeparatorComponent={ItemSeparatorComponent}
-            renderSectionHeader={renderSectionHeader}
-          />
-        </>
+        <SectionList
+          sections={sections}
+          renderItem={renderItem}
+          keyExtractor={keyExtractor}
+          ItemSeparatorComponent={ItemSeparatorComponent}
+          renderSectionHeader={renderSectionHeader}
+        />
       )}
 
       <CameraIcon />

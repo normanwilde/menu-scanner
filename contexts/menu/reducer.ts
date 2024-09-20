@@ -6,114 +6,93 @@ export const reducer = (
   action: Action
 ): IMenuPageContextState => {
   switch (action.type) {
-    case 'ADD_PAGE':
+    case 'ADD_PAGE': {
       return {
         ...state,
-        pages: [action.payload, ...state.pages],
+        pages: {
+          ...state.pages,
+          [action.payload.id]: action.payload,
+        },
       }
-    case 'CLEAR_PAGES':
-      return {
-        ...state,
-        pages: [],
-      }
-    case 'DELETE_PAGE':
-      const newPagesWithDeletedPage = state.pages.filter(
-        (page) => page.id !== action.payload.pageId
-      )
-      return {
-        ...state,
-        pages: newPagesWithDeletedPage,
-      }
+    }
 
-    case 'DUPLICATE_ITEM':
-      const newPages = state.pages.map((menuPage) => {
-        if (menuPage.id !== action.payload.pageId) {
-          return menuPage
-        }
-        // if menu page is found
-        const itemIndex = menuPage.menuItems
-          .map((item) => item.id)
-          .indexOf(action.payload.itemId)
-        const duplicatedItem = {
-          ...menuPage.menuItems[itemIndex],
-          id: getRandomId(),
-        }
-        menuPage.menuItems.splice(itemIndex + 1, 0, duplicatedItem)
-        return menuPage
-      })
+    case 'DELETE_PAGE': {
+      const { [action.payload.pageId]: _pageId, ...remainingPages } =
+        state.pages
+      return {
+        ...state,
+        pages: remainingPages,
+      }
+    }
+
+    case 'DUPLICATE_ITEM': {
+      const newId = getRandomId()
 
       return {
         ...state,
-        pages: newPages,
+        pages: {
+          ...state.pages,
+          [action.payload.pageId]: {
+            ...state.pages[action.payload.pageId],
+            menuItems: {
+              ...state.pages[action.payload.pageId].menuItems,
+              [newId]: {
+                ...state.pages[action.payload.pageId].menuItems[
+                  action.payload.itemId
+                ],
+                id: newId,
+              },
+            },
+          },
+        },
       }
-    case 'EDIT_ITEM':
-      const newPagesWithEdited = state.pages.map((menuPage) => {
-        if (menuPage.id !== action.payload.pageId) {
-          return menuPage
-        }
-        // if menu page is found
-        const newItems = menuPage.menuItems.map((menuItem) => {
-          if (menuItem.id !== action.payload.itemId) {
-            return menuItem
-          }
-          return action.payload.editedItem
-        })
-        return {
-          ...menuPage,
-          menuItems: newItems,
-        }
-      })
+    }
+
+    case 'EDIT_ITEM': {
+      return {
+        ...state,
+        pages: {
+          ...state.pages,
+          [action.payload.pageId]: {
+            ...state.pages[action.payload.pageId],
+            menuItems: {
+              ...state.pages[action.payload.pageId].menuItems,
+              [action.payload.itemId]: action.payload.editedItem,
+            },
+          },
+        },
+      }
+    }
+
+    case 'DELETE_ITEM': {
+      const { [action.payload.itemId]: _itemToDelete, ...remainingItems } =
+        state.pages[action.payload.pageId].menuItems
 
       return {
         ...state,
-        pages: newPagesWithEdited,
+        pages: {
+          ...state.pages,
+          [action.payload.pageId]: {
+            ...state.pages[action.payload.pageId],
+            menuItems: remainingItems,
+          },
+        },
       }
-    case 'DELETE_ITEM':
-      const newPagesWithDeleted = state.pages.map((menuPage) => {
-        if (menuPage.id !== action.payload.pageId) {
-          return menuPage
-        }
-        // if menu page is found
-        const remainingItems = menuPage.menuItems.filter((menuItem) => {
-          return menuItem.id !== action.payload.itemId
-        })
-        return {
-          ...menuPage,
-          menuItems: remainingItems,
-        }
-      })
+    }
 
-      return {
-        ...state,
-        pages: newPagesWithDeleted,
-      }
-    case 'CREATE_ITEM':
-      const newPagesWithCreated = state.pages.map((menuPage) => {
-        if (menuPage.id !== action.payload.pageId) {
-          return menuPage
-        }
-        // if menu page is found
-        const itemIndex = menuPage.menuItems
-          .map((item) => item.id)
-          .indexOf(action.payload.itemId)
-        menuPage.menuItems.splice(itemIndex + 1, 0, action.payload.editedItem)
-        return menuPage
-      })
-
-      return {
-        ...state,
-        pages: newPagesWithCreated,
-      }
-    case 'SET_LOADING':
+    case 'SET_LOADING': {
       return {
         ...state,
         loading: action.payload,
       }
-    case 'SET_LANGUAGE':
+    }
+
+    case 'SET_LANGUAGE': {
       return {
         ...state,
         targetLanguage: action.payload,
       }
+    }
   }
 }
 

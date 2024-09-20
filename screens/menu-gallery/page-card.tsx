@@ -1,18 +1,11 @@
-import {
-  View,
-  StyleSheet,
-  Dimensions,
-  Pressable,
-  TouchableOpacity,
-} from 'react-native'
+import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import { Image } from 'expo-image'
 import { COLOR, SPACING } from '../../constants/styles'
-import { StyledText } from '../../components'
 import { useMenu } from '../../contexts'
 import { IMenuPage } from '../../typings/data'
 import { Entypo } from '@expo/vector-icons'
 import { impactAsync, ImpactFeedbackStyle } from 'expo-haptics'
-import { deleteImageFromDocumentDirectory } from '../../utils/file-system'
+import { deleteImageFromDocumentDirectory, menuStorage } from '../../utils'
 import { documentDirectory } from 'expo-file-system'
 
 const { width } = Dimensions.get('screen')
@@ -27,6 +20,7 @@ export function PageCard({ menuPage, handlePress }: Props) {
 
   const deletePage = () => {
     dispatch({ type: 'DELETE_PAGE', payload: { pageId: menuPage.id } })
+    menuStorage.delete(menuPage.id)
     deleteImageFromDocumentDirectory(menuPage.photoFilePath)
   }
 

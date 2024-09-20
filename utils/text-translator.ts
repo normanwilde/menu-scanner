@@ -4,7 +4,7 @@ import { LanguageCode } from '../typings/data'
 
 const API_URL = `${process.env.EXPO_PUBLIC_API_URL}/translations`
 
-const textTranslator = async (text: string, language: LanguageCode) => {
+export const textTranslator = async (text: string, language: LanguageCode) => {
   const body = {
     language,
     text,
@@ -17,5 +17,3 @@ const textTranslator = async (text: string, language: LanguageCode) => {
     console.error(e)
   }
 }
-
-export default textTranslator

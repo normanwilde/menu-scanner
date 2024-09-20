@@ -1,27 +1,32 @@
-import { createContext, useContext, useEffect, useReducer } from 'react'
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+} from 'react'
 
-import { IMenuPage, LanguageCode } from '../../typings/data'
+import { IMenuPage, IMenuPages, LanguageCode } from '../../typings/data'
 import { getLocales } from 'expo-localization'
 import { LANGUAGES } from '../../constants/data'
-import { MMKV } from 'react-native-mmkv'
 import { Action, IMenuPageContextState } from './types'
 import reducer from './reducer'
+import { menuStorage } from '../../utils'
 
-export const storage = new MMKV()
-
-const storedPages = storage
+const storedPages = menuStorage
   .getAllKeys()
-  .reduce((pages: IMenuPage[], key: string) => {
+  .reduce((pages: IMenuPages, key: string) => {
     try {
-      const page = storage.getString(key)
+      const page = menuStorage.getString(key)
       if (!page) {
         return pages
       }
-      return [...pages, JSON.parse(page)]
+      const parsedPage = JSON.parse(page) as IMenuPage
+      return { ...pages, [parsedPage.id]: JSON.parse(page) }
     } catch {
       return pages
     }
-  }, []) as IMenuPage[]
+  }, {}) as IMenuPages
 
 const deviceLanguage = getLocales()?.[0].languageCode as LanguageCode
 
@@ -45,14 +50,14 @@ interface IProps {
 
 export const MenuContextProvider = ({ children }: IProps) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const value = { state, dispatch }
+  const value = useMemo(() => ({ state, dispatch }), [state])
 
-  useEffect(() => {
-    storage.clearAll()
-    state.pages.forEach((page) => {
-      storage.set(page.id, JSON.stringify(page))
-    })
-  }, [state.pages])
+  // useEffect(() => {
+  //   menuStorage.clearAll()
+  //   state.pages.forEach((page) => {
+  //     menuStorage.set(page.id, JSON.stringify(page))
+  //   })
+  // }, [state.pages])
 
   return (
     <MenuPageContext.Provider value={value}>
