@@ -16,6 +16,7 @@ import {
   MenuOptions,
   MenuTrigger,
 } from 'react-native-popup-menu'
+import { impactAsync } from 'expo-haptics'
 
 type Props = {
   pageId: string
@@ -53,16 +54,19 @@ export default function DishCard({ pageId, menuItem }: Props) {
     .numberOfTaps(1)
     .onStart(() => {
       runOnJS(goToImageGallery)()
+      runOnJS(impactAsync)()
     })
 
   const doubleTapGesture = Gesture.Tap()
     .numberOfTaps(2)
     .onStart(() => {
       runOnJS(duplicateItem)()
+      runOnJS(impactAsync)()
     })
 
   const longPressGesture = Gesture.LongPress().onStart(() => {
     runOnJS(goToEditPage)()
+    runOnJS(impactAsync)()
   })
 
   const composedGesture = Gesture.Exclusive(
@@ -98,7 +102,7 @@ export default function DishCard({ pageId, menuItem }: Props) {
         </View>
       </GestureDetector>
       <Menu>
-        <MenuTrigger>
+        <MenuTrigger onPress={impactAsync}>
           <Entypo
             name="dots-three-vertical"
             size={SPACING.L}
@@ -137,8 +141,12 @@ const MenuOptionItem = ({
   icon: keyof typeof Ionicons.glyphMap
   onSelect: () => void
 }) => {
+  const handleSelect = () => {
+    onSelect()
+    impactAsync()
+  }
   return (
-    <MenuOption onSelect={onSelect} style={styles.menuOptionContainer}>
+    <MenuOption onSelect={handleSelect} style={styles.menuOptionContainer}>
       <Ionicons name={icon} size={24} color={COLOR.textPrimary} />
       <StyledText color="textPrimary">{text}</StyledText>
     </MenuOption>
