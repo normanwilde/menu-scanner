@@ -1,4 +1,10 @@
-import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
+import {
+  View,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+  Alert,
+} from 'react-native'
 import { Image } from 'expo-image'
 import { COLOR, SPACING } from '../../constants/styles'
 import { useMenu } from '../../contexts'
@@ -29,6 +35,23 @@ export function PageCard({ menuPage, handlePress }: Props) {
     handlePress(menuPage)
   }
 
+  const showAlert = () =>
+    Alert.alert(
+      'Delete menu page',
+      'Are you sure you want to delete this menu page and all related dishes?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Delete',
+          onPress: deletePage,
+          style: 'destructive',
+        },
+      ]
+    )
+
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -40,7 +63,7 @@ export function PageCard({ menuPage, handlePress }: Props) {
           source={{ uri: documentDirectory + menuPage.photoFilePath }}
           style={styles.image}
         />
-        <TouchableOpacity style={styles.iconButton} onPress={deletePage}>
+        <TouchableOpacity style={styles.iconButton} onPress={showAlert}>
           <View style={styles.iconWrapper}>
             <Entypo
               name="cross"
