@@ -49,6 +49,7 @@ export default function MenuGallery({ navigation }: Props) {
           keyExtractor={keyExtractor}
           ItemSeparatorComponent={ItemSeparatorComponent}
           renderSectionHeader={renderSectionHeader}
+          showsVerticalScrollIndicator={false}
         />
       )}
 
